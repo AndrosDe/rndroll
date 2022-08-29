@@ -28,7 +28,14 @@
                                 <p class="card-text">{{ event.excerpt | safe }}</p>
                             </a>
                             <hr />
-                            <p class="card-text text-muted h6"> Start: {{ event.start_date}}</p>
+                            <div class="row">
+                                <p class="col card-text text-muted h6"> 
+                                    Start: {{ event.start_date}}
+                                </p>
+                                <p class="col-1">
+                                     <i class="far fa-heart"></i>{{ event.number_of_likes }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

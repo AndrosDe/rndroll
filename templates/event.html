@@ -1,0 +1,148 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">{{ event.title }}</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+                <p class="post-subtitle">
+                    {% for tag in event.tag.all %}
+                    <li class="list-unstyled tag-list">{{ tag }}</li>
+                    {% endfor %}  
+                </p>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                {% if "placeholder" in event.image.url %}
+                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                {% else %}
+                <img src=" {{ event.image.url }}" width="100%">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col card mb-4  mt-3 left  top">
+            <h4 class="text-secondary">Story</h4>
+            <p class="card-text text-muted">
+                {{ event.story | safe }}
+            </p>
+            <h5><strong class="text-secondary">Watch Us here: {{ event.main_link }}</strong></h5>
+            <div class="row">
+                <div class="col card mb-4  mt-3 left  top">
+                    <h5><strong class="text-secondary">Shoutouts:</strong></h5>
+                    <p class="card-text text-muted"> {{ event.shoutouts | safe }} </p>
+                </div>
+                <div class="col card mb-4  mt-3 left  top">
+                    <h5><strong class="text-secondary">Links:</strong></h5>
+                    <p class="card-text text-muted"> {{ event.links | safe }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <h5><strong class="text-secondary">Starts on:</strong></h5>
+                        <strong class="text-secondary"> {{ event.start_date }} </strong>
+                    </div>
+                    <div class="col-3">
+                        <h5><strong class="text-secondary">Max. Players:</strong></h5>
+                        <strong class="text-secondary">{{ max_player }}</strong>
+                    </div>
+                    <div class="col-3">
+                        <h5><strong class="text-secondary">Game Master:</strong></h5>
+                        <strong class="text-secondary" > {{ event.game_master }} </strong>
+                    </div>
+                    <div class="col-3">
+                        <h5><strong class="text-secondary">By:</strong></h5>
+                        <strong class="text-secondary"> {{ event.owner }} </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <strong>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="#" method="POST">
+                    {% csrf_token %}
+                    {% if liked %}
+                    <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                    {% else %}
+                    <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="text-secondary"><i class="far fa-heart"></i></span>
+                {% endif %}
+            <!-- The number of likes goes before the closing strong tag -->
+            <span class="text-secondary">{{ event.number_of_likes }} </span>
+            </strong>
+        </div>
+        <div class="col-1">
+            {% with comments.count as total_comments %}
+            <strong class="text-secondary"><i class="far fa-comments"></i>
+                <!-- Our total_comments variable goes before the closing strong tag -->
+                {{ total_comments }}</strong>
+            {% endwith %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-secondary">Characters:</h3>
+        {% for character in event.characters.all %}
+        <div class="col-md-6">
+            <div class="card mb-6">
+                <div class="row card-body">
+                    <div class="image-container col-lg-4">
+                    {% if "placeholder" in character.image.url %}
+                        <img class="card-img-top"
+                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                    {% else %}
+                        <img class="card-img-top" src=" {{ character.image.url }}">
+                    {% endif %}
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="card-text text-muted h6">{{ character.name }}<br>{{ character.character_class }}</p>
+                        <p class="card-text text-muted h6">Description: <br>{{ character.background | safe}}</p>
+                    </div>
+                    <p class="card-text text-muted h6">Created by: {{ character.created_by }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-secondary">Comments:</h3>
+        <div class="col-md-8 card mb-4  mt-3 "></div>
+            <div class="card-body">
+
+            </div>
+        </div>            
+    </div>
+</div>
+{% endblock content %}
