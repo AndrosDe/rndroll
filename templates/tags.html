@@ -1,14 +1,32 @@
 {% extends "base.html" %}
 
+{% block title %}
+Tags
+{% endblock %}
+
 {% block content %}
 
+{% if tagged_events %}
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text dark-bg">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">Events with the tag: "{{ tags }}"</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1661451130/cubes640_sjl1br.png" width="50%">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row">
-
-        <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
-                {% for event in event_list %}
+                {% for event in tagged_events %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
@@ -59,22 +77,27 @@
             <div class="row">
                 {% endif %}
                 {% endfor %}
-
             </div>
         </div>
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
 </div>
+{% else %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text dark-bg">
+                <!-- Post title goes in these h1 tags -->
+                <h1 class="post-title">Sorry, there is no event tag: "{{ tags }}"" on this site.</h1>
+                <!-- Post author goes before the | the post's created date goes after -->
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                <!-- The featured image URL goes in the src attribute -->
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1661451130/cubes640_sjl1br.png" width="50%">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
 {%endblock%}

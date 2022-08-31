@@ -7,7 +7,7 @@ from character.models import Character
 
 
 STATUS = ((0, "Private"), (1, "Public"), (2, "Expired"))
-MAX_PLAYER = ((0, "2"), (1, "3"), (2, "4"), (3, "5"), (4, "6"))
+MAX_PLAYER = ((2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
 
 
 class Tag(models.Model):
@@ -32,7 +32,6 @@ class Event(models.Model):
     # main content
     title = models.CharField(max_length=200)
     story = models.TextField()
-    excerpt = models.TextField(max_length=200)
     tag = models.ManyToManyField(
         Tag,
         related_name='event_tag',
@@ -63,7 +62,7 @@ class Event(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=0)
     # Player Section
-    character_max = models.IntegerField(choices=MAX_PLAYER, default=2)
+    character_max = models.IntegerField(choices=MAX_PLAYER, default=4)
     characters = models.ManyToManyField(
         Character,
         related_name='event_characters',
@@ -83,10 +82,11 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         ''' in order to create an event on the Website '''
-        return reverse('home')
+        return reverse('home') 
 
     def number_of_likes(self):
         return self.likes.count()
+
 
 
 # class Comment(models.Model):

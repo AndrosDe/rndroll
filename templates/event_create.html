@@ -6,6 +6,7 @@ Create a new Event
 
 {% block content %}
 
+{% if user.is_authenticated %}
 <div class="container text-secondary">
     <br>
     <h1>Add Event</h1>
@@ -63,12 +64,6 @@ Create a new Event
                         <h4 class="text-secondary">Story</h4>
                         <p class="card-text text-muted">
                             {{ form.story }}
-                        </p>
-                    </div>
-                    <div class="col">
-                        <h4 class="text-secondary">Excerpt</h4>
-                        <p class="card-text text-muted">
-                            {{ form.excerpt }}
                         </p>
                     </div>
                 </div>
@@ -148,5 +143,9 @@ Create a new Event
         </div>
     </div>
 </form>
+{% else %}
 
+You need to be logged in to create an event post.
+
+{% endif %}
 {%endblock%}

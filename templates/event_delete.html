@@ -5,7 +5,7 @@ Remove an Event
 {% endblock %}
 
 {% block content %}
-
+{% if user.is_staff %}
 <div class="container text-secondary">
     <br>
     <h1>Delete Event</h1>
@@ -69,5 +69,14 @@ Remove an Event
         <button class="btn btn-secondary ms-3">Delete Event!</button>
     </div>
 </form>
+{% else %}
 
+Only administrator can delete an event.
+
+Please contact an administrator, if this event needs to be deleted.
+
+Game Master can change the owner of an event.
+You could hand over the event to someone else with the help of a Game Master.
+
+{% endif %}
 {%endblock%}

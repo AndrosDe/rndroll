@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 from .models import Event
 from .forms import EventForm
@@ -22,7 +23,6 @@ class EventDetail(DetailView):
     #     queryset = Event.objects.filter(status=1)
     #     event = get_object_or_404(queryset)
     #     characters = event.characters
-    #     max_player = event.character_max + 2
     #     comments = event.comments
     #     liked = False
     #     if event.likes.filter(id=self.request.user.id).exists():
@@ -34,7 +34,6 @@ class EventDetail(DetailView):
     #         {
     #             "event": event,
     #             "characters": characters,
-    #             "max_player": max_player,
     #             "comments": comments,
     #             "commented": False,
     #             "liked": liked,
@@ -73,3 +72,12 @@ class ConductView(TemplateView):
     ''' View for the Event Details '''
     model = Event
     template_name = "conduct.html"
+
+
+def TagsView(request, tags):
+    ''' View for the filtered Tags '''
+    tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' '))
+    return render(
+        request, "tags.html", {
+            "tags": tags.replace('-', ' '), "tagged_events": tagged_events
+            })

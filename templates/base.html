@@ -9,7 +9,13 @@
             RND|ROLL 
         {% endblock %}
     </title>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js></script>
+    <link rel="stylesheet" href="{% static 'summernote/summernote-lite.css' %}" type="text/css">
+    <script src="{% static 'summernote/summernote-lite.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
@@ -93,14 +99,14 @@
                 </li>
                 {% endif %} 
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="#">Logout</a></strong>
+                    <strong><a class="nav-link" href="{% url 'logout' %}">Logout</a></strong>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="#">Register</a></strong>
+                    <strong><a class="nav-link" href="{% url 'register' %}">Register</a></strong>
                 </li>
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="#">Login</a></strong>
+                    <strong><a class="nav-link" href="{% url 'login' %}">Login</a></strong>
                 </li>
             </ul>
                 {% endif %}

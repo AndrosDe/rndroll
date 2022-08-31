@@ -19,8 +19,8 @@ class EventForm(forms.ModelForm):
         if cleaned_data.get('characters').count() < 1:
             print("No character seleceted")
         elif cleaned_data.get('characters').count() >= 1:
-            if cleaned_data.get('characters').count() > (cleaned_data.get('character_max') + 2):
-                raise ValidationError(f"You have to choose {(cleaned_data.get('character_max') + 2)} of characters for the Event!")
+            if cleaned_data.get('characters').count() > (cleaned_data.get('character_max')):
+                raise ValidationError(f"You have to choose {(cleaned_data.get('character_max'))} of characters for the Event!")
 
 
 @admin.register(Event)
@@ -35,7 +35,7 @@ class EventAdmin(SummernoteModelAdmin):
     fieldsets = (
 
         (None, {'fields': ('title', 'image', 'tag', 'owner')}),
-        (('Story & Excerpt'), {'fields': ('story', 'excerpt')}),
+        (('Story'), {'fields': ('story',)}),
         (('Game Master & Players'), {'fields': ('game_master', 'character_max', 'characters')}),
         (('Start Date and links'), {'fields': ('start_date', 'main_link', 'links', 'shoutouts')}),
         (('Status'), {'fields': ('status',)}),
