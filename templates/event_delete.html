@@ -11,16 +11,63 @@ Remove an Event
     <h1>Delete Event</h1>
 </div>
 <br>
-<div class="container text-secondary">
-    <h3>Delete: {{ event.title }}</h3>
-</div>
-<br>
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <strong class="ms-5 ps-1"> Are you sure? </strong>
-    <br>
-    <br>
-    <button class="btn btn-secondary ms-5">Delete Event!</button>
+    <div class="container text-secondary">
+        <div class="masthead form-group">
+            <div class="container">
+                <div class="row g-0">
+                    <div class="col-md-6 masthead-text dark-bg">
+                        <br>
+                        <div class="row">
+                            <div class="col-1 ms-3">
+                                <h2>Delete: </h2>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6 ms-3 post-subtitle">
+                                <div class="col">
+                                    <h2>{{ event.title }}</h2>
+                                </div>
+                                <br>
+                                <br>
+                                <h4><strong> Are you sure? </strong></h4>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-12 ms-3 post-subtitle">
+                            <h5><strong> 
+                                This will completely remove the event and the connected comments.
+                                The characters will not be effected.
+                            </strong></h5>
+                        </div>
+                        <br>
+                        <div class="col-12 ms-3 post-subtitle">
+                            <h5>
+                                <strong> Please note that an Event can always be edited.</strong>
+                            </h5>
+                            <h5>
+                                If necessary an admin or game Master can even change the owner of an event and hand it to someone else.
+                            </h5>
+                        </div>
+                    <br>
+                    </div>
+                    <div class="d-none d-md-block col-md-6 masthead-image">
+                        <div class="row">
+                            <img src=" {{ event.image.url }}" width="100%">
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <button class="btn btn-secondary ms-3">Delete Event!</button>
+    </div>
 </form>
 
 {%endblock%}

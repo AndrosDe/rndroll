@@ -21,6 +21,10 @@ body {
     background-color: #445261;
 }
 
+.dark-orange-bg {
+    background-color: #c76a06;
+}
+
 .dark-red-bg {
     background-color: #5f0101;
 }
@@ -45,11 +49,20 @@ body {
     left: -2px;
 }
 
-.image-flash-2 {
+.image-flash-g{
     position: absolute;
     bottom: 5%;
-    min-width: 30%;
     right: -2px;
+}
+
+.image-flash-2 {
+    bottom: 5%;
+    min-width: 30%;
+}
+
+.image-flash-3 {
+    bottom: 20%;
+    min-width: 30%;
 }
 
 .author {

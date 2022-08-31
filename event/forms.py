@@ -19,7 +19,7 @@ class EventForm(forms.ModelForm):
             'story': SummernoteWidget(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'style': 'height: 250px', 'maxlength': '2000', 'placeholder': 'Discripe your event / setting within 2000 characters'}),
             'excerpt': SummernoteWidget(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'style': 'height: 250px', 'maxlength': '300', 'placeholder': 'Make a short excerpt within 300 characters'}),
             'tag': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'required': 'false'}),
             'game_master': forms.Select(attrs={'class': 'form-select'}),
             'main_link': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'www.the-link-where-one-can-whatch-this.com'}),
             'links': SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 250px', 'maxlength': '500', 'placeholder': 'Put in other links, to your pateron or homepage or links to to the players channel, within 500 characters'}),

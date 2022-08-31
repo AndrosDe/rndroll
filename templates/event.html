@@ -8,16 +8,16 @@
 
 <div class="masthead">
     <div class="container">
-        <div class="row g-2">
+        <div class="row g-0">
             <div class="col-md-6 masthead-text dark-bg">
-                <div class="row position-absolute top-0 start-0">
+                <div class="row">
                     <h1 class="post-title">{{ event.title }}</h1>
-                </div>
-                <div class="row position-absolute bottom-50 start-5">
                     <h6 class="post-subtitle ms-3">
+                        <ul>
                         {% for tag in event.tag.all %}
-                        <li class="list-unstyled tag-list">{{ tag }}</li>
-                        {% endfor %}  
+                            <li class="list-unstyled tag-list">{{ tag }}</li>
+                        {% endfor %}
+                        </ul>
                     </h6>
                 </div>
             </div>
@@ -29,9 +29,16 @@
                 <img src=" {{ event.image.url }}" width="100%">
                 {% endif %}
                 {% if user.is_staff %}
-                <div class="image-flash-2 dark-red-bg">
-                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                <div class="image-flash-g">
+                    <div class="image-flash-3 dark-red-bg">
+                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                    </div>
+                    {% if user.gamemaster.gm %}
+                    <div class="image-flash-2 dark-orange-bg">
+                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                    </div>
                 </div>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -60,56 +67,76 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-lg-3 card col-md-6">
                         <h5><strong class="text-secondary">Starts on:</strong></h5>
                         <strong class="text-secondary"> {{ event.start_date }} </strong>
+                        <br>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-3 card col-md-6">
                         <h5><strong class="text-secondary">Max. Players:</strong></h5>
                         <strong class="text-secondary">{{ max_player }}</strong>
+                        <br>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-6">
                         <h5><strong class="text-secondary">Game Master:</strong></h5>
                         <strong class="text-secondary" > {{ event.game_master }} </strong>
+                        <br>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-6">
                         <h5><strong class="text-secondary">By:</strong></h5>
                         <strong class="text-secondary"> {{ event.owner }} </strong>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container">
     <div class="row">
-        <div class="col-1">
-            <strong>
-                {% if user.is_authenticated %}
-                <form class="d-inline" action="#" method="POST">
-                    {% csrf_token %}
-                    {% if liked %}
-                    <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-1">
+                        <strong>
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="#" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            {% endif %}
+                        <span class="text-secondary">{{ event.number_of_likes }} </span>
+                        </strong>
+                    </div>
+                    <div class="col-1">
+                        {% with comments.count as total_comments %}
+                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                            {{ total_comments }}</strong>
+                        {% endwith %}
+                    </div>
+                    <div class="col">
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-1">
+                        <strong>
+                            <a class="btn btn-success position-relative" href="#">Join</a>
+                        </strong>
+                    </div>
                     {% else %}
-                    <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                    <div class="col-1">
+                        <strong>
+                            <a class="btn btn-secondary position-relative" href="#">Join</a>
+                        </strong>
+                    </div>
                     {% endif %}
-                </form>
-                {% else %}
-                <span class="text-secondary"><i class="far fa-heart"></i></span>
-                {% endif %}
-            <span class="text-secondary">{{ event.number_of_likes }} </span>
-            </strong>
-        </div>
-        <div class="col-1">
-            {% with comments.count as total_comments %}
-            <strong class="text-secondary"><i class="far fa-comments"></i>
-                {{ total_comments }}</strong>
-            {% endwith %}
-        </div>
-        <div class="col">
-        </div>
-        <div class="col-2">
-            <strong>
-                <a class="btn btn-secondary" href="{% url 'event_edit' event.pk %}">Update Event</a>
-            </strong>
+                </div>
+            </div>
         </div>
     </div>
 </div>
