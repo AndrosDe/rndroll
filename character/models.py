@@ -7,7 +7,6 @@ from cloudinary.models import CloudinaryField
 class Character(models.Model):
     ''' The Character Database '''
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
     character_class = models.CharField(max_length=200)
     background = models.TextField()
     image = CloudinaryField('image', default='placeholder')

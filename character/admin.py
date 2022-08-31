@@ -7,13 +7,12 @@ from .models import Character, Note, Picture
 @admin.register(Character)
 class CharacterAdmin(SummernoteModelAdmin):
 
-    list_display = ('name', 'character_class', 'slug', 'created_by')
-    prepopulated_fields = {'slug': ('name', 'character_class')}
+    list_display = ('name', 'character_class', 'created_by')
     list_filter = ('name', 'created_by')
     summernote_fields = ('background')
 
     fieldsets = (
-        (None, {'fields': ('character_class', 'name', 'slug', 'image', 'background')}),
+        (None, {'fields': ('character_class', 'name', 'image', 'background')}),
         (('Equipment & Inventory'), {'fields': ('equipment', 'items',)}),
         (('User'), {'fields': ('created_by',)}),
     )

@@ -1,5 +1,5 @@
 body {
-    background-color: #F9FAFC;
+    background-color: rgba(253, 236, 216, 0.701);
 }
 
 .brand {
@@ -13,10 +13,6 @@ body {
     color: #E84610;
 }
 
-.thin {
-    font-weight: 300;
-}
-
 .light-bg {
     background-color: #fff;
 }
@@ -25,8 +21,12 @@ body {
     background-color: #445261;
 }
 
+.dark-red-bg {
+    background-color: #5f0101;
+}
+
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: rgba(254, 245, 236, 0.701);
 }
 
 .card {
@@ -43,7 +43,13 @@ body {
     bottom: 5%;
     min-width: 30%;
     left: -2px;
-    background-color: #445261;
+}
+
+.image-flash-2 {
+    position: absolute;
+    bottom: 5%;
+    min-width: 30%;
+    right: -2px;
 }
 
 .author {
@@ -54,15 +60,12 @@ body {
 
 .masthead {
     margin-top: 10px;
-    overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
     width: 100%;
 }
 
 .masthead-text {
-    background-color: #445261;
     color: white;
     position: relative;
 }
@@ -153,14 +156,13 @@ body {
     height: 150px;
 }
 
-.navbar-brand{
-    background-color: rgba(246, 226, 202, 0.8);
-    padding: 0 10px;
+.special-bg{
+    background: rgb(171,142,111);
+    background: linear-gradient(180deg, rgba(171,142,111,1) 0%, rgba(246,226,202,1) 26%, rgba(246,226,202,0.7010154403558299) 100%);
 }
 
-.solgan {
-    background-color: rgba(246, 226, 202, 0.8);
-    display: flex;
+.navbar-brand{
+    padding: 0 10px;
 }
 
 .nav-login {

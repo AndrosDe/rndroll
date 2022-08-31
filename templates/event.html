@@ -1,17 +1,25 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+
+{% block title %}
+{{ event.title }}
+{% endblock %}
+
+{% block content %}
 
 <div class="masthead">
     <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ event.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">
-                    {% for tag in event.tag.all %}
-                    <li class="list-unstyled tag-list">{{ tag }}</li>
-                    {% endfor %}  
-                </p>
+        <div class="row g-2">
+            <div class="col-md-6 masthead-text dark-bg">
+                <div class="row position-absolute top-0 start-0">
+                    <h1 class="post-title">{{ event.title }}</h1>
+                </div>
+                <div class="row position-absolute bottom-50 start-5">
+                    <h6 class="post-subtitle ms-3">
+                        {% for tag in event.tag.all %}
+                        <li class="list-unstyled tag-list">{{ tag }}</li>
+                        {% endfor %}  
+                    </h6>
+                </div>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
@@ -19,6 +27,11 @@
                 <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
                 {% else %}
                 <img src=" {{ event.image.url }}" width="100%">
+                {% endif %}
+                {% if user.is_staff %}
+                <div class="image-flash-2 dark-red-bg">
+                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -82,16 +95,21 @@
                 {% else %}
                 <span class="text-secondary"><i class="far fa-heart"></i></span>
                 {% endif %}
-            <!-- The number of likes goes before the closing strong tag -->
             <span class="text-secondary">{{ event.number_of_likes }} </span>
             </strong>
         </div>
         <div class="col-1">
             {% with comments.count as total_comments %}
             <strong class="text-secondary"><i class="far fa-comments"></i>
-                <!-- Our total_comments variable goes before the closing strong tag -->
                 {{ total_comments }}</strong>
             {% endwith %}
+        </div>
+        <div class="col">
+        </div>
+        <div class="col-2">
+            <strong>
+                <a class="btn btn-secondary" href="{% url 'event_edit' event.pk %}">Update Event</a>
+            </strong>
         </div>
     </div>
 </div>

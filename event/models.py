@@ -31,7 +31,6 @@ class Event(models.Model):
     ''' The Event Database '''
     # main content
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
     story = models.TextField()
     excerpt = models.TextField(max_length=200)
     tag = models.ManyToManyField(
@@ -83,12 +82,24 @@ class Event(models.Model):
         return f"{self.title}"
 
     def get_absolute_url(self):
-        ''' Max Player restriction - You can only add max number of players'''
-        return reverse('event-form', kwargs={'pk': self.pk})
+        ''' in order to create an event on the Website '''
+        return reverse('home')
+
+    def number_of_likes(self):
+        return self.likes.count()
 
 
-class Comment(models.Model):
-    event = models.ForeignKey(
-        Event,
-        on_delete=models.CASCADE,
-        related_name="comments")
+# class Comment(models.Model):
+#     event = models.ForeignKey(
+#         Event,
+#         on_delete=models.CASCADE,
+#         related_name="comments")
+#     body = models.TextField()
+#     created_on = models.DateTimeField(auto_now_add=True)
+#     approved = models.BooleanField(default=False)
+
+#     class Meta:
+#         ordering = ["created_on"]
+
+#     def __str__(self):
+#         return f"Comment {self.body}"

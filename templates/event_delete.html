@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Remove an Event
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-secondary">
+    <br>
+    <h1>Delete Event</h1>
+</div>
+<br>
+<div class="container text-secondary">
+    <h3>Delete: {{ event.title }}</h3>
+</div>
+<br>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <strong class="ms-5 ps-1"> Are you sure? </strong>
+    <br>
+    <br>
+    <button class="btn btn-secondary ms-5">Delete Event!</button>
+</form>
+
+{%endblock%}

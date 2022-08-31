@@ -1,0 +1,149 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Create a new Event
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-secondary">
+    <br>
+    <h1>Add Event</h1>
+</div>
+<br>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="masthead form-group">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 masthead-text dark-bg">
+                    <br>
+                    <div class="row">
+                        <div class="col-1 ms-3">
+                            <strong>
+                                Title:
+                            </strong>
+                        </div>
+                        <div class="col">
+                            {{ form.title }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-1 ms-3 post-subtitle">
+                            Tags:
+                        </div>
+                        <div class="col">
+                            {{ form.tag }}
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="d-none d-md-block col-md-6 masthead-image">
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col">
+                            Image: 
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col">
+                                {{ form.image }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col card mb-4  mt-3 left  top">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-secondary">Story</h4>
+                        <p class="card-text text-muted">
+                            {{ form.story }}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-secondary">Excerpt</h4>
+                        <p class="card-text text-muted">
+                            {{ form.excerpt }}
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <h5><strong class="text-secondary">Main Link: </strong></h5>
+                <p class="col-6 card-text text-muted"> {{ form.main_link }} </p>
+                <div class="row">
+                    <div class="col card mb-4  mt-3 left  top">
+                        <h5><strong class="text-secondary">Shoutouts:</strong></h5>
+                        <p class="card-text text-muted"> {{ form.shoutouts }} </p>
+                    </div>
+                    <div class="col card mb-4  mt-3 left  top">
+                        <h5><strong class="text-secondary">Other Links:</strong></h5>
+                        <p class="card-text text-muted"> {{ form.links }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5><strong><label class="control-label text-secondary">Starts on:</label></strong></h5>
+                            {{ form.start_date }}
+                        </div>
+                        <div class="col-3">
+                            <h5><strong class="text-secondary">Max. Players:</strong></h5>
+                            <strong class="text-secondary">{{ form.character_max }}</strong>
+                        </div>
+                        <div class="col-3">
+                            <h5><strong class="text-secondary">Status:</strong></h5>
+                            <strong class="text-secondary">{{ form.status }}</strong>
+                        </div>
+                        <div class="col-3">
+                            <h5><strong class="text-secondary">By:</strong></h5>
+                            <strong class="text-secondary"> {{ form.owner }} </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col card mb-4  mt-3 left  top">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3">
+                            {% if user.gamemaster.gm %}
+                            <h5><strong class="text-secondary">Game Master:</strong></h5>
+                            <strong class="text-secondary" > {{ form.game_master }} </strong>
+                            {% endif %}
+                        </div>
+                        <div class="col-4">
+                            <h5><strong class="text-secondary">Ruleset</strong></h5>
+                            <strong class="text-secondary"> {{ form.rule_set }} </strong>
+                        </div>
+                        <div class="col-5">
+                            {% if user.gamemaster.gm %}
+                            <h5><strong class="text-secondary">Characters:</strong></h5>
+                            <strong class="text-secondary" > {{ form.characters }} </strong>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <input class="btn btn-secondary" type="submit" value="Submit">
+                    </div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{%endblock%}

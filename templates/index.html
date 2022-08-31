@@ -19,11 +19,16 @@
                                 {% else %}
                                 <img class="card-img-top" src=" {{ event.image.url }}">
                                 {% endif %}
-                                <div class="image-flash">
+                                <div class="image-flash dark-bg">
                                     <p class="author">By: {{ event.owner }}</p>
                                 </div>
+                                {% if user.is_staff %}
+                                <div class="image-flash-2 dark-red-bg">
+                                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                </div>
+                                {% endif %}
                             </div>
-                            <a href="{% url 'event_detail' event.slug %}" class="post-link">
+                            <a href="{% url 'event_detail' event.pk %}" class="post-link">
                                 <h2 class="card-title">{{ event.title }}</h2>
                                 <p class="card-text">{{ event.excerpt | safe }}</p>
                             </a>
@@ -33,7 +38,10 @@
                                     Start: {{ event.start_date}}
                                 </p>
                                 <p class="col-1">
-                                     <i class="far fa-heart"></i>{{ event.number_of_likes }}
+                                    <i class="far fa-heart"></i>
+                                </p>
+                                <p class="col-1">
+                                    {{ event.number_of_likes }}
                                 </p>
                             </div>
                         </div>
