@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView,
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
-from .models import Event
+from .models import Event, Tag
 from .forms import EventForm
 
 
@@ -78,6 +78,21 @@ def TagsView(request, tags):
     ''' View for the filtered Tags '''
     tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' '))
     return render(
-        request, "tags.html", {
+        request, "tagged_events.html", {
             "tags": tags.replace('-', ' '), "tagged_events": tagged_events
             })
+
+
+class IndexTagsView(ListView):
+    ''' View for all Tags '''
+    model = Tag
+    tag_list = Tag.objects.all()
+    template_name = "tag_index.html"
+
+
+class AddTag(CreateView):
+    ''' Creating a Tag '''
+    model = Tag
+    fields = '__all__'
+    template_name = "tag_add.html"
+    success_url = reverse_lazy("index_tag")

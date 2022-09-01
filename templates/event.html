@@ -16,7 +16,7 @@
                         <ul>
                         {% for tag in event.tag.all %}
                             <li class="list-unstyled tag-list">
-                                <a class="nav-link" href="{% url 'event_tag' tag %}">
+                                <a class="nav-link" href="{% url 'event_tag' tag %}" target="_blank">
                                 {{ tag }}
                                 </a>
                             </li>

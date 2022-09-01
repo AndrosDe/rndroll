@@ -58,6 +58,9 @@
                     <li class="nav-item">
                         <strong><a class="nav-link" aria-current="page" href="{% url 'event_calendar' %}">Calendar</a></strong>
                     </li>
+                    <li class="nav-item">
+                        <strong><a class="nav-link" aria-current="page" href="{% url 'index_tag' %}">Tags</a></strong>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <strong><a class="nav-link" aria-current="page" href="{% url 'event_create' %}">Create Event</a></strong>
@@ -90,7 +93,7 @@
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" title="You are a Site-Admin"><i class="fa-solid fa-dice-d20"></i></a></strong>
+                    <strong><a class="nav-link" href="{% url 'admin:index' %}" title="You are a Site-Admin"><i class="fa-solid fa-dice-d20"></i></a></strong>
                 </li>
                 {% endif %} 
                 {% if user.gamemaster.gm %}

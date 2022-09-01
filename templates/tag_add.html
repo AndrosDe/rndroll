@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Add a new Tag
+{% endblock %}
+
+{% block content %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text dark-bg">
+                <div class="row">
+                    <h1 class="post-title">Add a new Tag</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-1"> </div>
+                    <div class="col">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <br>
+                            <input class="btn btn-success" type="submit" value="Add Tag">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg" width="100%">
+            </div>
+        </div>
+
+{%endblock%}

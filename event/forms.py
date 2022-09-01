@@ -4,6 +4,7 @@ from cloudinary.forms import CloudinaryFileField
 from django_summernote.widgets import SummernoteWidget
 from .models import Event
 
+
 class EventForm(forms.ModelForm):
     ''' The Form for the Event Model '''
     image = CloudinaryFileField()

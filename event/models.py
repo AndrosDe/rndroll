@@ -14,6 +14,9 @@ class Tag(models.Model):
     ''' The Tag Database '''
     tag = models.CharField(max_length=200)
 
+    class Meta:
+        ordering = ('tag',)
+
     def __str__(self):
         return f"{self.tag}"
 
