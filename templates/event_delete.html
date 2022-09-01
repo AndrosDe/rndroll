@@ -5,7 +5,7 @@ Remove an Event
 {% endblock %}
 
 {% block content %}
-{% if user.is_staff %}
+{% if user.id == event.owner.id or user.is_staff %}
 <div class="container text-secondary">
     <br>
     <h1>Delete Event</h1>
@@ -49,7 +49,7 @@ Remove an Event
                                 <strong> Please note that an Event can always be edited.</strong>
                             </h5>
                             <h5>
-                                If necessary an admin or game Master can even change the owner of an event and hand it to someone else.
+                                If necessary an admin can even change the owner of an event and hand it to someone else in the admin site.
                             </h5>
                         </div>
                     <br>

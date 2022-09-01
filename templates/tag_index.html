@@ -18,7 +18,7 @@ Tag Index
                 <div class="row">
                     <div class="col-1"> </div>
                     <div class="col">
-                        <a class="btn btn-success" href="{% url 'add_tag' %}">Add Tag</a>
+                        <a class="btn btn-success px-5" href="{% url 'add_tag' %}">Add Tag</a>
                     </div>
                 </div>
                 {% if user.is_staff %}
@@ -26,8 +26,17 @@ Tag Index
                 <div class="row">
                     <div class="col-1"> </div>
                     <div class="col">
-                        <a class="btn btn-danger" href="{% url 'admin:index' %}" title="This will send you to the Admin Site">Delete Tag</a>
+                        <input class="btn btn-danger" title="This will send you to the Admin Site" value="Delete Tag" onclick = "getConfirmation();" >
                     </div>
+                    <script type = "text/javascript">
+                        function getConfirmation() {
+                           var retVal = confirm("This will send you to the Admin Site.\nDo you want to continue ?");
+                           if( retVal == true ) {
+                                location.href="{% url 'admin:index' %}"
+                                return true;
+                           }
+                        }
+                    </script> 
                 </div>
                 {% endif %}
                 {% endif %}

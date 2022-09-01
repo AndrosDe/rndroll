@@ -32,17 +32,15 @@
                 {% else %}
                 <img src=" {{ event.image.url }}" width="100%">
                 {% endif %}
-                {% if user.is_staff %}
-                <div class="image-flash-g">
-                    <div class="image-flash-3 dark-red-bg">
-                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                    </div>
-                    {% if user.gamemaster.gm %}
-                    <div class="image-flash-2 dark-orange-bg">
-                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                    </div>
+                {% if user.id == event.owner.id or user.is_staff %}
+                <div class="image-flash-3 dark-red-bg">
+                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                 </div>
                 {% endif %}
+                {% if user.id == event.owner.id or user.gamemaster.gm or user.is_staff %}
+                <div class="image-flash-2 dark-orange-bg">
+                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -104,12 +102,12 @@
                     <div class="col-1">
                         <strong>
                             {% if user.is_authenticated %}
-                            <form class="d-inline" action="#" method="POST">
+                            <form class="d-inline" action="{% url 'event_like' event.pk %}" method="POST">
                                 {% csrf_token %}
                                 {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="fas fa-heart"></i></button>
                                 {% else %}
-                                <button type="submit" name="blogpost_id" value="{{event.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="far fa-heart"></i></button>
                                 {% endif %}
                             </form>
                             {% else %}

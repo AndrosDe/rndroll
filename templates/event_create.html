@@ -99,8 +99,8 @@ Create a new Event
                             <strong class="text-secondary">{{ form.status }}</strong>
                         </div>
                         <div class="col-3">
-                            <h5><strong class="text-secondary">By:</strong></h5>
-                            <strong class="text-secondary"> {{ form.owner }} </strong>
+                            <h5><strong class="text-secondary">Game Master:</strong></h5>
+                            <strong class="text-secondary" > {{ form.game_master }} </strong>
                         </div>
                     </div>
                 </div>
@@ -111,10 +111,7 @@ Create a new Event
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            {% if user.gamemaster.gm %}
-                            <h5><strong class="text-secondary">Game Master:</strong></h5>
-                            <strong class="text-secondary" > {{ form.game_master }} </strong>
-                            {% endif %}
+                            <strong class="text-secondary"> {{ form.owner }} </strong>
                         </div>
                         <div class="col-4">
                             <h5><strong class="text-secondary">Ruleset</strong></h5>
@@ -127,7 +124,6 @@ Create a new Event
                             {% endif %}
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="col-4">
@@ -139,6 +135,10 @@ Create a new Event
             </div>
         </div>
     </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("owner").value = name;
+    </script>
 </form>
 {% else %}
 

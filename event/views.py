@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 
 from .models import Event, Tag
 from .forms import EventForm
@@ -19,26 +20,25 @@ class EventDetail(DetailView):
     model = Event
     template_name = "event.html"
 
-    # def get(self, request, *args, **kwargs):
-    #     queryset = Event.objects.filter(status=1)
-    #     event = get_object_or_404(queryset)
-    #     characters = event.characters
-    #     comments = event.comments
-    #     liked = False
-    #     if event.likes.filter(id=self.request.user.id).exists():
-    #         liked = True
+    def get_context_data(self, *args, **kwargs):
+        context = super(EventDetail, self).get_context_data(*args, **kwargs)
+        event = get_object_or_404(Event, id=self.kwargs['pk'])
+        liked = False
+        if event.likes.filter(id=self.request.user.id).exists():
+            liked = True
 
-    #     return render(
-    #         request,
-    #         "event.html",
-    #         {
-    #             "event": event,
-    #             "characters": characters,
-    #             "comments": comments,
-    #             "commented": False,
-    #             "liked": liked,
-    #         },
-    #     )
+        context["liked"] = liked
+        return context
+
+
+def LikeView(request, pk):
+    event = get_object_or_404(Event, id=request.POST.get("event_id"))
+    if event.likes.filter(id=request.user.id).exists():
+        event.likes.remove(request.user)
+    else:
+        event.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
 
 
 class CreateEvent(CreateView):
@@ -76,7 +76,7 @@ class ConductView(TemplateView):
 
 def TagsView(request, tags):
     ''' View for the filtered Tags '''
-    tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' '))
+    tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' ')).order_by("start_date")
     return render(
         request, "tagged_events.html", {
             "tags": tags.replace('-', ' '), "tagged_events": tagged_events

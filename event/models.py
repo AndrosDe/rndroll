@@ -15,6 +15,7 @@ class Tag(models.Model):
     tag = models.CharField(max_length=200)
 
     class Meta:
+        ''' ordering the Tag Database alphabetically '''
         ordering = ('tag',)
 
     def __str__(self):
@@ -56,9 +57,9 @@ class Event(models.Model):
     # Connecting to User
     owner = models.ForeignKey(
         User,
-        on_delete=models.SET_DEFAULT,
-        default="Unknown User",
-        related_name="event_creator")
+        on_delete=models.SET_NULL,
+        related_name="event_creator",
+        null=True)
     # Dates
     start_date = models.DateTimeField(auto_now=False)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -85,11 +86,11 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         ''' in order to create an event on the Website '''
-        return reverse('home') 
+        return reverse('home')
 
     def number_of_likes(self):
+        ''' counts the number of likes '''
         return self.likes.count()
-
 
 
 # class Comment(models.Model):

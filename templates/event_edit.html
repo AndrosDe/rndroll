@@ -6,7 +6,7 @@ Updateing an Event
 
 {% block content %}
 
-{% if user.is_authenticated %}
+{% if user.id == event.owner.id or user.gamemaster.gm or user.is_staff %}
 <div class="container text-secondary">
     <br>
     <h1>Update Event</h1>
@@ -102,8 +102,8 @@ Updateing an Event
                             <strong class="text-secondary">{{ form.status }}</strong>
                         </div>
                         <div class="col-3">
-                            <h5><strong class="text-secondary">By:</strong></h5>
-                            <strong class="text-secondary"> {{ form.owner }} </strong>
+                            <h5><strong class="text-secondary">Game Master:</strong></h5>
+                            <strong class="text-secondary" > {{ form.game_master }} </strong>
                         </div>
                     </div>
                 </div>
@@ -114,10 +114,7 @@ Updateing an Event
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            {% if user.gamemaster.gm %}
-                            <h5><strong class="text-secondary">Game Master:</strong></h5>
-                            <strong class="text-secondary" > {{ form.game_master }} </strong>
-                            {% endif %}
+                            <strong class="text-secondary"> {{ form.owner }} </strong>
                         </div>
                         <div class="col-4">
                             <h5><strong class="text-secondary">Ruleset</strong></h5>
@@ -145,11 +142,10 @@ Updateing an Event
 </form>
 {% else %}
 
-You need to be logged in to edit an event post.
+You need to be the Event Owner or Game Master in to edit an event post.
 
 Note that advanced changes can onlybe done by a Game Master.
 These are:
-- set event Game master
 - add or remove characters
 
 {% endif %}

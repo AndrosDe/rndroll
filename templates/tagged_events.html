@@ -41,16 +41,14 @@ Tags
                                     <p class="author">By: {{ event.owner }}</p>
                                 </div>
                                 {% if user.is_staff %}
-                                <div class="image-flash-g">
-                                    <div class="image-flash-3 dark-red-bg">
-                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                                    </div>
-                                    {% if user.gamemaster.gm %}
-                                    <div class="image-flash-2 dark-orange-bg">
-                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                                    </div>
+                                <div class="image-flash-3 dark-red-bg">
+                                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                                 </div>
                                 {% endif %}
+                                {% if user.id == event.owner.id or user.gamemaster.gm  or user.is_staff %}
+                                <div class="image-flash-2 dark-orange-bg">
+                                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                </div>
                                 {% endif %}
                             </div>
                             <a href="{% url 'event_detail' event.pk %}" class="post-link">
