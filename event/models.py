@@ -36,6 +36,7 @@ class Event(models.Model):
     # main content
     title = models.CharField(max_length=200)
     story = models.TextField()
+    snippet = models.CharField(max_length=300)
     tag = models.ManyToManyField(
         Tag,
         related_name='event_tag',

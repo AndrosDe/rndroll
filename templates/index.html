@@ -35,7 +35,7 @@
                             </div>
                             <a href="{% url 'event_detail' event.pk %}" class="post-link">
                                 <h2 class="card-title">{{ event.title }}</h2>
-                                <p class="card-text">{{ event.story| slice:":150" | safe }}...</p>
+                                <p class="card-text">{{ event.snippet }}</p>
                             </a>
                             <hr />
                             <div class="row">

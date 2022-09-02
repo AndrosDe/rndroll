@@ -55,25 +55,31 @@ Create a new Event
                     </div>
                 </div>
             </div>
-            <div class="col card mb-4  mt-3 left  top">
+            <div class="col mt-3">
+                <h4 class="text-secondary">Story</h4>
+                <p class="card-text text-muted">
+                    {{ form.story }}
+                </p>
                 <div class="row">
-                    <div class="col">
-                        <h4 class="text-secondary">Story</h4>
+                    <div class="col-md-6">
+                        <h5><strong class="text-secondary">Snippet</strong></h5>
                         <p class="card-text text-muted">
-                            {{ form.story }}
+                            {{ form.snippet }}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><strong class="text-secondary">Main Link: </strong></h5>
+                        <p class="col card-text text-muted"> 
+                            {{ form.main_link }}
                         </p>
                     </div>
                 </div>
-                <br>
-                <br>
-                <h5><strong class="text-secondary">Main Link: </strong></h5>
-                <p class="col-6 card-text text-muted"> {{ form.main_link }} </p>
-                <div class="row">
-                    <div class="col card mb-4  mt-3 left  top">
+                <div class="row mt-3">
+                    <div class="col-md-6">
                         <h5><strong class="text-secondary">Shoutouts:</strong></h5>
                         <p class="card-text text-muted"> {{ form.shoutouts }} </p>
                     </div>
-                    <div class="col card mb-4  mt-3 left  top">
+                    <div class="col-md-6">
                         <h5><strong class="text-secondary">Other Links:</strong></h5>
                         <p class="card-text text-muted"> {{ form.links }} </p>
                     </div>
@@ -86,19 +92,19 @@ Create a new Event
             <div class="col card mb-4  mt-3 left  top">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-6 ">
                             <h5><strong><label class="control-label text-secondary">Starts on:</label></strong></h5>
                             {{ form.start_date }}
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-6 ">
                             <h5><strong class="text-secondary">Max. Players:</strong></h5>
                             <strong class="text-secondary">{{ form.character_max }}</strong>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-6 ">
                             <h5><strong class="text-secondary">Status:</strong></h5>
                             <strong class="text-secondary">{{ form.status }}</strong>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-6 ">
                             <h5><strong class="text-secondary">Game Master:</strong></h5>
                             <strong class="text-secondary" > {{ form.game_master }} </strong>
                         </div>
@@ -110,14 +116,14 @@ Create a new Event
             <div class="col card mb-4  mt-3 left  top">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-lg-3 col-sm-6">
                             <strong class="text-secondary"> {{ form.owner }} </strong>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4 col-sm-6">
                             <h5><strong class="text-secondary">Ruleset</strong></h5>
                             <strong class="text-secondary"> {{ form.rule_set }} </strong>
                         </div>
-                        <div class="col-5">
+                        <div class="col-lg-5 col-sm-6">
                             {% if user.gamemaster.gm %}
                             <h5><strong class="text-secondary">Characters:</strong></h5>
                             <strong class="text-secondary" > {{ form.characters }} </strong>
