@@ -37,7 +37,7 @@
                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                 </div>
                 {% endif %}
-                {% if user.id == event.owner.id or user.gamemaster.gm or user.is_staff %}
+                {% if user.id == event.owner.id or user.profile.gm or user.is_staff %}
                 <div class="image-flash-2 dark-orange-bg">
                     <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                 </div>
@@ -127,7 +127,9 @@
                     {% if user.is_authenticated %}
                     <div class="col-1">
                         <strong>
-                            <a class="btn btn-success position-relative" href="#">Join</a>
+                            <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
+                                Join
+                            </button>
                         </strong>
                     </div>
                     {% else %}
@@ -137,6 +139,21 @@
                         </strong>
                     </div>
                     {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col collapse" id="collapseJoin">
+                        <div class="card card-body">
+                            <form class="d-inline" action="" method="POST">
+                                {% csrf_token %}
+                                ++
+                                {{ event.owner.character.name }}
+
+                                {% for character in user.character.all %}
+                                {{ character.name }}
+                                {% endfor %}
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,11 +202,47 @@
 <div class="container">
     <div class="row">
         <h3 class="text-secondary">Comments:</h3>
-        <div class="col-md-8 card mb-4  mt-3 "></div>
-            <div class="card-body">
-
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    {% if "placeholder" in event.owner.profile.profile_pic.url %}
+                    <img class="card-img-top"
+                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662240182/dice-g23bca643c_200_tl70st.png">
+                    {% else %}
+                    <img class="card-img-top" src="{{ event.owner.profile.profile_pic.url }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.owner.first_name }} {{ event.owner.last_name }}</h5>
+                        <p class="text-muted">
+                            {% if event.owner.profile.website_url %}
+                            <a href="{{ event.owner.profile.website_url }}">Website</a>
+                            {% endif %}
+                            {% if event.owner.profile.facebook_url %}
+                            | <a href="{{ event.owner.profile.facebook_url }}">Facebook</a>
+                            {% endif %}
+                            {% if event.owner.profile.twitter_url %}
+                            | <a href="{{ event.owner.profile.twitter_url }}">Twitter</a>
+                            {% endif %}
+                            {% if event.owner.profile.twitch_url %}
+                            | <a href="{{ event.owner.profile.twitch_url }}">Twitch</a>
+                            {% endif %}
+                            {% if event.owner.profile.instagram_url %}
+                            | <a href="{{ event.owner.profile.instagram_url }}">Instagram</a>
+                            {% endif %}
+                            {% if event.owner.profile.youtube_url %}
+                            | <a href="{{ event.owner.profile.youtube_url }}">Pinterest</a>
+                            {% endif %}
+                            {% if event.owner.profile.pinterest_url %}
+                            | <a href="{{ event.owner.profile.pinterest_url }}">YouTube</a>
+                            {% endif %}
+                        </p>
+                        <p class="card-text">{{ event.owner.profile.bio }}</p>
+                    </div>
+                </div>
             </div>
-        </div>            
+        </div>  
     </div>
 </div>
 {% endblock content %}

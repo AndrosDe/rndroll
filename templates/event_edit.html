@@ -6,7 +6,7 @@ Updateing an Event
 
 {% block content %}
 
-{% if user.id == event.owner.id or user.gamemaster.gm or user.is_staff %}
+{% if user.id == event.owner.id or user.profile.gm or user.is_staff %}
 <div class="container text-secondary">
     <br>
     <h1>Update Event</h1>
@@ -127,7 +127,7 @@ Updateing an Event
                             <strong class="text-secondary"> {{ form.rule_set }} </strong>
                         </div>
                         <div class="col-lg-5 col-sm-6">
-                            {% if user.gamemaster.gm %}
+                            {% if user.profile.gm %}
                             <h5><strong class="text-secondary">Characters:</strong></h5>
                             <strong class="text-secondary" > {{ form.characters }} </strong>
                             {% endif %}

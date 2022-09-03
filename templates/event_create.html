@@ -124,7 +124,7 @@ Create a new Event
                             <strong class="text-secondary"> {{ form.rule_set }} </strong>
                         </div>
                         <div class="col-lg-5 col-sm-6">
-                            {% if user.gamemaster.gm %}
+                            {% if user.profile.gm %}
                             <h5><strong class="text-secondary">Characters:</strong></h5>
                             <strong class="text-secondary" > {{ form.characters }} </strong>
                             {% endif %}

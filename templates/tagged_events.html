@@ -45,7 +45,7 @@ Tags
                                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                                 </div>
                                 {% endif %}
-                                {% if user.id == event.owner.id or user.gamemaster.gm  or user.is_staff %}
+                                {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
                                 <div class="image-flash-2 dark-orange-bg">
                                     <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                                 </div>

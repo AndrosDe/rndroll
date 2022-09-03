@@ -22,10 +22,19 @@ class Tag(models.Model):
         return f"{self.tag}"
 
 
-class GameMaster(models.Model):
+class Profile(models.Model):
     ''' Extending the User Database with "Game Master"'''
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     gm = models.BooleanField(default=False)
+    bio = models.TextField(null=True, blank=True)
+    profile_pic = CloudinaryField('image', null=True, blank=True, default='placeholder')
+    website_url = models.CharField(max_length=300, null=True, blank=True)
+    facebook_url = models.CharField(max_length=300, null=True, blank=True)
+    twitter_url = models.CharField(max_length=300, null=True, blank=True)
+    twitch_url = models.CharField(max_length=300, null=True, blank=True)
+    instagram_url = models.CharField(max_length=300, null=True, blank=True)
+    youtube_url = models.CharField(max_length=300, null=True, blank=True)
+    pinterest_url = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return f"{self.user}"
@@ -44,10 +53,10 @@ class Event(models.Model):
     image = CloudinaryField('image', default='placeholder')
     # connecting to Player that will Game Master the Session
     game_master = models.ForeignKey(
-        GameMaster,
+        Profile,
         on_delete=models.SET_DEFAULT,
-        default="No Game Master",
-        related_name="event_gm",
+        default='No Game Master',
+        related_name='event_gm',
         null=True,
         blank=True)
     # Fluff part of the Content
@@ -59,7 +68,7 @@ class Event(models.Model):
     owner = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        related_name="event_creator",
+        related_name='event_creator',
         null=True)
     # Dates
     start_date = models.DateTimeField(auto_now=False)

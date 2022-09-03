@@ -16,7 +16,7 @@ class EventForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'placeholder': 'A new adventure awaits'}),
-            'story': SummernoteWidget(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'style': 'height: 280px', 'maxlength': '2000', 'placeholder': 'Discripe your event / setting within 2000 characters', 'title':'Discripe your event / setting within 2000 characters'}),
+            'story': SummernoteWidget(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'style': 'height: 280px', 'maxlength': '2000', 'placeholder': 'Discripe your event / setting within 2000 characters', 'title': 'Discripe your event / setting within 2000 characters'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'placeholder': 'Make a small story snippet of max.300 characters for your event.'}),
             'tag': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'required': 'false'}),

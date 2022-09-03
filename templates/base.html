@@ -93,10 +93,10 @@
                 {% if user.is_authenticated %}
                 {% if user.is_staff %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'admin:index' %}" title="You are a Site-Admin"><i class="fa-solid fa-dice-d20"></i></a></strong>
+                    <strong><a class="nav-link" href="{% url 'admin:index' %}" target="_blank" title="You are a Site-Admin"><i class="fa-solid fa-dice-d20"></i></a></strong>
                 </li>
                 {% endif %} 
-                {% if user.gamemaster.gm %}
+                {% if user.profile.gm %}
                 <li class="nav-item">
                     <strong><a class="nav-link" title="You are a Game Master"><i class="fa-solid fa-dragon"></i></a></strong>
                 </li>
