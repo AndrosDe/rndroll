@@ -10,7 +10,7 @@ from .forms import SignUpForm, EditUserSettingsForm, PasswordsChangeForm, Profil
 class CreateProfilePageView(CreateView):
     model = Profile
     form_class = ProfileForm
-    template_name = 'registration/create_profile.html'
+    template_name = 'registration/profile_create.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -19,7 +19,7 @@ class CreateProfilePageView(CreateView):
 
 class ShowProfilePageView(DetailView):
     model = Profile
-    template_name = 'registration/user_profile.html'
+    template_name = 'registration/profile.html'
 
     def get_context_data(self, *args, **kwargs):
         profile_list = Profile.objects.all
@@ -58,7 +58,7 @@ def password_success(request):
 
 class UserRegisterView(CreateView):
     form_class = SignUpForm
-    template_name = 'registration/register.html'
+    template_name = 'registration/account_register.html'
     success_url = reverse_lazy('login')
 
 
@@ -74,5 +74,5 @@ class EditUserSettingsView(UpdateView):
 class EditProfilePageView (UpdateView):
     model = Profile
     form_class = ProfileForm
-    template_name = 'registration/edit_profile.html'
+    template_name = 'registration/profile_edit.html'
     success_url = reverse_lazy('home')

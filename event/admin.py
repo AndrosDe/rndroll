@@ -3,7 +3,7 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import Event, Tag, Profile
+from .models import Event, Tag, Profile, Comment
 
 
 admin.site.register(Tag)
@@ -43,3 +43,4 @@ class EventAdmin(SummernoteModelAdmin):
 
 
 admin.site.register(Profile)
+admin.site.register(Comment)

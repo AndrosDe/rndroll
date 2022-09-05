@@ -206,6 +206,33 @@
 <div class="container">
     <div class="row">
         <h3 class="text-secondary">Comments:</h3>
+            <div class="col-md-8 card mb-4 mt-2 ">
+                <div class="card-body">
+                    {%if not event.comments.all %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            No Comments Yet... <a href="#">Add A Comment</a>
+                        </p>
+                    </div>
+                    {% else %}
+                    {% for comment in event.comments.all %}
+                    <div class="comments" style="padding: 10px;">
+                        <strong>
+                            <p class="font-weight-bold">
+                                {{ comment.name }}
+                                <span class=" text-muted font-weight-normal">
+                                    {{ comment.created_on }}
+                                </span> wrote:
+                            </p>
+                        </strong>
+                        {{ comment.body }}
+                    </div>
+                    <br>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

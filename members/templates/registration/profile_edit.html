@@ -6,7 +6,7 @@ Update Profile
 
 {% block content %}
 
-{% if user.is_authenticated or if user.id == profile.user.id %}
+{% if user.is_authenticated or user.id == profile.user.id %}
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="masthead">
