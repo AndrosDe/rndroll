@@ -1,13 +1,11 @@
 '''imports'''
 from django import forms
-from cloudinary.forms import CloudinaryFileField
 from django_summernote.widgets import SummernoteWidget
 from .models import Event
 
 
 class EventForm(forms.ModelForm):
     ''' The Form for the Event Model '''
-    image = CloudinaryFileField()
 
     class Meta:
         '''Setting up the Input Formfields for the Website Application'''
@@ -19,7 +17,7 @@ class EventForm(forms.ModelForm):
             'story': SummernoteWidget(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'style': 'height: 280px', 'maxlength': '2000', 'placeholder': 'Discripe your event / setting within 2000 characters', 'title': 'Discripe your event / setting within 2000 characters'}),
             'snippet': forms.TextInput(attrs={'class': 'form-control border border-2 border-warning p-2 mb-2', 'placeholder': 'Make a small story snippet of max.300 characters for your event.'}),
             'tag': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'required': 'false'}),
+            'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'default': 'placeholder'}),
             'game_master': forms.Select(attrs={'class': 'form-select'}),
             'main_link': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'www.the-link-where-one-can-whatch-this.com'}),
             'links': SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 280px', 'maxlength': '500', 'placeholder': 'Put in other links, to your pateron or homepage or links to to the players channel, within 500 characters'}),

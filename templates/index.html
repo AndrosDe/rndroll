@@ -22,7 +22,7 @@
                                 <div class="image-flash dark-bg">
                                     <p class="author">By: {{ event.owner }}</p>
                                 </div>
-                                {% if user.is_staff%}
+                                {% if user.is_staff %}
                                 <div class="image-flash-3 dark-red-bg">
                                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                                 </div>
@@ -57,7 +57,6 @@
             <div class="row">
                 {% endif %}
                 {% endfor %}
-
             </div>
         </div>
     </div>

@@ -115,9 +115,24 @@ body {
     margin-left: 5%;
 }
 
+.post-title2 {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.post-title3 {
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
 .post-subtitle {
     margin-left: 5%;
     color: lightgray;
+}
+
+.post-subtitle2 {
+    margin-top: 1%;
+    margin-left: 5%;
 }
 
 .btn-signup {

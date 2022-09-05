@@ -39,6 +39,10 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user}"
 
+    def get_absolute_url(self):
+        ''' in order to create an event on the Website '''
+        return reverse('home')
+        
 
 class Event(models.Model):
     ''' The Event Database '''
@@ -50,7 +54,7 @@ class Event(models.Model):
         Tag,
         related_name='event_tag',
         blank=True)
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder', blank=True)
     # connecting to Player that will Game Master the Session
     game_master = models.ForeignKey(
         Profile,

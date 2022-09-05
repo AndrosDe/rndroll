@@ -1,0 +1,63 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Update Profile
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated or if user.id == profile.user.id %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="masthead">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 masthead-text dark-bg">
+                    <div class="row">
+                        <h1 class="post-title">Update Profile</h1>
+                    </div>
+                </div>
+                <div class="d-none d-md-block col-md-6 masthead-image">
+                    
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg" width="100%">
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-12 masthead-text dark-bg">
+                    <br>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col">
+                            <strong>
+                            {{ form.as_p}}
+                            </strong>
+                        </div>
+                        <div class="col-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col">
+                        
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2">
+                            <strong>
+                                <input class="btn btn-secondary" type="submit" value="Update Profile">
+                            </strong>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+    </div>
+</form>
+<br>
+{% else %}
+
+You need to be logged in to edit your profile settings.
+
+{% endif %}
+{%endblock%}

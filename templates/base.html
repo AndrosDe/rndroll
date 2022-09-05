@@ -71,9 +71,15 @@
                     </li>
                     {% endif %}
                     {% if user.is_authenticated %}
+                    {% if user.profile.id  %}
                     <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'profile_edit' %}">Profile & Repository</a></strong>
+                        <strong><a class="nav-link" aria-current="page" href="{% url 'show_profile' user.profile.id %}">Profile & Repository</a></strong>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <strong><a class="nav-link" aria-current="page" href="{% url 'create_profile' %}">Profile & Repository</a></strong>
+                    </li>
+                    {% endif %}
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-current="page" href="#">Profile & Repository</a>

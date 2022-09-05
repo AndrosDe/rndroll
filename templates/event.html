@@ -86,7 +86,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5><strong class="text-secondary">By:</strong></h5>
-                        <strong class="text-secondary"> {{ event.owner }} </strong>
+                        {% if user.is_authenticated and event.owner.profile.id  %}
+                        <strong class="text-secondary"><a class="nav-link" href="{% url 'show_profile' event.owner.profile.id %}">{{ event.owner }}</a></strong>
+                        {% else %}
+                        <strong class="text-secondary">{{ event.owner }}</strong>
+                        {% endif %}
                         <br>
                     </div>
                 </div>
@@ -202,47 +206,6 @@
 <div class="container">
     <div class="row">
         <h3 class="text-secondary">Comments:</h3>
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-2">
-                    {% if "placeholder" in event.owner.profile.profile_pic.url %}
-                    <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662240182/dice-g23bca643c_200_tl70st.png">
-                    {% else %}
-                    <img class="card-img-top" src="{{ event.owner.profile.profile_pic.url }}">
-                    {% endif %}
-                </div>
-                <div class="col-md-10">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ event.owner.first_name }} {{ event.owner.last_name }}</h5>
-                        <p class="text-muted">
-                            {% if event.owner.profile.website_url %}
-                            <a href="{{ event.owner.profile.website_url }}">Website</a>
-                            {% endif %}
-                            {% if event.owner.profile.facebook_url %}
-                            | <a href="{{ event.owner.profile.facebook_url }}">Facebook</a>
-                            {% endif %}
-                            {% if event.owner.profile.twitter_url %}
-                            | <a href="{{ event.owner.profile.twitter_url }}">Twitter</a>
-                            {% endif %}
-                            {% if event.owner.profile.twitch_url %}
-                            | <a href="{{ event.owner.profile.twitch_url }}">Twitch</a>
-                            {% endif %}
-                            {% if event.owner.profile.instagram_url %}
-                            | <a href="{{ event.owner.profile.instagram_url }}">Instagram</a>
-                            {% endif %}
-                            {% if event.owner.profile.youtube_url %}
-                            | <a href="{{ event.owner.profile.youtube_url }}">Pinterest</a>
-                            {% endif %}
-                            {% if event.owner.profile.pinterest_url %}
-                            | <a href="{{ event.owner.profile.pinterest_url }}">YouTube</a>
-                            {% endif %}
-                        </p>
-                        <p class="card-text">{{ event.owner.profile.bio }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>  
     </div>
 </div>
 {% endblock content %}
