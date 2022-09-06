@@ -44,7 +44,7 @@ Profile
             <div class="d-none d-md-block col-md-4 masthead-image">
                 {% if "placeholder" in profile.profile_pic.url %}
                 <img class="card-img-top"
-                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662240182/dice-g23bca643c_200_tl70st.png">
+                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/profile_default_fhyukf.jpg">
                 {% else %}
                 <img class="card-img-top" src="{{ profile.profile_pic.url }}">
                 {% endif %}
@@ -95,7 +95,7 @@ Profile
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
                         <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg">
+                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
                         {% else %}
                         <img class="card-img-top" src=" {{ event.image.url }}">
                         {% endif %}
@@ -158,7 +158,7 @@ Profile
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
                         <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg">
+                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
                         {% else %}
                         <img class="card-img-top" src=" {{ event.image.url }}">
                         {% endif %}
@@ -221,7 +221,7 @@ Profile
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
                         <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg">
+                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
                         {% else %}
                         <img class="card-img-top" src=" {{ event.image.url }}">
                         {% endif %}
@@ -275,30 +275,30 @@ Profile
 <div class="container">
     <div class="row">
         <h3 class="text-secondary">Characters:</h3>
-        <div class="col-2">
-            <a href="#" class="btn btn-success" aria-current="page">Create New Character</a>
-        </div>
     </div>
     <br>
     <div class="row">
+        <div class="col-lg-2 col-md-4 me-4">
+            <h6 class="card-title text-muted">Create New Character</h6>
+            <br>
+            <div class="card mt-2">
+                <a href="#" class="post-link">
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
+                </a>            
+            </div>
+        </div>
         {% for character in created_characters %}
-        <div class="col-md-6">
-            <div class="card mb-6">
-                <div class="row card-body">
-                    <div class="image-container col-lg-4">
-                    {% if "placeholder" in character.image.url %}
-                        <img class="card-img-top"
-                            src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                    {% else %}
-                        <img class="card-img-top" src=" {{ character.image.url }}">
-                    {% endif %}
-                    </div>
-                    <div class="col-lg-7">
-                        <p class="card-text text-muted h6">{{ character.name }}<br>{{ character.character_class }}</p>
-                        <p class="card-text text-muted h6">Description: <br>{{ character.background | safe}}</p>
-                    </div>
-                    <p class="card-text text-muted h6">Created by: {{ character.created_by }}</p>
-                </div>
+        <div class="col-lg-2 col-md-4">
+            <h6 class="card-title text-muted">{{ character.name }},</h6>
+            <h6 class="card-title text-muted mb-2">{{ character.character_class }}</h6>
+            <div class="card">
+                {% if "placeholder" in character.image.url %}
+                <img class="card-img-top"
+                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
+                {% else %}
+                <img class="card-img-top" src=" {{ character.image.url }}">
+                {% endif %}
+                <p class="card-text text-muted h6">Created by: {{ character.created_by }}</p>
             </div>
         </div>
         {% endfor %}

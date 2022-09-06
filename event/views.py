@@ -1,10 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
 from .models import Event, Tag
-from .forms import EventForm
+from .forms import EventForm, CommentForm
 
 
 class EventList(ListView):
@@ -19,6 +19,7 @@ class EventDetail(DetailView):
     ''' View for the Event Details '''
     model = Event
     template_name = "event.html"
+    form = CommentForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(EventDetail, self).get_context_data(*args, **kwargs)
@@ -27,8 +28,26 @@ class EventDetail(DetailView):
         if event.likes.filter(id=self.request.user.id).exists():
             liked = True
 
+        comment_form = CommentForm()
+
+        context['comment_form'] = comment_form
         context["liked"] = liked
         return context
+
+    def post(self, request, pk, *args, **kwargs):
+        event = get_object_or_404(Event, id=self.kwargs['pk'])
+        comment_form = CommentForm(data=request.POST)
+
+        if comment_form.is_valid():
+            comment_form.instance.email = request.user.email
+            comment_form.instance.name = request.user.username
+            comment = comment_form.save(commit=False)
+            comment.event = event
+            comment.save()
+        else:
+            comment_form = CommentForm()
+
+        return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
 
 
 def LikeView(request, pk):

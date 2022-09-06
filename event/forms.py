@@ -1,7 +1,7 @@
 '''imports'''
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Event
+from .models import Event, Comment
 
 
 class EventForm(forms.ModelForm):
@@ -28,4 +28,15 @@ class EventForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-select border border-2 border-warning p-2 mb-2'}),
             'character_max': forms.Select(attrs={'class': 'form-select border border-2 border-warning p-2 mb-2'}),
             'characters': forms.SelectMultiple(attrs={'class': 'form-select'}),
+        }
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('body',)
+
+        widgets = {
+            'body':  SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 280px'}),
         }
