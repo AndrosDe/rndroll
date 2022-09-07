@@ -1,4 +1,6 @@
+''' imports '''
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from .views import UserRegisterView, EditUserSettingsView, PasswordsChangeView, ShowProfilePageView, EditProfilePageView, CreateProfilePageView
 from . import views
 

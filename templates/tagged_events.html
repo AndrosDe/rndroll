@@ -11,12 +11,9 @@ Tags
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text dark-bg">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">Events with the tag: "{{ tags }}"</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
+                <h1 class="post-title2">Events with the tag: "{{ tags }}"</h1>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
                 <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
             </div>
         </div>
@@ -27,8 +24,8 @@ Tags
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for event in tagged_events %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in event.image.url %}
@@ -41,12 +38,12 @@ Tags
                                     <p class="author">By: {{ event.owner }}</p>
                                 </div>
                                 {% if user.is_staff %}
-                                <div class="image-flash-3 dark-red-bg">
+                                <div class="image-flash-bottom-2 dark-red-bg">
                                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                                 </div>
                                 {% endif %}
                                 {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                                <div class="image-flash-2 dark-orange-bg">
+                                <div class="image-flash-bottom-1 dark-orange-bg">
                                     <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                                 </div>
                                 {% endif %}
@@ -85,12 +82,9 @@ Tags
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text dark-bg">
-                <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">Sorry, there is no event with the tag: "{{ tags }}" on this site.</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
                 <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662034041/still-life-objects-with-role-playing-game-sheet_tb0g3u.jpg">
             </div>
         </div>

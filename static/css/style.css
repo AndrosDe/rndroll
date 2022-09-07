@@ -21,6 +21,10 @@ body {
     background-color: #445261;
 }
 
+.dark-yellow-bg {
+    background-color: #c7a006;
+}
+
 .dark-orange-bg {
     background-color: #c76a06;
 }
@@ -49,17 +53,36 @@ body {
     left: -2px;
 }
 
-.image-flash-2 {
+.image-flash-bottom-1 {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
     right: -2px;
 }
 
-.image-flash-3 {
+.image-flash-bottom-2 {
     position: absolute;
-    bottom: 20%;
+    bottom: 25%;
     min-width: 30%;
+    right: -2px;
+}
+
+.image-flash-up-1 {
+    position: absolute;
+    top: 5%;
+    min-width: 35%;
+    right: -2px;
+}
+.image-flash-up-2 {
+    position: absolute;
+    top: 20%;
+    min-width: 35%;
+    right: -2px;
+}
+.image-flash-up-3 {
+    position: absolute;
+    top: 35%;
+    min-width: 35%;
     right: -2px;
 }
 
@@ -133,6 +156,11 @@ body {
 .post-subtitle2 {
     margin-top: 1%;
     margin-left: 5%;
+}
+
+.post-subtitle3 {
+    margin-top: 2%;
+    margin-left: 15%;
 }
 
 .btn-signup {

@@ -1,3 +1,4 @@
+''' imports '''
 from django.urls import path
 from .views import EventList, EventDetail, CreateEvent, EventCalendar, ConductView, EditEvent, DeleteEvent, TagsView, IndexTagsView, AddTag, LikeView
 

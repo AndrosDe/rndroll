@@ -7,30 +7,48 @@ Add a new Tag
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text dark-bg">
-                <div class="row">
-                    <h1 class="post-title">Add a new Tag</h1>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-1"> </div>
-                    <div class="col">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <br>
-                            <input class="btn btn-success" type="submit" value="Add Tag">
-                        </form>
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="masthead">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 masthead-text dark-bg">
+                    <div class="row">
+                        <h1 class="post-title">Add a new Tag</h1>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-1"> </div>
+                        <div class="col">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                        </div>
                     </div>
                 </div>
+                <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg" width="100%">
+                </div>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg" width="100%">
+            <div class="row g-0">
+                <div class="col-md-6 masthead-text dark-bg">
+                    <br>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-2 me-2">
+                            <input class="btn btn-success" type="submit" value="Add Tag">
+                        </div>
+                        <div class="col-2 ms-5">
+                            <strong>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
+                            </strong>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-md-6 masthead-text dark-bg"></div>
             </div>
         </div>
+    </div>
+</form>
 {% else %}
 
 You need to be logged in to create a new tag.

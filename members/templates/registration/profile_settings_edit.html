@@ -11,37 +11,64 @@ Update Profile
     <div class="masthead">
         <div class="container">
             <div class="row g-0">
-                <div class="col-md-6 masthead-text dark-bg">
+                <div class="col-md-8 masthead-text dark-bg">
                     <div class="row">
-                        <h1 class="post-title">Update Settings</h1>
+                        <h1 class="post-title2">Update Settings</h1>
+                    </div>
+                    <div class="row">
+                        <h6 class="post-subtitle2">Username</h6>
+                    </div>
+                    <div class="row ms-4">
+                        <div class="col-md-10 col-sm-9">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="post-subtitle2">Name</h6>
+                    </div>
+                    <div class="row ms-4">
+                        <div class="col-md-5 col-sm-9">
+                            {{ form.first_name}}
+                        </div>
+                        <div class="col-md-5 col-sm-9">
+                            {{ form.last_name }}
+                        </div>
                     </div>
                 </div>
-                <div class="d-none d-md-block col-md-6 masthead-image">
-                    <img class="card-img-top" src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/profile_default_fhyukf.jpg">
+                <div class="d-none d-md-block col-md-4 masthead-image">
+                    <img class="card-img-top" src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/profile_default_fhyukf.jpg" width="100%">
                 </div>
             </div>
             <div class="row g-0">
-                <div class="col-md-12 masthead-text dark-bg">
-                    <br>
+                <div class="col-md-8 masthead-text dark-bg">
                     <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col">
-                            <strong>
-                            {{ form.as_p}}
-                            </strong>
+                        <h6 class="post-subtitle2">Email</h6>
+                    </div>
+                    <div class="row ms-4">
+                        <div class="col-md-10 col-sm-9">
+                            {{ form.email }}
                         </div>
-                        <div class="col-6"></div>
+                    </div>
+                    <div class="row">
+                        <h6 class="post-subtitle2">Care For A Different Password? <a class="text-white fw-bolder" href="{% url 'password_change' %}">Click Here</a></h6>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-2">
+                        <div class="col-3">
                             <strong>
                                 <input class="btn btn-secondary" type="submit" value="Update Settings">
                             </strong>
                         </div>
+                        <div class="col-3 ms-5">
+                            <strong>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
+                            </strong>
+                        </div>
                     </div>
                     <br>
+                </div>
+                <div class="col-md-4 masthead-text dark-bg">
                 </div>
             </div>
         </div>  

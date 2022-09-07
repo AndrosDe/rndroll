@@ -1,3 +1,4 @@
+''' imports '''
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView
 from django.contrib.auth.views import PasswordChangeView

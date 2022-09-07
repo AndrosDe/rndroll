@@ -9,7 +9,7 @@ Profile
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text dark-bg">
+            <div class="col-md-8 masthead-text dark-bg">
                 <div class="row g-0">
                     <h1 class="post-title2">{{ profile.user.username }}'s Profile</h1>
                 </div>
@@ -21,9 +21,7 @@ Profile
                     <h3 class="post-subtitle2">Email: {{ profile.user.email}}</h3>  
                 </div>
                 {% endif %}
-                <div class="row g-0">
-                    <h6 class="post-subtitle2">{{ profile.bio }}</h6>
-                </div>
+
                 <div class="row g-0">
                     <div class="col-4 post-subtitle2">
                         {% if profile.gm == True %}
@@ -33,12 +31,16 @@ Profile
                         {% endif %}
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2 masthead-text dark-bg">
                 {% if user.id == profile.user.id %}
-                <a href="{% url 'edit_profile' user.profile.id %}" class="btn btn-secondary post-title">Edit Profile</a>
-                <a href="{% url 'settings_edit' %}" class="btn btn-secondary post-title">Edit Settings</a>
-                <a href="{% url 'password_change' %}" class="btn btn-secondary post-title">Change Password</a>
+                <div class="image-flash-up-1 dark-red-bg">
+                    <a href="{% url 'settings_edit' %}" class="author nav-link">Edit Settings</a>
+                </div>
+                <div class="image-flash-up-2 dark-orange-bg">
+                    <a href="{% url 'edit_profile' user.profile.id %}" class="author nav-link">Edit Profile</a>
+                </div>
+                <div class="image-flash-up-3 dark-yellow-bg">
+                    <a href="{% url 'password_change' %}" class="author nav-link">Change Password</a>
+                </div>
                 {% endif %}
             </div>
             <div class="d-none d-md-block col-md-4 masthead-image">
@@ -51,33 +53,42 @@ Profile
             </div>
         </div>
         <div class="row g-0">
-            <div class="col-md-12 dark-bg">
-                <div class="card-body">
-                    <h6 class="text-muted post-subtitle2">
-                        {% if profile.website_url %}
-                        <a class="text-decoration-none text-white" href="{{ profile.website_url }}">Website</a>
-                        {% endif %}
-                        {% if profile.facebook_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.facebook_url }}">Facebook</a>
-                        {% endif %}
-                        {% if profile.twitter_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.twitter_url }}">Twitter</a>
-                        {% endif %}
-                        {% if profile.twitch_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.twitch_url }}">Twitch</a>
-                        {% endif %}
-                        {% if profile.instagram_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.instagram_url }}">Instagram</a>
-                        {% endif %}
-                        {% if profile.youtube_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.youtube_url }}">Pinterest</a>
-                        {% endif %}
-                        {% if profile.pinterest_url %}
-                        | <a class="text-decoration-none text-white" href="{{ profile.pinterest_url }}">YouTube</a>
-                        {% endif %}
-                    </h6>
+            <div class="col-md-8 masthead-text dark-bg">
+                <br>
+                <div class="row post-subtitle2">
+                    <h6 class="text-white">Bio:</h6>
+                    <h6 class="text-white">{{ profile.bio | safe }}</h6>
+                </div>
+                <div class="row post-subtitle2">
+                    <h6 class="text-white">Links:</h6>
+                    <div>
+                        <h6>
+                            {% if profile.website_url %}
+                            <a class="text-decoration-none text-white" href="{{ profile.website_url }}">Website</a>
+                            {% endif %}
+                            {% if profile.facebook_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.facebook_url }}">Facebook</a>
+                            {% endif %}
+                            {% if profile.twitter_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.twitter_url }}">Twitter</a>
+                            {% endif %}
+                            {% if profile.twitch_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.twitch_url }}">Twitch</a>
+                            {% endif %}
+                            {% if profile.instagram_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.instagram_url }}">Instagram</a>
+                            {% endif %}
+                            {% if profile.youtube_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.youtube_url }}">Pinterest</a>
+                            {% endif %}
+                            {% if profile.pinterest_url %}
+                            | <a class="text-decoration-none text-white" href="{{ profile.pinterest_url }}">YouTube</a>
+                            {% endif %}
+                        </h6>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-4 masthead-text dark-bg"></div>
         </div>
     </div>
 </div>
@@ -89,8 +100,8 @@ Profile
     </div>
     <div class="row">
         {% for event in owned_events %}
-        <div class="col-md-4">
-            <div class="card mb-4">
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+            <div class="card mb-3">
                 <div class="card-body">
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
@@ -103,12 +114,12 @@ Profile
                             <p class="author">By: {{ event.owner }}</p>
                         </div>
                         {% if user.is_staff%}
-                        <div class="image-flash-3 dark-red-bg">
+                        <div class="image-flash-bottom-2 dark-red-bg">
                             <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                         </div>
                         {% endif %}
                         {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-2 dark-orange-bg">
+                        <div class="image-flash-bottom-1 dark-orange-bg">
                             <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                         </div>
                         {% endif %}
@@ -152,8 +163,8 @@ Profile
     </div>
     <div class="row">
         {% for event in gm_events %}
-        <div class="col-md-4">
-            <div class="card mb-4">
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+            <div class="card mb-3">
                 <div class="card-body">
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
@@ -166,12 +177,12 @@ Profile
                             <p class="author">By: {{ event.owner }}</p>
                         </div>
                         {% if user.is_staff%}
-                        <div class="image-flash-3 dark-red-bg">
+                        <div class="image-flash-bottom-2 dark-red-bg">
                             <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                         </div>
                         {% endif %}
                         {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-2 dark-orange-bg">
+                        <div class="image-flash-bottom-1 dark-orange-bg">
                             <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                         </div>
                         {% endif %}
@@ -215,8 +226,8 @@ Profile
     </div>
     <div class="row">
         {% for event in joined_events %}
-        <div class="col-md-4">
-            <div class="card mb-4">
+        <div class="col-xxl-3 col-lg-4 col-md-6">
+            <div class="card mb-3">
                 <div class="card-body">
                     <div class="image-container">
                         {% if "placeholder" in event.image.url %}
@@ -229,12 +240,12 @@ Profile
                             <p class="author">By: {{ event.owner }}</p>
                         </div>
                         {% if user.is_staff%}
-                        <div class="image-flash-3 dark-red-bg">
+                        <div class="image-flash-bottom-2 dark-red-bg">
                             <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                         </div>
                         {% endif %}
                         {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-2 dark-orange-bg">
+                        <div class="image-flash-bottom-1 dark-orange-bg">
                             <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                         </div>
                         {% endif %}
@@ -278,27 +289,39 @@ Profile
     </div>
     <br>
     <div class="row">
-        <div class="col-lg-2 col-md-4 me-4">
-            <h6 class="card-title text-muted">Create New Character</h6>
-            <br>
-            <div class="card mt-2">
-                <a href="#" class="post-link">
-                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
-                </a>            
+        <div class="mb-2" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="image-container col-md-4 col-sm-6 col-8">
+                    <a href="#" class="post-link">
+                        <img class="card-img-top"
+                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
+                    </a>
+                    <div class="image-flash text-bg-success">
+                        <p class="author">Create A New Character</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="row">
         {% for character in created_characters %}
-        <div class="col-lg-2 col-md-4">
-            <h6 class="card-title text-muted">{{ character.name }},</h6>
-            <h6 class="card-title text-muted mb-2">{{ character.character_class }}</h6>
-            <div class="card">
-                {% if "placeholder" in character.image.url %}
-                <img class="card-img-top"
-                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
-                {% else %}
-                <img class="card-img-top" src=" {{ character.image.url }}">
-                {% endif %}
-                <p class="card-text text-muted h6">Created by: {{ character.created_by }}</p>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="image-container col-md-4 col-sm-6 col-8">
+                    {% if "placeholder" in character.image.url %}
+                        <img class="card-img-top"
+                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
+                    {% else %}
+                        <img class="card-img-top" src=" {{ character.image.url }}">
+                    {% endif %}
+                    </div>
+                <div class="col-md-7 col-sm-6 col-8">
+                    <div class="card-body">
+                        <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
+                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background | safe}}</p>
+                        <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
+                    </div>
+                </div>
             </div>
         </div>
         {% endfor %}

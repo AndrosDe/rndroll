@@ -12,12 +12,29 @@ Update Profile
     <div class="masthead">
         <div class="container">
             <div class="row g-0">
-                <div class="col-md-6 masthead-text dark-bg">
+                <div class="col-md-8 masthead-text dark-bg">
                     <div class="row">
-                        <h1 class="post-title">Update Profile</h1>
+                        <h1 class="post-title2">Update Profile of {{ profile.user.username }}</h1>
+                    </div>
+                    <br>
+                    <div class="row post-subtitle2">
+                        <h6>
+                            You want to change username, name or email?
+                            <a class="text-white fw-bolder" href="{% url 'settings_edit' %}">
+                                Click Here
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="row post-subtitle2">
+                        <h6>
+                            Care For A Different Password? 
+                            <a class="text-white fw-bolder" href="{% url 'password_change' %}">
+                                Click Here
+                            </a>
+                        </h6>
                     </div>
                 </div>
-                <div class="d-none d-md-block col-md-6 masthead-image">
+                <div class="d-none d-md-block col-md-4 masthead-image">
                     {% if "placeholder" in profile.profile_pic.url %}
                     <img class="card-img-top"
                         src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/profile_default_fhyukf.jpg">
@@ -27,7 +44,7 @@ Update Profile
                 </div>
             </div>
             <div class="row g-0">
-                <div class="col-md-12 masthead-text dark-bg">
+                <div class="col-md-8 masthead-text dark-bg">
                     <br>
                     <div class="row">
                         <div class="col-1"></div>
@@ -36,7 +53,7 @@ Update Profile
                             {{ form.as_p}}
                             </strong>
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-1"></div>
                     </div>
                     <div class="row">
                         <div class="col-1"></div>
@@ -46,14 +63,22 @@ Update Profile
                     <br>
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-2">
                             <strong>
                                 <input class="btn btn-secondary" type="submit" value="Update Profile">
                             </strong>
                         </div>
+                        <div class="col-2 ms-5">
+                            <strong>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
+                            </strong>
+                        </div>
                     </div>
                     <br>
+                    <br>
                 </div>
+            </div>
+            <div class="col-md-4 masthead-text dark-bg">
             </div>
         </div>  
     </div>

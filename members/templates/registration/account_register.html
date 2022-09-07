@@ -13,7 +13,10 @@ Register
             <div class="row g-0">
                 <div class="col-md-6 masthead-text dark-bg">
                     <div class="row">
-                        <h1 class="post-title">Register</h1>
+                        <h1 class="post-title2">Register A New Account</h1>
+                    </div>
+                    <div class="row">
+                        <h6 class="post-subtitle2">You Have An Account? <a class="text-white fw-bolder" href="{% url 'login' %}">Login Here</a></h6>
                     </div>
                 </div>
                 <div class="d-none d-md-block col-md-6 masthead-image">
@@ -21,7 +24,7 @@ Register
                 </div>
             </div>
             <div class="row g-0">
-                <div class="col-md-12 masthead-text dark-bg">
+                <div class="col-md-6 masthead-text dark-bg">
                     <br>
                     <div class="row">
                         <div class="col-1"></div>
@@ -30,18 +33,24 @@ Register
                             {{ form.as_p}}
                             </strong>
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-1"></div>
                     </div>
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-4">
                             <strong>
                                 <input class="btn btn-secondary" type="submit" value="Register">
+                            </strong>
+                        </div>
+                        <div class="col-2 ms-4">
+                            <strong>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="{% url 'home' %}">Cancel</a>
                             </strong>
                         </div>
                     </div>
                     <br>
                 </div>
+                <div class="col-md-6 masthead-text dark-bg"></div>
             </div>
         </div>  
     </div>

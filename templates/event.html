@@ -11,33 +11,35 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text dark-bg">
                 <div class="row">
-                    <h1 class="post-title">{{ event.title }}</h1>
-                    <h6 class="post-subtitle ms-3">
-                        <ul>
-                        {% for tag in event.tag.all %}
-                            <li class="list-unstyled tag-list">
-                                <a class="nav-link" href="{% url 'event_tag' tag %}" target="_blank">
-                                {{ tag }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    </h6>
+                    <div>
+                        <h1 class="post-title2">{{ event.title }}</h1>
+                        <h6 class="post-subtitle ms-3">
+                            <ul>
+                            {% for tag in event.tag.all %}
+                                <li class="list-unstyled tag-list">
+                                    <a class="nav-link" href="{% url 'event_tag' tag %}" target="_blank">
+                                    {{ tag }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </h6>
+                    </div>
                 </div>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
+            <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
                 {% if "placeholder" in event.image.url %}
                 <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg" width="100%">
                 {% else %}
                 <img src=" {{ event.image.url }}" width="100%">
                 {% endif %}
                 {% if user.id == event.owner.id or user.is_staff %}
-                <div class="image-flash-3 dark-red-bg">
+                <div class="image-flash-bottom-2 dark-red-bg">
                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
                 </div>
                 {% endif %}
                 {% if user.id == event.owner.id or user.profile.gm or user.is_staff %}
-                <div class="image-flash-2 dark-orange-bg">
+                <div class="image-flash-bottom-1 dark-orange-bg">
                     <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
                 </div>
                 {% endif %}
@@ -48,13 +50,19 @@
             <p class="card-text text-muted">
                 {{ event.story | safe }}
             </p>
-            <h5><strong class="text-secondary">Watch Us here: {{ event.main_link }}</strong></h5>
+            {% if event.main_link %}
+            <h5>
+                <strong>
+                    <a class="btn btn-dark nav-link text-white" href="{{ event.main_link }}" target="_blank"> Watch Us Here</a>
+                </strong>
+            </h5>
+            {% endif %}
             <div class="row">
-                <div class="col card mb-4  mt-3 left  top">
+                <div class="col-md-6 card mb-4  mt-3 left  top">
                     <h5><strong class="text-secondary">Shoutouts:</strong></h5>
                     <p class="card-text text-muted"> {{ event.shoutouts | safe }} </p>
                 </div>
-                <div class="col card mb-4  mt-3 left  top">
+                <div class="col-md-6 card mb-4  mt-3 left  top">
                     <h5><strong class="text-secondary">Links:</strong></h5>
                     <p class="card-text text-muted"> {{ event.links | safe }} </p>
                 </div>
@@ -68,22 +76,22 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-3 card col-md-6">
+                    <div class="col-lg-3 col-md-6 card">
                         <h5><strong class="text-secondary">Starts on:</strong></h5>
                         <strong class="text-secondary"> {{ event.start_date }} </strong>
                         <br>
                     </div>
-                    <div class="col-lg-3 card col-md-6">
+                    <div class="col-lg-3 col-md-6 card">
                         <h5><strong class="text-secondary">Max. Players:</strong></h5>
                         <strong class="text-secondary">{{ event.character_max }}</strong>
                         <br>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 card">
                         <h5><strong class="text-secondary">Game Master:</strong></h5>
                         <strong class="text-secondary" > {{ event.game_master }} </strong>
                         <br>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 card">
                         <h5><strong class="text-secondary">By:</strong></h5>
                         {% if user.is_authenticated and event.owner.profile.id  %}
                         <strong class="text-secondary"><a class="nav-link" href="{% url 'show_profile' event.owner.profile.id %}">{{ event.owner }}</a></strong>
@@ -165,10 +173,9 @@
     <div class="row">
         <h3 class="text-secondary">Characters:</h3>
         {% for character in event.characters.all %}
-        <div class="col-md-6">
-            <div class="card mb-6">
-                <div class="row card-body">
-                    <div class="image-container col-lg-4">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="image-container col-md-4 col-sm-6 col-8">
                     {% if "placeholder" in character.image.url %}
                         <img class="card-img-top"
                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
@@ -176,11 +183,12 @@
                         <img class="card-img-top" src=" {{ character.image.url }}">
                     {% endif %}
                     </div>
-                    <div class="col-lg-7">
-                        <p class="card-text text-muted h6">{{ character.name }}<br>{{ character.character_class }}</p>
-                        <p class="card-text text-muted h6">Description: <br>{{ character.background | safe}}</p>
+                <div class="col-md-7 col-sm-6 col-8">
+                    <div class="card-body">
+                        <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
+                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background | safe}}</p>
+                        <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
                     </div>
-                    <p class="card-text text-muted h6">Created by: {{ character.created_by }}</p>
                 </div>
             </div>
         </div>

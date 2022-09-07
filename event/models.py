@@ -42,7 +42,7 @@ class Profile(models.Model):
     def get_absolute_url(self):
         ''' in order to create an event on the Website '''
         return reverse('home')
-   
+
 
 class Event(models.Model):
     ''' The Event Database '''
@@ -118,6 +118,7 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        ''' ordering the events after start date '''
         ordering = ["-created_on"]
 
     def __str__(self):

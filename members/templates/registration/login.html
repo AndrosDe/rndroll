@@ -14,30 +14,40 @@ Login
                 <div class="col-md-6 masthead-text dark-bg">
                     <div class="row">
                         <div class="col">
-                            <h1 class="post-title">Login</h1>
+                            <h1 class="post-title2">Login</h1>
                         </div>
                     </div>
                     <br>
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col">
-                            <strong>
-                                {{ form.as_p}}
+                    <div class="row post-subtitle2">
+                        <div class="col-md-11 col-sm-10">
+                            <strong> 
+                                {{ form.as_p }}
                             </strong>
                         </div>
                     </div>
                 </div>
                 <div class="d-none d-md-block col-md-6 masthead-image">
-                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg" width="100%">
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg" width="125%">
                 </div>
             </div>
             <div class="row g-0">
                 <div class="col-md-12 masthead-text dark-bg">
                     <div class="row">
+                        <div class="col ms-5 mt-3">
+                            <small>Not Registered? <a class="text-white fw-bolder" href="{% url 'register' %}">Sign Up Here.</a></small>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-2">
+                        <div class="col-2 me-3">
                             <strong>
                                 <input class="btn btn-secondary" type="submit" value="Login">
+                            </strong>
+                        </div>
+                        <div class="col-2 ms-3">
+                            <strong>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="{% url 'home' %}">Cancel</a>
                             </strong>
                         </div>
                     </div>
