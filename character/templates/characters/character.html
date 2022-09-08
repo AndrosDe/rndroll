@@ -49,7 +49,6 @@
                                 <h4 class="masthead-text">Equipment</h4>
                                 <small class="masthead-text">Click to see the Equipment</small>
                             </a>
-
                         </div>
                     </div>
                     <div class="col-1"></div>
@@ -63,32 +62,70 @@
                     <div class="col-10 equipment-bg">
                         <div class="row my-4">
                             <div class="col-sm-4 col-xs-9 my-4 masthead-text">
-                                <h6 class="text-center dark-equipment-bg mt-5">shoulder_right</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">hand_right</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_one</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_two</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_three</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">main_hand</h6>
+                                {% if character.equipt_shoulder_left %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_shoulder_left}}</h6>
+                                {% endif %}
+                                {% if character.equipt_hand_left %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_hand_left }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_one %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_one }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_two %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_two }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_three %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_three }}</h6>
+                                {% endif %}
+                                {% if character.equipt_main_hand %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_main_hand }}</h6>
+                                {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-9 masthead-text text-center">
-                                <a class="text-decoration-none text-center btn btn-success" href="#">
+                                <a class="text-decoration-none text-center btn btn-success" href="{% url 'equipment_edit' character.pk %}">
                                     Update Equipment
                                 </a>
-                                <h6 class="text-center dark-equipment-bg mt-5">head</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">face</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">torso</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">back</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">waist</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">legs</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">feet</h6>
+                                {% if character.equipt_head %}
+                                <h6 class="text-center dark-equipment-bg mt-5">{{ character.equipt_head }}</h6>
+                                {% endif %}
+                                {% if character.equipt_face %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_face }}</h6>
+                                {% endif %}
+                                {% if character.equipt_torso %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_torso }}</h6>
+                                {% endif %}
+                                {% if character.equipt_back %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_back}}</h6>
+                                {% endif %}
+                                {% if character.equipt_waist %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_waist}}</h6>
+                                {% endif %}
+                                {% if character.equipt_legs %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_legs }}</h6>
+                                {% endif %}
+                                {% if character.equipt_feet %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_feet }}</h6>
+                                {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-9 my-4 masthead-text">
-                                <h6 class="text-center dark-equipment-bg mt-5">shoulder_left</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">hand_left</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_four</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_five</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">accessory_six</h6>
-                                <h6 class="text-center dark-equipment-bg my-3">off_hand</h6>
+                                {% if character.equipt_shoulder_right %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_shoulder_right }}</h6>
+                                {% endif %}
+                                {% if character.equipt_hand_right %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_hand_right }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_four %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_four }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_five %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_five }}</h6>
+                                {% endif %}
+                                {% if character.equipt_accessory_six %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_accessory_six }}</h6>
+                                {% endif %}
+                                {% if character.equipt_off_hand %}
+                                <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_off_hand }}</h6>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

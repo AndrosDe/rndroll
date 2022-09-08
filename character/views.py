@@ -1,10 +1,9 @@
 ''' imports '''
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy, reverse
-from django.shortcuts import render
+from django.urls import reverse_lazy
 
-from .models import Character, Equipment, Note, Picture
-from .forms import CharacterForm, EquipmentForm
+from .models import Character, Note, Picture
+from .forms import CharacterForm, EquipmentForm, ItemForm
 
 
 class CharacterDetail(DetailView):
@@ -18,6 +17,7 @@ class CreateCharacter(CreateView):
     model = Character
     form_class = CharacterForm
     template_name = "characters/character_create.html"
+    success_url = reverse_lazy('home')
 
 
 class EditCharacter(UpdateView):
@@ -35,15 +35,17 @@ class DeleteCharacter(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class CreateEquipment(CreateView):
-    ''' Creating Equipment (for the first time) '''
-    model = Equipment
-    form_class = EquipmentForm
-    template_name = "characters/equipment_create.html"
-
-
 class EditEquipment(UpdateView):
     ''' Updateing Equipment '''
-    model = Equipment
+    model = Character
     form_class = EquipmentForm
     template_name = "characters/equipment_edit.html"
+    success_url = reverse_lazy('home')
+
+
+class EditItem(UpdateView):
+    ''' Updateing Equipment '''
+    model = Character
+    form_class = ItemForm
+    template_name = "characters/item_edit.html"
+    success_url = reverse_lazy('home')

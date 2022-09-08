@@ -1,7 +1,7 @@
 ''' imports '''
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Character, Note, Picture, Equipment
+from .models import Character, Note, Picture
 
 
 @admin.register(Character)
@@ -27,4 +27,3 @@ class NoteAdmin(SummernoteModelAdmin):
 
 
 admin.site.register(Picture)
-admin.site.register(Equipment)

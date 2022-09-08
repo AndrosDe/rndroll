@@ -57,16 +57,22 @@
                 </strong>
             </h5>
             {% endif %}
+            {% if event.shoutouts or event.links %}
             <div class="row">
                 <div class="col-md-6 card mb-4  mt-3 left  top">
+                    {% if event.shoutouts %}
                     <h5><strong class="text-secondary">Shoutouts:</strong></h5>
                     <p class="card-text text-muted"> {{ event.shoutouts | safe }} </p>
+                    {% endif %}
                 </div>
                 <div class="col-md-6 card mb-4  mt-3 left  top">
+                    {% if event.links %}
                     <h5><strong class="text-secondary">Links:</strong></h5>
                     <p class="card-text text-muted"> {{ event.links | safe }} </p>
+                    {% endif %}
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -186,7 +192,9 @@
                 <div class="col-md-7 col-sm-6 col-8">
                     <div class="card-body">
                         <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
-                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background | safe}}</p>
+                        {% if character.background_snippet %}
+                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background_snippet }}</p>
+                        {% endif %}
                         <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
                     </div>
                 </div>
