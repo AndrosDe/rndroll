@@ -31,20 +31,31 @@
 
     <!-- Navigation -->
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-header">
-        <div class="container-fluid">
-            <div class="navbar-image">
-                <a class="navbar-brand sticky-top special-bg" href="{% url 'home' %}"><span class="brand">R
-                    <span class="red-o">N</span>
-                    D
-                    <span>|ROLL</span>
-                </span></a>
-            </div> 
-        </div>
-        <div class="container-fluid navbar-text text-muted text-center special-bg">
-            <strong>Check out, join in, create, narrate and have fun.</strong>
-        </div>
-    </nav>
+    <div class="bg-header">
+        <nav class="navbar navbar-expand-md navbar-light">
+            {% if user.is_authenticated %}
+            <div class="col-9"></div>
+            <div class="col-3 text-center special-bg2">
+                <strong>Hello, {{ user.username }}!</strong>
+            </div>
+            {% endif %}
+        </nav>
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <div class="navbar-image">
+                    <a class="navbar-brand sticky-top special-bg3" href="{% url 'home' %}"><span class="brand">R
+                        <span class="red-o">N</span>
+                        D
+                        <span>|ROLL</span>
+                    </span></a>
+                </div>
+            </div>
+            
+            <div class="container-fluid text-center h5 special-bg3">
+                <strong>Check out, join in, create, narrate and have fun.</strong>
+            </div>
+        </nav>
+    </div>
     <nav class="navbar navbar-expand-md navbar-light navbar-2 special-bg">
         <div class="container-fluid">
             <div class="collapse navbar-collapse " id="navbarText">

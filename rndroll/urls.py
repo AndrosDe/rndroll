@@ -6,5 +6,6 @@ urlpatterns = [
     path('', include('event.urls'), name='event-urls'),
     path('members/', include('django.contrib.auth.urls')),
     path('members/', include('members.urls'), name='member-urls'),
+    path('character/', include('character.urls'), name='character-urls'),
     path('summernote/', include('django_summernote.urls')),
 ]

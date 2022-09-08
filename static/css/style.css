@@ -4,7 +4,7 @@ body {
 
 .brand {
     font-family: Lato, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #4A4A4F;
 }
@@ -53,6 +53,21 @@ body {
     left: -2px;
 }
 
+.image-flash-side1 {
+    position: absolute;
+    bottom: 15%;
+    min-width: 100%;
+    right: 0%;
+    text-align: center;
+}
+
+.image-flash-side2  {
+    position: absolute;
+    background-color: rgba(163, 82, 67, 0.701);
+    top: 10%;
+    right: -40%;
+}
+
 .image-flash-bottom-1 {
     position: absolute;
     bottom: 5%;
@@ -69,22 +84,23 @@ body {
 
 .image-flash-up-1 {
     position: absolute;
-    top: 5%;
+    top: 55%;
     min-width: 35%;
     right: -2px;
 }
 .image-flash-up-2 {
     position: absolute;
-    top: 20%;
+    top: 70%;
     min-width: 35%;
     right: -2px;
 }
 .image-flash-up-3 {
     position: absolute;
-    top: 35%;
+    top: 85%;
     min-width: 35%;
     right: -2px;
 }
+
 
 .author {
     color: white;
@@ -200,6 +216,7 @@ body {
 
 .bg-header {
     background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473628/header_background_eidhla.jpg");
+    background-image
 }
 
 .navbar-image {
@@ -213,6 +230,29 @@ body {
 .special-bg{
     background: rgb(171,142,111);
     background: linear-gradient(180deg, rgba(171,142,111,1) 0%, rgba(246,226,202,1) 26%, rgba(246,226,202,0.7010154403558299) 100%);
+}
+
+.special-bg2{
+    background: rgb(246,226,202);
+    background: radial-gradient(circle, rgba(246,226,202,1) 50%, rgba(246,226,202,0) 100%);
+}
+
+.special-bg3{
+    background: rgb(246,226,202);
+    background: linear-gradient(0deg, rgba(246,226,202,0.6483544101234244) 0%, rgba(246,226,202,1) 50%, rgba(246,226,202,0.6483544101234244) 100%);
+}
+
+.equipment-bg{
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662635426/equipment_background_c9rfdx.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #445261;
+    height: 100%;
+}
+
+.dark-equipment-bg {
+    background-color: #44526190;
 }
 
 .navbar-brand{

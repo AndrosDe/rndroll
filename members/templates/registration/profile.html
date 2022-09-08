@@ -96,235 +96,264 @@ Profile
 <br>
 <div class="container">
     <div class="row">
-        <h3 class="text-secondary">Owned Events:</h3>
+        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOwnedEvents" aria-expanded="false" aria-controls="collapseOwnedEvents">
+            <h3 class="text-secondary">Owned Events</h3>
+            <small class="text-secondary">Click to see the Events</small>
+        </a>
     </div>
     <div class="row">
-        {% for event in owned_events %}
-        <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="image-container">
-                        {% if "placeholder" in event.image.url %}
-                        <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
-                        {% else %}
-                        <img class="card-img-top" src=" {{ event.image.url }}">
-                        {% endif %}
-                        <div class="image-flash dark-bg">
-                            <p class="author">By: {{ event.owner }}</p>
+        <div class="col collapse" id="collapseOwnedEvents">
+            <div class="card card-body">
+                <div class="row">
+                    {% for event in owned_events %}
+                    <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in event.image.url %}
+                                    <img class="card-img-top"
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ event.image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash dark-bg">
+                                        <p class="author">By: {{ event.owner }}</p>
+                                    </div>
+                                    {% if user.is_staff%}
+                                    <div class="image-flash-bottom-2 dark-red-bg">
+                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                    <div class="image-flash-bottom-1 dark-orange-bg">
+                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'event_detail' event.pk %}" class="post-link">
+                                    <h2 class="card-title">{{ event.title }}</h2>
+                                    <p class="card-text">{{ event.snippet }}</p>
+                                </a>
+                                <hr />
+                                <div class="row">
+                                    <p class="col card-text text-muted h6"> 
+                                        Start: {{ event.start_date}}
+                                    </p>
+                                    <p class="col-1">
+                                        <i class="far fa-heart"></i>
+                                    </p>
+                                    <p class="col-1">
+                                        {{ event.number_of_likes }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        {% if user.is_staff%}
-                        <div class="image-flash-bottom-2 dark-red-bg">
-                            <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                        </div>
-                        {% endif %}
-                        {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-bottom-1 dark-orange-bg">
-                            <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                        </div>
-                        {% endif %}
                     </div>
-                    <a href="{% url 'event_detail' event.pk %}" class="post-link">
-                        <h2 class="card-title">{{ event.title }}</h2>
-                        <p class="card-text">{{ event.snippet }}</p>
-                    </a>
-                    <hr />
-                    <div class="row">
-                        <p class="col card-text text-muted h6"> 
-                            Start: {{ event.start_date}}
-                        </p>
-                        <p class="col-1">
-                            <i class="far fa-heart"></i>
-                        </p>
-                        <p class="col-1">
-                            {{ event.number_of_likes }}
-                        </p>
-                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
                 </div>
-            </div>
-        </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <h3 class="text-secondary">Narrated Events:</h3>
-    </div>
-    <div class="row">
-        {% for event in gm_events %}
-        <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="image-container">
-                        {% if "placeholder" in event.image.url %}
-                        <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
-                        {% else %}
-                        <img class="card-img-top" src=" {{ event.image.url }}">
-                        {% endif %}
-                        <div class="image-flash dark-bg">
-                            <p class="author">By: {{ event.owner }}</p>
-                        </div>
-                        {% if user.is_staff%}
-                        <div class="image-flash-bottom-2 dark-red-bg">
-                            <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                        </div>
-                        {% endif %}
-                        {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-bottom-1 dark-orange-bg">
-                            <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <a href="{% url 'event_detail' event.pk %}" class="post-link">
-                        <h2 class="card-title">{{ event.title }}</h2>
-                        <p class="card-text">{{ event.snippet }}</p>
-                    </a>
-                    <hr />
-                    <div class="row">
-                        <p class="col card-text text-muted h6"> 
-                            Start: {{ event.start_date}}
-                        </p>
-                        <p class="col-1">
-                            <i class="far fa-heart"></i>
-                        </p>
-                        <p class="col-1">
-                            {{ event.number_of_likes }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <h3 class="text-secondary">Played Events:</h3>
-    </div>
-    <div class="row">
-        {% for event in joined_events %}
-        <div class="col-xxl-3 col-lg-4 col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="image-container">
-                        {% if "placeholder" in event.image.url %}
-                        <img class="card-img-top"
-                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
-                        {% else %}
-                        <img class="card-img-top" src=" {{ event.image.url }}">
-                        {% endif %}
-                        <div class="image-flash dark-bg">
-                            <p class="author">By: {{ event.owner }}</p>
-                        </div>
-                        {% if user.is_staff%}
-                        <div class="image-flash-bottom-2 dark-red-bg">
-                            <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                        </div>
-                        {% endif %}
-                        {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                        <div class="image-flash-bottom-1 dark-orange-bg">
-                            <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <a href="{% url 'event_detail' event.pk %}" class="post-link">
-                        <h2 class="card-title">{{ event.title }}</h2>
-                        <p class="card-text">{{ event.snippet }}</p>
-                    </a>
-                    <hr />
-                    <div class="row">
-                        <p class="col card-text text-muted h6"> 
-                            Start: {{ event.start_date}}
-                        </p>
-                        <p class="col-1">
-                            <i class="far fa-heart"></i>
-                        </p>
-                        <p class="col-1">
-                            {{ event.number_of_likes }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% if forloop.counter|divisibleby:3 %}
-    </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <h3 class="text-secondary">Characters:</h3>
-    </div>
-    <br>
-    <div class="row">
-        <div class="mb-2" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="image-container col-md-4 col-sm-6 col-8">
-                    <a href="#" class="post-link">
-                        <img class="card-img-top"
-                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
-                    </a>
-                    <div class="image-flash text-bg-success">
-                        <p class="author">Create A New Character</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        {% for character in created_characters %}
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="image-container col-md-4 col-sm-6 col-8">
-                    {% if "placeholder" in character.image.url %}
-                        <img class="card-img-top"
-                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
-                    {% else %}
-                        <img class="card-img-top" src=" {{ character.image.url }}">
+                <div class="row">
                     {% endif %}
-                    </div>
-                <div class="col-md-7 col-sm-6 col-8">
-                    <div class="card-body">
-                        <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
-                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background | safe}}</p>
-                        <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNarratedEvents" aria-expanded="false" aria-controls="collapseNarratedEvents">
+            <h3 class="text-secondary">Narrated Events</h3>
+            <small class="text-secondary">Click to see the Events</small>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseNarratedEvents">
+            <div class="card card-body">
+                <div class="row">
+                    {% for event in gm_events %}
+                    <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in event.image.url %}
+                                    <img class="card-img-top"
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ event.image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash dark-bg">
+                                        <p class="author">By: {{ event.owner }}</p>
+                                    </div>
+                                    {% if user.is_staff%}
+                                    <div class="image-flash-bottom-2 dark-red-bg">
+                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                    <div class="image-flash-bottom-1 dark-orange-bg">
+                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'event_detail' event.pk %}" class="post-link">
+                                    <h2 class="card-title">{{ event.title }}</h2>
+                                    <p class="card-text">{{ event.snippet }}</p>
+                                </a>
+                                <hr />
+                                <div class="row">
+                                    <p class="col card-text text-muted h6"> 
+                                        Start: {{ event.start_date}}
+                                    </p>
+                                    <p class="col-1">
+                                        <i class="far fa-heart"></i>
+                                    </p>
+                                    <p class="col-1">
+                                        {{ event.number_of_likes }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlayedEvents" aria-expanded="false" aria-controls="collapsePlayedEvents">
+            <h3 class="text-secondary">Played Events</h3>
+            <small class="text-secondary">Click to see the Events</small>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapsePlayedEvents">
+            <div class="card card-body">
+                <div class="row">
+                    {% for event in joined_events %}
+                    <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in event.image.url %}
+                                    <img class="card-img-top"
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ event.image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash dark-bg">
+                                        <p class="author">By: {{ event.owner }}</p>
+                                    </div>
+                                    {% if user.is_staff%}
+                                    <div class="image-flash-bottom-2 dark-red-bg">
+                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                    <div class="image-flash-bottom-1 dark-orange-bg">
+                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'event_detail' event.pk %}" class="post-link">
+                                    <h2 class="card-title">{{ event.title }}</h2>
+                                    <p class="card-text">{{ event.snippet }}</p>
+                                </a>
+                                <hr />
+                                <div class="row">
+                                    <p class="col card-text text-muted h6"> 
+                                        Start: {{ event.start_date}}
+                                    </p>
+                                    <p class="col-1">
+                                        <i class="far fa-heart"></i>
+                                    </p>
+                                    <p class="col-1">
+                                        {{ event.number_of_likes }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-4">
+            <a class="card-text text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCharacter" aria-expanded="false" aria-controls="collapsecollapseCharacter">
+                <h3 class="text-secondary">Charaters</h3>
+                <p class="text-secondary"><small>Click to see the Characters</small></p>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a class="btn btn-success" type="button" href="{% url 'character_create'  %}" class="post-link">
+                <strong>Create A New Character</strong>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseCharacter">
+            <div class="card card-body">
+                <div class="row">
+                    {% for character in created_characters %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="image-container col-md-4 col-sm-6 col-8">
+                                <a href="{% url 'show_character' character.pk %}" class="post-link">
+                                {% if "placeholder" in character.image.url %}
+                                    <img class="card-img-top"
+                                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
+                                {% else %}
+                                    <img class="card-img-top" src=" {{ character.image.url }}">
+                                {% endif %}
+                                </a>
+                            </div>
+                            <div class="col-md-7 col-sm-6 col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
+                                    <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background | safe}}</p>
+                                    <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {%endblock%}
