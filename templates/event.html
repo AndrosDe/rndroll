@@ -141,7 +141,7 @@
                     </div>
                     <div class="col">
                     </div>
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and not joined %}
                     <div class="col-1">
                         <strong>
                             <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
@@ -160,7 +160,14 @@
                 <div class="row">
                     <div class="col collapse" id="collapseJoin">
                         <div class="card card-body">
-
+                            <div class="row g-0 row-cols-1 row-cols-md-3 g-6">
+                                <form method="post" style="margin-top: 1.3em;">
+                                    {% csrf_token %}
+                                    {{ join_form }}
+                                    <br>
+                                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,7 +193,7 @@
                         <img class="card-img-top"
                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
                     {% else %}
-                        <img class="card-img-top" src=" {{ character.image.url }}">
+                        <img class="card-img-top" src="{{ character.image.url }}">
                     {% endif %}
                     </div>
                 <div class="col-md-7 col-sm-6 col-8">

@@ -4,8 +4,9 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 
+from character.models import Character
 from .models import Event, Tag
-from .forms import EventForm, CommentForm
+from .forms import EventForm, CommentForm, JoinForm
 
 
 class EventList(ListView):
@@ -20,7 +21,8 @@ class EventDetail(DetailView):
     ''' View for the Event Details '''
     model = Event
     template_name = "event.html"
-    form = CommentForm
+    form = CommentForm, JoinForm
+
 
     def get_context_data(self, *args, **kwargs):
         context = super(EventDetail, self).get_context_data(*args, **kwargs)
@@ -29,15 +31,23 @@ class EventDetail(DetailView):
         if event.likes.filter(id=self.request.user.id).exists():
             liked = True
 
+        joined = False
+        if Event.objects.filter(characters=self.request.user.id).exists():
+            joined = True
+
+        join_form = JoinForm(user=self.request.user)
         comment_form = CommentForm()
 
+        context['join_form'] = join_form
         context['comment_form'] = comment_form
-        context["liked"] = liked
+        context['liked'] = liked
+        context['joined'] = joined
         return context
 
     def post(self, request, pk, *args, **kwargs):
         event = get_object_or_404(Event, id=self.kwargs['pk'])
         comment_form = CommentForm(data=request.POST)
+        join_form = JoinForm(request.POST)
 
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
@@ -48,6 +58,13 @@ class EventDetail(DetailView):
         else:
             comment_form = CommentForm()
 
+        select_event = get_object_or_404(Event, pk=self.kwargs['pk'])
+        if join_form.is_valid():
+            character_selected = request.POST.get("characters")
+            character = get_object_or_404(Character, pk=character_selected)
+            select_event.characters.add(character)
+            select_event.save()
+            
         return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
 
 

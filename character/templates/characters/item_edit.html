@@ -6,21 +6,17 @@ Update {{ character.character_class }} {{ character.name }}'s Bag
 
 {% block content %}
 {% if user.id == character.created_by.id or user.is_staff %}
-<div class="container text-secondary">
-    <br>
-    <h1>Update {{ character.character_class }} {{ character.name }} </h1>
-</div>
-<br>
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="masthead">
         <div class="container">
             <div class="row g-0">
                 <div class="col-md-8 masthead-text dark-bg">
-                    <h1>{{ character.name }}'s Bag'</h1>
-                    <p class="card-text text-muted">
+                    <h1 class="post-title2">{{ character.name }}'s Bag</h1>
+                    <div class="post-subtitle2 me-5">
                         {{ form.items }}
-                    </p>
+                    </div>
                 </div>
                 <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
                     {% if "placeholder" in character.image.url %}
@@ -30,8 +26,14 @@ Update {{ character.character_class }} {{ character.name }}'s Bag
                     {% endif %}
                 </div>
             </div>
+            <div class="row g-0">
+                <br>
+                <div class="col-12 dark-bg"></div>
+            </div>
         </div>
     </div>
+    <br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-2 me-2">

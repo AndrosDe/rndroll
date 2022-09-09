@@ -47,7 +47,7 @@
                         <div class="row g-0">
                             <a class="text-decoration-none text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEquipment" aria-expanded="false" aria-controls="collapseEquipment">
                                 <h4 class="masthead-text">Equipment</h4>
-                                <small class="masthead-text">Click to see the Equipment</small>
+                                <small class="masthead-text">Click To See The Equipment</small>
                             </a>
                         </div>
                     </div>
@@ -139,11 +139,30 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h4 class="text-secondary">Items</h4>
-            <p class="card-text text-muted">
-                {{ character.items | safe }}
-            </p>
+        <div class="col-md-2 col-sm-4">
+            <a class="card-text text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItem" aria-expanded="false" aria-controls="collapseItem">
+                <h4 class="text-secondary">Items</h4>
+                <p class="text-secondary"><small>Click To See The Items</small></p>
+            </a>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <a class="btn btn-success" type="button" href="{% url 'item_edit' character.pk %}" class="post-link">
+                <strong>Update Items</strong>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseItem">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <p class="card-text text-muted">
+                            {{ character.items | safe }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -180,6 +199,40 @@
             </p>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="text-secondary">Joined Events</h4>
+            <p class="card-text text-muted">
+                {{ character.characters }}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="container">
+        <div class="col-2">
+            <strong>
+                <a class="btn btn-secondary" type="button" value="Cancel" href="{% url 'show_profile' user.profile.id %}">Back</a>
+            </strong>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <br>
 </div>
 
 {% endblock content %}

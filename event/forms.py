@@ -1,6 +1,8 @@
 '''imports'''
 from django import forms
 from django_summernote.widgets import SummernoteWidget
+
+from character.models import Character
 from .models import Event, Comment
 
 
@@ -31,9 +33,28 @@ class EventForm(forms.ModelForm):
         }
 
 
-class CommentForm(forms.ModelForm):
+class JoinForm(forms.ModelForm):
+    ''' The Form for the JoinEvent Model '''
 
     class Meta:
+        '''Setting up the Input Formfields for the Website Join Event Application'''
+        model = Event
+        fields = ('characters',)
+
+        widgets = {
+            'characters': forms.RadioSelect(attrs={'class': 'list-group-numbered list-group-horizontal','id': 'character_list'})
+        }
+
+    def __init__(self, user, *args, **kwargs):
+        super(JoinForm, self).__init__(*args, **kwargs)
+        self.fields['characters'].queryset = Character.objects.filter(created_by=user)
+
+
+class CommentForm(forms.ModelForm):
+    ''' The Form for the Comment Model '''
+
+    class Meta:
+        '''Setting up the Input Formfields for the Website Comment Application'''
         model = Comment
         fields = ('body',)
 

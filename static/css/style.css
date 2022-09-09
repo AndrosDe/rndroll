@@ -53,6 +53,13 @@ body {
     left: -2px;
 }
 
+.image-flash2 {
+    position: absolute;
+    bottom: 35%;
+    min-width: 20%;
+    left: -2px;
+}
+
 .image-flash-side1 {
     position: absolute;
     bottom: 15%;
@@ -100,7 +107,6 @@ body {
     min-width: 35%;
     right: -2px;
 }
-
 
 .author {
     color: white;
