@@ -2,10 +2,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, CreateView, UpdateView
 from django.contrib.auth.views import PasswordChangeView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+
 from event.models import Profile, Event
-from character.models import Character
-from .forms import SignUpForm, EditUserSettingsForm, PasswordsChangeForm, ProfileForm
+from .forms import SignUpForm, EditUserSettingsForm, PasswordsChangeForm, ProfileForm, GM_PromotionForm
 
 
 class CreateProfilePageView(CreateView):
@@ -21,30 +22,40 @@ class CreateProfilePageView(CreateView):
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/profile.html'
+    form = GM_PromotionForm
 
     def get_context_data(self, *args, **kwargs):
         profile_list = Profile.objects.all
-
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
+        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        
+        gm_request_form = GM_PromotionForm()
 
         kwargs = super(ShowProfilePageView, self).get_context_data()
-        kwargs.update({'user': self.request.user})
-
-        created_characters = Character.objects.filter(created_by=kwargs['user'])
-        owned_events = Event.objects.filter(owner=kwargs['user'])
         gm_events = Event.objects.filter(game_master=kwargs['profile'])
-        joined_events = Event.objects.filter(characters__created_by=kwargs['user'])
 
-        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
-
+        context['gm_request_form'] = gm_request_form
         context["kwargs"] = kwargs
         context["profile_list"] = profile_list
-        context["joined_events"] = joined_events
         context["gm_events"] = gm_events
-        context["owned_events"] = owned_events
-        context["created_characters"] = created_characters
         context["page_user"] = page_user
         return context
+
+    def post(self, request, pk, *args, **kwargs):
+        profile = get_object_or_404(Profile, id=self.kwargs['pk'])
+        gm_request_form = GM_PromotionForm(data=request.POST)
+
+        if gm_request_form.is_valid():
+            gm_request_form.instance.name = request.user.username
+            gm_request_form.instance.body = 'I would like to be a Game Master'
+            gm_request_form.instance.requested = True
+            gm_request = gm_request_form.save(commit=False)
+            gm_request.profile = profile
+            gm_request.save()
+        else:
+            gm_request_form = GM_PromotionForm()
+
+        return HttpResponseRedirect(reverse('show_profile', args=[str(pk)]))
 
 
 class PasswordsChangeView(PasswordChangeView):

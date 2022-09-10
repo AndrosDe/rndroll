@@ -118,8 +118,27 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ''' ordering the events after start date '''
+        ''' ordering the comments after start date '''
         ordering = ["-created_on"]
 
     def __str__(self):
         return '%s - %s' % (self.event.title, self.name)
+
+
+class GMPromotion(models.Model):
+    ''' The GM_Promotion Database '''
+    profile = models.OneToOneField(
+        Profile,
+        null=True, on_delete=models.CASCADE,
+        related_name="gm_requests")
+    name = models.CharField(max_length=255)
+    body = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+    requested = models.BooleanField(default=False)
+
+    class Meta:
+        ''' ordering the requests after start date '''
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return '%s - %s' % (self.name, self.created_on)

@@ -161,12 +161,13 @@
                     <div class="col collapse" id="collapseJoin">
                         <div class="card card-body">
                             <div class="row g-0 row-cols-1 row-cols-md-3 g-6">
-                                <form method="post" style="margin-top: 1.3em;">
+                                {% for character in user.character_post.all %}
+                                <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
+                                <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
                                     {% csrf_token %}
-                                    {{ join_form }}
-                                    <br>
-                                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+                                    <button type="submit" name="character_id" value="{{ character.id }}" class="btn bnt-danger">Add</button>
                                 </form>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -195,6 +196,14 @@
                     {% else %}
                         <img class="card-img-top" src="{{ character.image.url }}">
                     {% endif %}
+                    <div class="image-flash text-white">
+                        {% if character.created_by == user or user.profile.gm or user.is_staff %}
+                        <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="character_id" value="{{ character.id }}" class="btn btn-danger">Remove</button>
+                        </form>
+                        {% endif %}
+                    </div>
                     </div>
                 <div class="col-md-7 col-sm-6 col-8">
                     <div class="card-body">
@@ -203,6 +212,7 @@
                         <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background_snippet }}</p>
                         {% endif %}
                         <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
+
                     </div>
                 </div>
             </div>

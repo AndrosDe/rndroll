@@ -3,11 +3,10 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView,
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
-from character.models import Character
 from .models import Event, Tag
-from .forms import EventForm, CommentForm, JoinForm
-
+from .forms import EventForm, CommentForm
 
 class EventList(ListView):
     ''' Homepage View '''
@@ -17,28 +16,37 @@ class EventList(ListView):
     paginate_by = 6
 
 
+class SearchResultsView(ListView):
+    model = Event
+    template_name = "search_results.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Event.objects.filter(
+            Q(title__icontains=query) | Q(owner__username__icontains=query)
+        )
+        return object_list
+
 class EventDetail(DetailView):
     ''' View for the Event Details '''
     model = Event
     template_name = "event.html"
-    form = CommentForm, JoinForm
-
+    form = CommentForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(EventDetail, self).get_context_data(*args, **kwargs)
+        comment_form = CommentForm()
         event = get_object_or_404(Event, id=self.kwargs['pk'])
+        comments = event.comments.all
         liked = False
         if event.likes.filter(id=self.request.user.id).exists():
             liked = True
 
         joined = False
-        if Event.objects.filter(characters=self.request.user.id).exists():
+        if Event.objects.filter(characters__created_by=self.request.user).exists():
             joined = True
 
-        join_form = JoinForm(user=self.request.user)
-        comment_form = CommentForm()
-
-        context['join_form'] = join_form
+        context['comments'] = comments
         context['comment_form'] = comment_form
         context['liked'] = liked
         context['joined'] = joined
@@ -47,10 +55,8 @@ class EventDetail(DetailView):
     def post(self, request, pk, *args, **kwargs):
         event = get_object_or_404(Event, id=self.kwargs['pk'])
         comment_form = CommentForm(data=request.POST)
-        join_form = JoinForm(request.POST)
 
         if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.event = event
@@ -58,13 +64,6 @@ class EventDetail(DetailView):
         else:
             comment_form = CommentForm()
 
-        select_event = get_object_or_404(Event, pk=self.kwargs['pk'])
-        if join_form.is_valid():
-            character_selected = request.POST.get("characters")
-            character = get_object_or_404(Character, pk=character_selected)
-            select_event.characters.add(character)
-            select_event.save()
-            
         return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
 
 
@@ -74,6 +73,16 @@ def LikeView(request, pk):
         event.likes.remove(request.user)
     else:
         event.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
+
+
+def JoinView(request, pk, *args, **kwargs):
+    select_event = get_object_or_404(Event, pk=pk)
+    if select_event.characters.filter(id=request.POST.get("character_id")).exists():
+        select_event.characters.remove(request.POST.get("character_id"))
+    else:
+        select_event.characters.add(request.POST.get("character_id"))
 
     return HttpResponseRedirect(reverse("event_detail", args=[str(pk)]))
 

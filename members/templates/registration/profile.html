@@ -24,10 +24,18 @@ Profile
 
                 <div class="row g-0">
                     <div class="col-4 post-subtitle2">
+                        {% if user.id == profile.user.id or profile.gm == True %}
                         {% if profile.gm == True %}
-                        <a href="#" class="btn btn-light">Game Master</a>
+                        <button class="btn btn-light" disabled>Game Master</button>
+                        {% elif profile.gm_requests.requested == True %}
+                        <button class="btn btn-light" disabled>Game Master promotion request is in review</button>
                         {% else %}
-                        <a href="#" class="btn btn btn-light">Request promotion to Game Master</a>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ gm_request_form }}
+                            <button type="submit" class="btn btn btn-light">Request promotion to Game Master</button>
+                        </form>
+                        {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -105,7 +113,7 @@ Profile
         <div class="col collapse" id="collapseOwnedEvents">
             <div class="card card-body">
                 <div class="row">
-                    {% for event in owned_events %}
+                    {% for event in profile.user.event_creator.all %}
                     <div class="col-xxl-3 col-lg-4 col-md-6">
                         <div class="card mb-3">
                             <div class="card-body">
@@ -240,78 +248,6 @@ Profile
 </div>
 <div class="container">
     <div class="row">
-        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlayedEvents" aria-expanded="false" aria-controls="collapsePlayedEvents">
-            <h3 class="text-secondary">Played Events</h3>
-            <small class="text-secondary">Click to see the Events</small>
-        </a>
-    </div>
-    <div class="row">
-        <div class="col collapse" id="collapsePlayedEvents">
-            <div class="card card-body">
-                <div class="row">
-                    {% for event in joined_events %}
-                    <div class="col-xxl-3 col-lg-4 col-md-6">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="image-container">
-                                    {% if "placeholder" in event.image.url %}
-                                    <img class="card-img-top"
-                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
-                                    {% else %}
-                                    <img class="card-img-top" src=" {{ event.image.url }}">
-                                    {% endif %}
-                                    <div class="image-flash dark-bg">
-                                        <p class="author">By: {{ event.owner }}</p>
-                                    </div>
-                                    {% if user.is_staff%}
-                                    <div class="image-flash-bottom-2 dark-red-bg">
-                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
-                                    </div>
-                                    {% endif %}
-                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                                    <div class="image-flash-bottom-1 dark-orange-bg">
-                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <a href="{% url 'event_detail' event.pk %}" class="post-link">
-                                    <h2 class="card-title">{{ event.title }}</h2>
-                                    <p class="card-text">{{ event.snippet }}</p>
-                                </a>
-                                <hr />
-                                <div class="row">
-                                    <p class="col card-text text-muted h6"> 
-                                        Start: {{ event.start_date}}
-                                    </p>
-                                    <p class="col-1">
-                                        <i class="far fa-heart"></i>
-                                    </p>
-                                    <p class="col-1">
-                                        {{ event.number_of_likes }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row">
         <div class="col-md-2 col-sm-4">
             <a class="card-text text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCharacter" aria-expanded="false" aria-controls="collapseCharacter">
                 <h3 class="text-secondary">Charaters</h3>
@@ -319,16 +255,18 @@ Profile
             </a>
         </div>
         <div class="col-md-4 col-sm-6">
+            {% if user.id == profile.user.id %}
             <a class="btn btn-success" type="button" href="{% url 'character_create'  %}" class="post-link">
                 <strong>Create A New Character</strong>
             </a>
+            {% endif %}
         </div>
     </div>
     <div class="row">
         <div class="col collapse" id="collapseCharacter">
             <div class="card card-body">
                 <div class="row">
-                    {% for character in created_characters %}
+                    {% for character in profile.user.character_post.all %}
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="image-container col-md-4 col-sm-6 col-8">

@@ -2,7 +2,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django_summernote.widgets import SummernoteWidget
 from django.contrib.auth.models import User
-from event.models import Profile
+from event.models import Profile, GMPromotion
 from django import forms
 
 
@@ -61,4 +61,17 @@ class ProfileForm(forms.ModelForm):
             'instagram_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
             'youtube_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
             'pinterest_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
+        }
+
+
+class GM_PromotionForm(forms.ModelForm):
+    ''' The Form for the GM_Promotion Model '''
+
+    class Meta:
+        '''Setting up the Input Formfields for the Website GM_Promotion Application'''
+        model = GMPromotion
+        fields = ('body',)
+
+        widgets = {
+            'body': forms.TextInput(attrs={'class': 'form-control', 'value': 'I would like to be a Game Master',  'id': 'body', 'type': 'hidden'}),
         }
