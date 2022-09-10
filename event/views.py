@@ -43,7 +43,7 @@ class EventDetail(DetailView):
             liked = True
 
         joined = False
-        if Event.objects.filter(characters__created_by=self.request.user).exists():
+        if event.characters.filter(created_by=self.request.user).exists():
             joined = True
 
         context['comments'] = comments

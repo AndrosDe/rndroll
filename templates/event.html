@@ -76,7 +76,6 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
@@ -157,19 +156,31 @@
                     </div>
                     {% endif %}
                 </div>
+                <br>
                 <div class="row">
                     <div class="col collapse" id="collapseJoin">
-                        <div class="card card-body">
-                            <div class="row g-0 row-cols-1 row-cols-md-3 g-6">
-                                {% for character in user.character_post.all %}
-                                <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
-                                <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" name="character_id" value="{{ character.id }}" class="btn bnt-danger">Add</button>
-                                </form>
-                                {% endfor %}
+                        {% for character in user.character_post.all %}
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="{{ character.image.url }}" class="card-img-top" alt="Character Picture">
+                                    <div class="image-flash2">
+                                        <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
+                                            {% csrf_token %}
+                                            <button type="submit" name="character_id" value="{{ character.id }}" class="btn btn-success">Add</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-body">
+                                        <h6 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
+                                    </div>
+                                </div>
                             </div>
+                            {% if forloop.counter|divisibleby:4 %}
                         </div>
+                        <div class="row">
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -189,7 +200,7 @@
         {% for character in event.characters.all %}
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
-                <div class="image-container col-md-4 col-sm-6 col-8">
+                <div class="image-container col-md-4 col-sm-6">
                     {% if "placeholder" in character.image.url %}
                         <img class="card-img-top"
                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
