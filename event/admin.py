@@ -1,9 +1,10 @@
 ''' imports '''
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
 from django.core.exceptions import ValidationError
 from django import forms
-from .models import Event, Tag, Profile, Comment, GMPromotion
+from django_summernote.admin import SummernoteModelAdmin
+
+from .models import Event, Tag, Profile, Comment, GMPromotion, Messages
 
 
 admin.site.register(Tag)
@@ -20,7 +21,9 @@ class EventForm(forms.ModelForm):
             print("No character seleceted")
         elif cleaned_data.get('characters').count() >= 1:
             if cleaned_data.get('characters').count() > (cleaned_data.get('character_max')):
-                raise ValidationError(f"You have to choose {(cleaned_data.get('character_max'))} of characters for the Event!")
+                raise ValidationError(
+                    f"You have to choose {(cleaned_data.get('character_max'))} of characters for the Event!"
+                )
 
 
 @admin.register(Event)
@@ -45,3 +48,4 @@ class EventAdmin(SummernoteModelAdmin):
 admin.site.register(Profile)
 admin.site.register(Comment)
 admin.site.register(GMPromotion)
+admin.site.register(Messages)

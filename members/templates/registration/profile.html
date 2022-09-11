@@ -54,7 +54,7 @@ Profile
             <div class="d-none d-md-block col-md-4 masthead-image">
                 {% if "placeholder" in profile.profile_pic.url %}
                 <img class="card-img-top"
-                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/profile_default_fhyukf.jpg">
+                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/media/images/profile_default_fhyukf.jpg">
                 {% else %}
                 <img class="card-img-top" src="{{ profile.profile_pic.url }}">
                 {% endif %}
@@ -96,18 +96,81 @@ Profile
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 masthead-text dark-bg"></div>
+            <div class="col-md-4 masthead-text dark-bg">
+            </div>
         </div>
     </div>
+    <br>
 </div>
 <br>
 <br>
+{% if user.profile.gm %}
 <div class="container">
     <div class="row">
-        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOwnedEvents" aria-expanded="false" aria-controls="collapseOwnedEvents">
-            <h3 class="text-secondary">Owned Events</h3>
-            <small class="text-secondary">Click to see the Events</small>
+        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages" aria-expanded="false" aria-controls="collapseMessages">
+            <h3 class="text-secondary">Messages</h3>
+            <small class="text-secondary">Click to see the Messages</small>
         </a>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseMessages">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col">
+                        <h4> User Messages</h4>
+                        {% for message in messages.all %}
+                        <div class="comments">
+                            <strong>
+                                {{ message.user }}
+                                <span class=" text-muted font-weight-normal">
+                                    {{ message.created_on }}
+                                </span> wrote:
+                            </strong>
+                            <div>
+                                {{ message.body}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% if user.is_staff %}
+                    <div class="col">
+                        <h4> Game Master Promotion requests</h4>
+                        {% for request in gm_requests.all %}
+                        <div class="comments">
+                            <strong>
+                                {{ request.name }}
+                                <span class=" text-muted font-weight-normal">
+                                    {{ request.created_on }}
+                                </span> wrote:
+                            </strong>
+                            <div>
+                                {{ request.body}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <hr>
+    </div>
+    <div class="col-1"></div>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOwnedEvents" aria-expanded="false" aria-controls="collapseOwnedEvents">
+                <h3 class="text-secondary">Owned Events</h3>
+                <small class="text-secondary">Click to see the Events</small>
+            </a>
+        </div>
     </div>
     <div class="row">
         <div class="col collapse" id="collapseOwnedEvents">
@@ -120,7 +183,7 @@ Profile
                                 <div class="image-container">
                                     {% if "placeholder" in event.image.url %}
                                     <img class="card-img-top"
-                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg">
                                     {% else %}
                                     <img class="card-img-top" src=" {{ event.image.url }}">
                                     {% endif %}
@@ -176,10 +239,12 @@ Profile
 </div>
 <div class="container">
     <div class="row">
-        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNarratedEvents" aria-expanded="false" aria-controls="collapseNarratedEvents">
-            <h3 class="text-secondary">Narrated Events</h3>
-            <small class="text-secondary">Click to see the Events</small>
-        </a>
+        <div class="col-md-4">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNarratedEvents" aria-expanded="false" aria-controls="collapseNarratedEvents">
+                <h3 class="text-secondary">Narrated Events</h3>
+                <small class="text-secondary">Click to see the Events</small>
+            </a>
+        </div>
     </div>
     <div class="row">
         <div class="col collapse" id="collapseNarratedEvents">
@@ -192,7 +257,7 @@ Profile
                                 <div class="image-container">
                                     {% if "placeholder" in event.image.url %}
                                     <img class="card-img-top"
-                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/event_default_xev64c.jpg">
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg">
                                     {% else %}
                                     <img class="card-img-top" src=" {{ event.image.url }}">
                                     {% endif %}
@@ -248,7 +313,7 @@ Profile
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-sm-4">
+        <div class="col-md-4">
             <a class="card-text text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCharacter" aria-expanded="false" aria-controls="collapseCharacter">
                 <h3 class="text-secondary">Charaters</h3>
                 <p class="text-secondary"><small>Click to see the Characters</small></p>
@@ -273,7 +338,7 @@ Profile
                                 <a href="{% url 'show_character' character.pk %}" class="post-link">
                                 {% if "placeholder" in character.image.url %}
                                     <img class="card-img-top"
-                                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg">
+                                        src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/media/images/character_default_lgald4.jpg">
                                 {% else %}
                                     <img class="card-img-top" src=" {{ character.image.url }}">
                                 {% endif %}

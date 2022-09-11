@@ -12,7 +12,9 @@ MAX_PLAYER = ((2, 2), (3, 3), (4, 4), (5, 5), (6, 6))
 
 class Tag(models.Model):
     ''' The Tag Database '''
-    tag = models.CharField(max_length=200)
+    tag = models.CharField(
+        max_length=200
+    )
 
     class Meta:
         ''' ordering the Tag Database alphabetically '''
@@ -24,10 +26,18 @@ class Tag(models.Model):
 
 class Profile(models.Model):
     ''' Extending the User Database with "Game Master"'''
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User,
+        null=True,
+        on_delete=models.CASCADE
+    )
     gm = models.BooleanField(default=False)
     bio = models.TextField(null=True, blank=True)
-    profile_pic = CloudinaryField('image', null=True, blank=True, default='placeholder')
+    profile_pic = CloudinaryField(
+        'image',
+        null=True,
+        blank=True,
+        default='placeholder')
     website_url = models.CharField(max_length=300, null=True, blank=True)
     facebook_url = models.CharField(max_length=300, null=True, blank=True)
     twitter_url = models.CharField(max_length=300, null=True, blank=True)
@@ -78,7 +88,9 @@ class Event(models.Model):
     start_date = models.DateTimeField(auto_now=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(
+        choices=STATUS,
+        default=0)
     # Player Section
     character_max = models.IntegerField(choices=MAX_PLAYER, default=4)
     characters = models.ManyToManyField(
@@ -122,14 +134,15 @@ class Comment(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return '%s - %s' % (self.event.title, self.name)
+        return f"{self.event.title} - {self.name}"
 
 
 class GMPromotion(models.Model):
     ''' The GM_Promotion Database '''
     profile = models.OneToOneField(
         Profile,
-        null=True, on_delete=models.CASCADE,
+        null=True,
+        on_delete=models.CASCADE,
         related_name="gm_requests")
     name = models.CharField(max_length=255)
     body = models.CharField(max_length=255)
@@ -141,4 +154,22 @@ class GMPromotion(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return '%s - %s' % (self.name, self.created_on)
+        return f"{self.name} - {self.created_on}"
+
+
+class Messages(models.Model):
+    ''' The Comment Database '''
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="messages",
+        null=True)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ''' ordering the comments after start date '''
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"Message from {self.user}"

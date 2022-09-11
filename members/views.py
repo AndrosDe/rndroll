@@ -5,11 +5,12 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
-from event.models import Profile, Event
-from .forms import SignUpForm, EditUserSettingsForm, PasswordsChangeForm, ProfileForm, GM_PromotionForm
+from event.models import Profile, Event, GMPromotion, Messages
+from .forms import SignUpForm, EditUserSettingsForm, PasswordsChangeForm, ProfileForm, GM_PromotionForm, MessageForm
 
 
 class CreateProfilePageView(CreateView):
+    ''' Create a new Profile'''
     model = Profile
     form_class = ProfileForm
     template_name = 'registration/profile_create.html'
@@ -20,6 +21,7 @@ class CreateProfilePageView(CreateView):
 
 
 class ShowProfilePageView(DetailView):
+    ''' Profile Details '''
     model = Profile
     template_name = 'registration/profile.html'
     form = GM_PromotionForm
@@ -28,12 +30,19 @@ class ShowProfilePageView(DetailView):
         profile_list = Profile.objects.all
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
-        
+
         gm_request_form = GM_PromotionForm()
+        gm_request = GMPromotion.objects.all
+        gm_requests = gm_request
+
+        message = Messages.objects.all
+        messages = message
 
         kwargs = super(ShowProfilePageView, self).get_context_data()
         gm_events = Event.objects.filter(game_master=kwargs['profile'])
 
+        context['messages'] = messages
+        context['gm_requests'] = gm_requests
         context['gm_request_form'] = gm_request_form
         context["kwargs"] = kwargs
         context["profile_list"] = profile_list
@@ -42,6 +51,7 @@ class ShowProfilePageView(DetailView):
         return context
 
     def post(self, request, pk, *args, **kwargs):
+        '''Getting the GM Request from the page'''
         profile = get_object_or_404(Profile, id=self.kwargs['pk'])
         gm_request_form = GM_PromotionForm(data=request.POST)
 
@@ -59,22 +69,26 @@ class ShowProfilePageView(DetailView):
 
 
 class PasswordsChangeView(PasswordChangeView):
+    ''' Password change '''
     form_class = PasswordsChangeForm
     template_name = 'registration/password.html'
     success_url = reverse_lazy('password_success')
 
 
 def password_success(request):
+    ''' Password change '''
     return render(request, 'registration/password_success.html', {})
 
 
 class UserRegisterView(CreateView):
+    ''' Creating a new user '''
     form_class = SignUpForm
     template_name = 'registration/account_register.html'
     success_url = reverse_lazy('login')
 
 
 class EditUserSettingsView(UpdateView):
+    ''' Updating the Settings '''
     form_class = EditUserSettingsForm
     template_name = 'registration/profile_settings_edit.html'
     success_url = reverse_lazy('home')
@@ -84,7 +98,15 @@ class EditUserSettingsView(UpdateView):
 
 
 class EditProfilePageView (UpdateView):
+    ''' Updating the Profile '''
     model = Profile
     form_class = ProfileForm
     template_name = 'registration/profile_edit.html'
+    success_url = reverse_lazy('home')
+
+
+class MessageView(CreateView):
+    ''' Creating a message '''
+    form_class = MessageForm
+    template_name = 'registration/messages.html'
     success_url = reverse_lazy('home')

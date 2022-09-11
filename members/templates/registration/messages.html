@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Message to the Game Master and Administrator
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="masthead">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-8 masthead-text dark-bg">
+                    <h1 class="post-title2">A Message to the Game Master and Administrator</h1>
+                    <div class="post-subtitle2 me-5">
+                        {{ form }}
+                    </div>
+                </div>
+                <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
+                    {% if "placeholder" in character.image.url %}
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
+                    {% else %}
+                    <img src=" {{ character.image.url }}" width="100%">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row g-0">
+                <br>
+                <div class="col-12 dark-bg"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 me-2">
+                <input class="btn btn-secondary" type="submit" value="Send">
+            </div>
+            <div class="col-2 ms-5">
+                <strong>
+                    <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
+                </strong>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <br>
+    </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("owner").value = name;
+    </script>
+</form>
+{% else %}
+
+You need to be logged in to write a Message.
+
+{% endif %}
+{%endblock%}

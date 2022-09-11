@@ -60,6 +60,13 @@ body {
     left: -2px;
 }
 
+.image-flash3 {
+    position: absolute;
+    bottom: 15%;
+    min-width: 15%;
+    left: -2px;
+}
+
 .image-flash-side1 {
     position: absolute;
     bottom: 15%;
@@ -221,11 +228,11 @@ body {
 }
 
 .bg-header {
-    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473628/header_background_eidhla.jpg");
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473628/media/images/header_background_eidhla.jpg");
 }
 
 .navbar-image {
-    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473623/rndroll_logo_omrst8.png");
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473623/media/images/rndroll_logo_omrst8.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -248,7 +255,16 @@ body {
 }
 
 .equipment-bg{
-    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662635426/equipment_background_c9rfdx.png");
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662635426/media/images/equipment_background_c9rfdx.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #445261;
+    height: 100%;
+}
+
+.note-bg{
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662904426/media/images/note_ucx35i.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

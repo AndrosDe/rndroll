@@ -23,7 +23,7 @@
             </div>
             <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
                 {% if "placeholder" in character.image.url %}
-                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/character_default_lgald4.jpg" width="100%">
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/media/images/character_default_lgald4.jpg" width="100%">
                 {% else %}
                 <img src=" {{ character.image.url }}" width="100%">
                 {% endif %}
@@ -82,9 +82,11 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-9 masthead-text text-center">
+                                {% if user.id == character.created_by.id or user.is_staff %}
                                 <a class="text-decoration-none text-center btn btn-success" href="{% url 'equipment_edit' character.pk %}">
                                     Update Equipment
                                 </a>
+                                {% endif %}
                                 {% if character.equipt_head %}
                                 <h6 class="text-center dark-equipment-bg mt-5">{{ character.equipt_head }}</h6>
                                 {% endif %}
@@ -139,24 +141,25 @@
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-sm-4">
+        <div class="col-md-3 col-sm-4">
             <a class="card-text text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItem" aria-expanded="false" aria-controls="collapseItem">
                 <h4 class="text-secondary">Items</h4>
                 <p class="text-secondary"><small>Click To See The Items</small></p>
             </a>
         </div>
+        {% if user.id == character.created_by.id or user.is_staff %}
         <div class="col-md-4 col-sm-6">
             <a class="btn btn-success" type="button" href="{% url 'item_edit' character.pk %}" class="post-link">
                 <strong>Update Items</strong>
             </a>
         </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col collapse" id="collapseItem">
             <div class="card card-body">
                 <div class="row">
                     <div class="col-12">
-                        
                         <p class="card-text text-muted">
                             {{ character.items | safe }}
                         </p>
@@ -175,11 +178,46 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h4 class="text-secondary">Notes</h4>
-            <p class="card-text text-muted">
-                {{ character_note.all }}
-            </p>
+        <div class="col-md-3 col-sm-4">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNote" aria-expanded="false" aria-controls="collapseNote">
+                <h3 class="text-secondary">Notes</h3>
+                <small class="text-secondary">Click to see the Notes</small>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseNote">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6">
+                    {% for note in character.character_note.all %}
+                    <p class="card-text text-muted">
+                        <div class="comments">
+                            <strong>
+                                {{ note.note | safe }}
+                            </strong>
+                        </div>
+                    </p>
+                    {% if user.id == character.created_by.id or user.is_staff %}
+                    <div class="col-1">
+                        <snall>
+                            <a class="text-muted nav-link" href="{% url 'note_delete' note.pk %}">Delete</a>
+                        </snall>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                    {% if user.id == character.created_by.id or user.is_staff %}
+                    <div class="col-md-4 col-sm-6">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ note_form }}
+                            <button type="submit" class="btn btn-success"><strong>Add a new Note</strong></button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -192,11 +230,54 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h4 class="text-secondary">Pictures</h4>
-            <p class="card-text text-muted">
-                {{ character_picture.image.all }}
-            </p>
+        <div class="col-md-3 col-sm-4">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImage" aria-expanded="false" aria-controls="collapseImage">
+                <h3 class="text-secondary">Images</h3>
+                <small class="text-secondary">Click to see the Images</small>
+            </a>
+        </div>
+        {% if user.id == character.created_by.id or user.is_staff %}
+        <div class="col-md-4 col-sm-6">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewImage" aria-expanded="false" aria-controls="collapseNewImage">
+                <h3 class="text-secondary">New Images</h3>
+                <small class="text-secondary">Click to style & upload</small>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseNewImage">
+            <div class="card card-body">
+                <div class="row">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ picture_form }}
+                        <button type="submit" class="btn btn-success"><strong>Add a new Image</strong></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseImage">
+            <div class="card card-body">
+                <div class="row">
+                    {% for image in character.character_pictures.all %}
+                    <div class="col-lg-3 col-sm-6 col-xs-9">
+                        <div class="comments">
+                            {{ image.image | safe }}
+                            {% if user.id == character.created_by.id or user.is_staff %}
+                            <div class="image-flash3 dark-red-bg">
+                                <strong></strong>
+                                    <a class="nav-link text-center text-white" href="{% url 'picture_delete' image.pk %}">Delete</a>
+                                </strong>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -209,11 +290,68 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h4 class="text-secondary">Joined Events</h4>
-            <p class="card-text text-muted">
-                {{ character.characters }}
-            </p>
+        <div class="col-md-3 col-sm-4">
+            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoinedEvents" aria-expanded="false" aria-controls="collapseJoinedEvents">
+                <h3 class="text-secondary">Joined Events</h3>
+                <small class="text-secondary">Click to see the Events</small>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col collapse" id="collapseJoinedEvents">
+            <div class="card card-body">
+                <div class="row">
+                    {% for event in joined_events.all %}
+                    <div class="col-xxl-3 col-lg-4 col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="image-container">
+                                    {% if "placeholder" in event.image.url %}
+                                    <img class="card-img-top"
+                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ event.image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash dark-bg">
+                                        <p class="author">By: {{ event.owner }}</p>
+                                    </div>
+                                    {% if user.is_staff%}
+                                    <div class="image-flash-bottom-2 dark-red-bg">
+                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                    </div>
+                                    {% endif %}
+                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                    <div class="image-flash-bottom-1 dark-orange-bg">
+                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <a href="{% url 'event_detail' event.pk %}" class="post-link">
+                                    <h2 class="card-title">{{ event.title }}</h2>
+                                    <p class="card-text">{{ event.snippet }}</p>
+                                </a>
+                                <hr />
+                                <div class="row">
+                                    <p class="col card-text text-muted h6"> 
+                                        Start: {{ event.start_date}}
+                                    </p>
+                                    <p class="col-1">
+                                        <i class="far fa-heart"></i>
+                                    </p>
+                                    <p class="col-1">
+                                        {{ event.number_of_likes }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ from django.db.models import Q
 from .models import Event, Tag
 from .forms import EventForm, CommentForm
 
+
 class EventList(ListView):
     ''' Homepage View '''
     model = Event
@@ -17,6 +18,7 @@ class EventList(ListView):
 
 
 class SearchResultsView(ListView):
+    ''' Search Results '''
     model = Event
     template_name = "search_results.html"
 
@@ -26,6 +28,7 @@ class SearchResultsView(ListView):
             Q(title__icontains=query) | Q(owner__username__icontains=query)
         )
         return object_list
+
 
 class EventDetail(DetailView):
     ''' View for the Event Details '''
@@ -68,6 +71,7 @@ class EventDetail(DetailView):
 
 
 def LikeView(request, pk):
+    ''' The Like function on Event Details '''
     event = get_object_or_404(Event, id=request.POST.get("event_id"))
     if event.likes.filter(id=request.user.id).exists():
         event.likes.remove(request.user)
@@ -78,6 +82,7 @@ def LikeView(request, pk):
 
 
 def JoinView(request, pk, *args, **kwargs):
+    ''' The function on Event Details to join an Event'''
     select_event = get_object_or_404(Event, pk=pk)
     if select_event.characters.filter(id=request.POST.get("character_id")).exists():
         select_event.characters.remove(request.POST.get("character_id"))
