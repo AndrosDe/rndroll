@@ -113,12 +113,6 @@ class DeleteEvent(DeleteView):
     success_url = reverse_lazy("home")
 
 
-class EventCalendar(TemplateView):
-    ''' View for the Event Details '''
-    model = Event
-    template_name = "calendar.html"
-
-
 class ConductView(TemplateView):
     ''' View for the Event Details '''
     model = Event

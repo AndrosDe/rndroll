@@ -1,6 +1,6 @@
 ''' imports '''
 from django.urls import path
-from .views import EventList, EventDetail, CreateEvent, EventCalendar, ConductView, EditEvent, DeleteEvent, TagsView, IndexTagsView, AddTag, LikeView, JoinView, SearchResultsView
+from .views import EventList, EventDetail, CreateEvent, ConductView, EditEvent, DeleteEvent, TagsView, IndexTagsView, AddTag, LikeView, JoinView, SearchResultsView
 
 urlpatterns = [
     path("", EventList.as_view(), name="home"),
@@ -11,7 +11,6 @@ urlpatterns = [
     path("tag/<str:tags>", TagsView, name="event_tag"),
     path("tag/index/", IndexTagsView.as_view(), name="index_tag"),
     path("tag/add/", AddTag.as_view(), name="add_tag"),
-    path("calendar/", EventCalendar.as_view(), name="event_calendar"),
     path("conduct/", ConductView.as_view(), name="conduct"),
     path("like/<int:pk>", LikeView, name="event_like"),
     path("join/<int:pk>", JoinView, name="event_join"),
