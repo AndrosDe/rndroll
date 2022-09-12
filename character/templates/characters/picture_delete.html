@@ -6,11 +6,7 @@ Delete A Picture
 
 {% block content %}
 {% if user.id == note.character.created_by.id or user.is_staff %}
-<div class="container text-secondary">
-    <br>
-    <h1>Delete Picture</h1>
-</div>
-<br>
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="masthead">
@@ -19,8 +15,7 @@ Delete A Picture
                 <div class="col-md-8 masthead-text dark-bg">
                     <figure class="post-title2">
                         <blockquote class="blockquote">
-                            <h1>Delete:</h1>
-                            <h3>Picture ---> </h3>
+                            <h1>Delete Picture</h1>
                             <br>
                             <strong> 
                                 Are you sure?
@@ -33,8 +28,8 @@ Delete A Picture
                         </blockquote>
                     </figure>
                 </div>
-                <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
-                    <img src="{{ picture.image.url }}" width="100%">
+                <div class="d-none d-md-block col-md-4 dark-bg p-5">
+                    {{ picture.image | safe }}
                 </div>
             </div>
         </div>
@@ -42,10 +37,10 @@ Delete A Picture
             <div class="row g-0">
                 <div class="col-md-8 masthead-text dark-bg">
                     <div class="row post-subtitle">
-                        <div class="col-5 me-2">
+                        <div class="col-7">
                             <button class="btn btn-danger">Delete Picture!</button>
                         </div>
-                        <div class="col-2 ms-5">
+                        <div class="col-2">
                             <strong>
                                 <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
                             </strong>
@@ -57,6 +52,7 @@ Delete A Picture
                 <br>
             </div>
         </div>
+        <br>
     </div>
 </form>
 {% else %}

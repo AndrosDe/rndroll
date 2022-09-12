@@ -72,25 +72,25 @@ Profile
                     <div>
                         <h6>
                             {% if profile.website_url %}
-                            <a class="text-decoration-none text-white" href="{{ profile.website_url }}">Website</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.website_url }}"><i class="fa-solid fa-globe"></i></a>
                             {% endif %}
                             {% if profile.facebook_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.facebook_url }}">Facebook</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.facebook_url }}"><i class="fab fa-facebook-square text-white"></i></a>
                             {% endif %}
                             {% if profile.twitter_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.twitter_url }}">Twitter</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.twitter_url }}"><i class="fab fa-twitter-square text-white"></i></a>
                             {% endif %}
                             {% if profile.twitch_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.twitch_url }}">Twitch</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.twitch_url }}"><i class="fab fa-brands fa-twitch text-white"></i></a>
                             {% endif %}
                             {% if profile.instagram_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.instagram_url }}">Instagram</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.instagram_url }}"><i class="fab fa-instagram-square text-white"></i></a>
                             {% endif %}
                             {% if profile.youtube_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.youtube_url }}">Pinterest</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.youtube_url }}"><i class="fab fa-youtube-square text-white"></i></a>
                             {% endif %}
                             {% if profile.pinterest_url %}
-                            | <a class="text-decoration-none text-white" href="{{ profile.pinterest_url }}">YouTube</a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.pinterest_url }}"><i class="fa-brands fa-pinterest text-white"></i></a>
                             {% endif %}
                         </h6>
                     </div>
@@ -116,7 +116,7 @@ Profile
         <div class="col collapse" id="collapseMessages">
             <div class="card card-body">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-6 my-2">
                         <h4> User Messages</h4>
                         {% for message in messages.all %}
                         <div class="comments">
@@ -127,13 +127,13 @@ Profile
                                 </span> wrote:
                             </strong>
                             <div>
-                                {{ message.body}}
+                                {{ message.body | safe  }}
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                     {% if user.is_staff %}
-                    <div class="col">
+                    <div class="col-sm-6 my-2">
                         <h4> Game Master Promotion requests</h4>
                         {% for request in gm_requests.all %}
                         <div class="comments">
@@ -144,7 +144,7 @@ Profile
                                 </span> wrote:
                             </strong>
                             <div>
-                                {{ request.body}}
+                                {{ request.body | safe }}
                             </div>
                         </div>
                         {% endfor %}
@@ -358,5 +358,6 @@ Profile
             </div>
         </div>
     </div>
+    <br>
 </div>
 {%endblock%}

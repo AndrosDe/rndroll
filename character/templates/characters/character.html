@@ -10,7 +10,7 @@
         <div class="row g-0">
             <div class="col-md-8 masthead-text dark-bg">
                 <figure class="post-title2">
-                    <blockquote class="blockquote">
+                    <blockquote class="blockquote me-3">
                         <h1>{{ character.name }}</h1>
                         <h3>{{ character.character_class }}</h3>
                         <h4>Background:</h4>
@@ -199,7 +199,7 @@
                         </div>
                     </p>
                     {% if user.id == character.created_by.id or user.is_staff %}
-                    <div class="col-1">
+                    <div class="col-3">
                         <snall>
                             <a class="text-muted nav-link" href="{% url 'note_delete' note.pk %}">Delete</a>
                         </snall>
@@ -209,6 +209,7 @@
                     </div>
                     {% if user.id == character.created_by.id or user.is_staff %}
                     <div class="col-md-4 col-sm-6">
+                        <h6 class="mt-5">New Note:</h6>
                         <form method="post">
                             {% csrf_token %}
                             {{ note_form }}

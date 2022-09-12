@@ -6,35 +6,32 @@ Delete A Character
 
 {% block content %}
 {% if user.id == character.created_by.id or user.is_staff %}
-<div class="container text-secondary">
-    <br>
-    <h1>Delete Character</h1>
-</div>
-<br>
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="masthead">
         <div class="container">
             <div class="row g-0">
-                <div class="col-md-8 masthead-text dark-bg">
+                <div class="col-md-8 masthead-text dark-bg ">
                     <figure class="post-title2">
-                        <blockquote class="blockquote">
-                            <h1>Delete:<br>{{ character.name }}</h1>
-                            <h3>{{ character.character_class }}</h3>
+                        <blockquote class="blockquote me-3">
+                            <h1>Delete Character</h1>
+                            <h3>{{ character.name }}</h3>
+                            <h4>{{ character.character_class }}</h4>
                             <br>
                             <strong> 
                                 Are you sure?
                             </strong>
-                            <h5 class="pt-2">
+                            <h6 class="pt-4">
                                 <strong> 
                                     This will completely remove the character and the connected equipment, items, notes and pictures.
                                 </strong>
-                            </h5>
-                            <h5 class="pt-2">
+                            </h6>
+                            <h6 class="pt-2">
                                 <strong>
                                     Any Event that has been joined will only be in so far effected, as the character will be removed from the group.
                                 </strong>
-                            </h5>
+                            </h6>
                         </blockquote>
                     </figure>
                 </div>
@@ -51,10 +48,10 @@ Delete A Character
             <div class="row g-0">
                 <div class="col-md-8 masthead-text dark-bg">
                     <div class="row post-subtitle">
-                        <div class="col-5 me-2">
+                        <div class="col-7 my-4">
                             <button class="btn btn-danger">Delete Character!</button>
                         </div>
-                        <div class="col-2 ms-5">
+                        <div class="col-2 my-4"">
                             <strong>
                                 <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
                             </strong>
@@ -63,9 +60,10 @@ Delete A Character
                 </div>
                 <div class="col-md-4 masthead-text dark-bg"></div>
                 <br>
-                <br>
+
             </div>
         </div>
+        <br>
     </div>
 </form>
 {% else %}

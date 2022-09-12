@@ -115,48 +115,49 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-1">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'event_like' event.pk %}" method="POST">
-                                {% csrf_token %}
-                                {% if liked %}
-                                <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="fas fa-heart"></i></button>
-                                {% else %}
-                                <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="far fa-heart"></i></button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
-                            {% endif %}
-                        <span class="text-secondary">{{ event.number_of_likes }} </span>
-                        </strong>
+                    <div class="col-lg-2 col-md-5 col-sm-4">
+                        <div class="row">
+                            <div class="col">
+                                <strong>
+                                    {% if user.is_authenticated %}
+                                    <form class="d-inline" action="{% url 'event_like' event.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if liked %}
+                                        <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="fas fa-heart"></i></button>
+                                        {% else %}
+                                        <button type="submit" name="event_id" value="{{ event.id }}" class="btn-like"><i class="far fa-heart"></i></button>
+                                        {% endif %}
+                                    </form>
+                                    {% else %}
+                                    <span class="text-secondary"><i class="far fa-heart"></i></span>
+                                    {% endif %}
+                                    <span class="text-secondary">{{ event.number_of_likes }} </span>
+                                </strong>
+                            </div>
+                            <div class="col">
+                                {% with comments.count as total_comments %}
+                                <strong class="text-secondary"><i class="far fa-comments"></i>
+                                    {{ total_comments }}</strong>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-sm-6">
                     </div>
                     <div class="col-1">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            {{ total_comments }}</strong>
-                        {% endwith %}
-                    </div>
-                    <div class="col">
-                    </div>
                     {% if user.is_authenticated and not joined %}
-                    <div class="col-1">
                         <strong>
                             <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
                                 Join
                             </button>
                         </strong>
-                    </div>
                     {% else %}
-                    <div class="col-1">
                         <strong>
                             <button type="button" class="btn btn-secondary position-relative" href="#" disabled>Join</button>
                         </strong>
-                    </div>
                     {% endif %}
+                    </div>
                 </div>
-                <br>
                 <div class="row">
                     <div class="col collapse" id="collapseJoin">
                         {% for character in user.character_post.all %}
