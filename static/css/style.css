@@ -33,6 +33,10 @@ body {
     background-color: #5f0101;
 }
 
+.dark-blue-bg {
+    background-color: #175496;
+}
+
 .main-bg {
     background-color: rgba(254, 245, 236, 0.701);
 }
@@ -65,6 +69,13 @@ body {
     bottom: 15%;
     min-width: 15%;
     left: -2px;
+}
+
+.image-flash-top {
+    position: absolute;
+    top: 2%;
+    min-width: 15%;
+    left: 38%;
 }
 
 .image-flash-side1 {
@@ -274,6 +285,16 @@ body {
 
 .dark-equipment-bg {
     background-color: #44526190;
+}
+
+.event-expired-bg {
+    background-color: #e4e4e4;
+    box-shadow: 0 0 40px 40px rgba(254, 245, 236, 0.701) inset;
+}
+
+.event-private-bg {
+    background-color: #e2fbf8;
+    box-shadow: 0 0 40px 40px rgba(254, 245, 236, 0.701) inset;
 }
 
 .navbar-brand{

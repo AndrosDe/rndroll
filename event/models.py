@@ -105,7 +105,7 @@ class Event(models.Model):
 
     class Meta:
         ''' ordering the events after start date '''
-        ordering = ['-start_date']
+        ordering = ['start_date']
 
     def __str__(self):
         return f"{self.title}"
