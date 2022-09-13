@@ -22,7 +22,7 @@
                     <div class="card mb-3">
                         {% if event.status == 0 %}
                         <div class="card-body event-private-bg">
-                        {% elif event.status == 2 %}
+                        {% elif event.status == 2 or time > event.start_date %}
                         <div class="card-body event-expired-bg">
                         {% else %}
                         <div class="card-body">
@@ -59,14 +59,14 @@
                                 <h2 class="card-title">{{ event.title }}</h2>
                                 <p class="card-text">{{ event.snippet }}</p>
                             </a>
-                            {% if event.status == 2 %}
+                            {% if event.status == 2 or time > event.start_date %}
                             <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
                             {% endif %}
                             <hr />
                             <div class="row">
                                 {% if event.status == 2 %}
                                 <p class="col card-text text-muted h6"> 
-                                    Started on: {{ event.start_date}}
+                                    Started on: {{ event.start_date }}
                                 </p>
                                 {% else %}
                                 <p class="col card-text text-muted h6"> 

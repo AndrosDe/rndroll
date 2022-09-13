@@ -27,7 +27,7 @@ Tags
                 {% if event.status != 0 %}
                 <div class="col-lg-4 col-md-6">
                     <div class="card mb-3">
-                        {% if event.status == 2 %}
+                        {% if event.status == 2 or time > event.start_date %}
                         <div class="card-body event-expired-bg">
                         {% else %}
                         <div class="card-body">
@@ -57,7 +57,7 @@ Tags
                                 <h2 class="card-title">{{ event.title }}</h2>
                                 <p class="card-text">{{ event.snippet }}</p>
                             </a>
-                            {% if event.status == 2 %}
+                            {% if event.status == 2 or time > event.start_date %}
                             <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
                             {% endif %}
                             <hr />

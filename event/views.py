@@ -4,6 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.db.models import Q
+from django.utils import timezone
 
 from .models import Event, Tag
 from .forms import EventForm, CommentForm
@@ -16,11 +17,25 @@ class EventList(ListView):
     template_name = "index.html"
     paginate_by = 6
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(EventList, self).get_context_data(*args, **kwargs)
+        time = timezone.now()
+
+        context['time'] = time
+        return context
+
 
 class SearchResultsView(ListView):
     ''' Search Results '''
     model = Event
     template_name = "search_results.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(SearchResultsView, self).get_context_data(*args, **kwargs)
+        time = timezone.now()
+
+        context['time'] = time
+        return context
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -46,7 +61,7 @@ class EventDetail(DetailView):
             liked = True
 
         joined = False
-        if event.characters.filter(created_by=self.request.user).exists():
+        if event.characters.filter(created_by=self.request.user.id).exists():
             joined = True
 
         context['comments'] = comments
@@ -122,9 +137,11 @@ class ConductView(TemplateView):
 def TagsView(request, tags):
     ''' View for the filtered Tags '''
     tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' ')).order_by("start_date")
+    time = timezone.now()
+
     return render(
         request, "tagged_events.html", {
-            "tags": tags.replace('-', ' '), "tagged_events": tagged_events
+            "tags": tags.replace('-', ' '), "tagged_events": tagged_events, "time":time,
             })
 
 
