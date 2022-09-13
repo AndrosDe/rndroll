@@ -1,6 +1,6 @@
 ''' imports '''
 from django.urls import path
-from .views import CharacterDetail, CreateCharacter, EditCharacter, DeleteCharacter, EditEquipment, EditItem, DeleteNote, DeletePicture
+from .views import CharacterDetail, CreateCharacter, EditCharacter, DeleteCharacter, EditEquipment, EditItem, DeleteNote
 
 
 urlpatterns = [
@@ -11,5 +11,4 @@ urlpatterns = [
     path('equipment/edit/<int:pk>', EditEquipment.as_view(), name='equipment_edit'),
     path('item/edit/<int:pk>', EditItem.as_view(), name='item_edit'),
     path('note/<int:pk>/remove', DeleteNote.as_view(), name='note_delete'),
-    path('picture/<int:pk>/remove', DeletePicture.as_view(), name='picture_delete'),
 ]

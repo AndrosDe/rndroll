@@ -239,7 +239,10 @@ body {
 }
 
 .bg-header {
-    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473628/media/images/header_background_eidhla.jpg");
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1663097254/media/images/header_background_eidhla_fe7aqi.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar-image {
@@ -266,7 +269,7 @@ body {
 }
 
 .equipment-bg{
-    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1662635426/media/images/equipment_background_c9rfdx.png");
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1663096582/media/images/equipment-background_eqah5y.webp");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -307,4 +310,8 @@ body {
 
 .nav-button-margin {
     margin-left: 2%;
+}
+
+#wpcf7-not-valid-tip {
+    color: #e95b0f;
 }

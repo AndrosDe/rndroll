@@ -232,66 +232,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-4">
-            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImage" aria-expanded="false" aria-controls="collapseImage">
-                <h3 class="text-secondary">Images</h3>
-                <small class="text-secondary">Click to see the Images</small>
-            </a>
-        </div>
-        {% if user.id == character.created_by.id or user.is_staff %}
-        <div class="col-md-4 col-sm-6">
-            <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewImage" aria-expanded="false" aria-controls="collapseNewImage">
-                <h3 class="text-secondary">New Images</h3>
-                <small class="text-secondary">Click to style & upload</small>
-            </a>
-        </div>
-        {% endif %}
-    </div>
-    <div class="row">
-        <div class="col collapse" id="collapseNewImage">
-            <div class="card card-body">
-                <div class="row">
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ picture_form }}
-                        <button type="submit" class="btn btn-success"><strong>Add a new Image</strong></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col collapse" id="collapseImage">
-            <div class="card card-body">
-                <div class="row">
-                    {% for image in character.character_pictures.all %}
-                    <div class="col-lg-3 col-sm-6 col-xs-9">
-                        <div class="comments">
-                            {{ image.image | safe }}
-                            {% if user.id == character.created_by.id or user.is_staff %}
-                            <div class="image-flash3 dark-red-bg">
-                                <strong></strong>
-                                    <a class="nav-link text-center text-white" href="{% url 'picture_delete' image.pk %}">Delete</a>
-                                </strong>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 col-sm-4">
             <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoinedEvents" aria-expanded="false" aria-controls="collapseJoinedEvents">
                 <h3 class="text-secondary">Joined Events</h3>
                 <small class="text-secondary">Click to see the Events</small>

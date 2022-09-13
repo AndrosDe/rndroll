@@ -145,7 +145,7 @@
                     <div class="col-xl-9 col-lg-8 col-sm-6">
                     </div>
                     <div class="col-1 my-2">
-                    {% if user.is_authenticated and not joined and event.status != 0 %}
+                    {% if user.is_authenticated and not joined and event.status != 0 and event.character_max != event.characters.all.count %}
                         <strong>
                             <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
                                 Join

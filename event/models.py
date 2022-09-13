@@ -58,7 +58,7 @@ class Event(models.Model):
     ''' The Event Database '''
     # main content
     title = models.CharField(max_length=200)
-    story = models.TextField()
+    story = models.TextField(null=True, blank=True)
     snippet = models.CharField(max_length=300)
     tag = models.ManyToManyField(
         Tag,

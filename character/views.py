@@ -5,8 +5,8 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
 from event.models import Event
-from .models import Character, Note, Picture
-from .forms import CharacterForm, EquipmentForm, ItemForm, NoteForm, PictureForm
+from .models import Character, Note
+from .forms import CharacterForm, EquipmentForm, ItemForm, NoteForm
 
 
 class CharacterDetail(DetailView):
@@ -18,18 +18,13 @@ class CharacterDetail(DetailView):
         context = super(CharacterDetail, self).get_context_data(*args, **kwargs)
         page_character = get_object_or_404(Character, id=self.kwargs['pk'])
         note_list = Note.objects.all
-        picture_list = Picture.objects.all
-
         note_form = NoteForm()
-        picture_form = PictureForm()
 
         joined_events = Event.objects.filter(characters=page_character)
 
-        context["picture_form"] = picture_form
         context["note_form"] = note_form
         context["joined_events"] = joined_events
         context["note_list"] = note_list
-        context["picture_list"] = picture_list
         context["page_character"] = page_character
         return context
 
@@ -44,20 +39,6 @@ class CharacterDetail(DetailView):
             note.save()
         else:
             note_form = NoteForm()
-
-        return HttpResponseRedirect(reverse("show_character", args=[str(pk)]))
-
-    def post2(self, request, pk, *args, **kwargs):
-        '''Getting the Image from the Page'''
-        character = get_object_or_404(Character, id=self.kwargs['pk'])
-        picture_form = PictureForm(data=request.POST)
-
-        if picture_form.is_valid():
-            picture = picture_form.save(commit=False)
-            picture.character = character
-            picture.save()
-        else:
-            picture_form = PictureForm()
 
         return HttpResponseRedirect(reverse("show_character", args=[str(pk)]))
 
@@ -105,11 +86,4 @@ class DeleteNote(DeleteView):
     ''' Deleting an Character '''
     model = Note
     template_name = "characters/note_delete.html"
-    success_url = reverse_lazy('home')
-
-
-class DeletePicture(DeleteView):
-    ''' Deleting an Character '''
-    model = Picture
-    template_name = "characters/picture_delete.html"
     success_url = reverse_lazy('home')

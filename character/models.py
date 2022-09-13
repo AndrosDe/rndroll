@@ -72,16 +72,3 @@ class Note(models.Model):
 
     def __str__(self):
         return f"{self.note}"
-
-
-class Picture(models.Model):
-    ''' The Gallery Database '''
-    character = models.ForeignKey(
-        Character,
-        on_delete=models.CASCADE,
-        related_name='character_pictures'
-    )
-    image = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return f"A picture of {self.character}"

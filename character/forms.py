@@ -1,7 +1,7 @@
 '''imports'''
 from django import forms
 from django_summernote.widgets import SummernoteWidget
-from .models import Character, Note, Picture
+from .models import Character, Note
 
 
 class CharacterForm(forms.ModelForm):
@@ -106,17 +106,4 @@ class NoteForm(forms.ModelForm):
 
         widgets = {
             'note': forms.TextInput(attrs={'class': 'form-control'}),
-        }
-
-
-class PictureForm(forms.ModelForm):
-    ''' The Form for the Picture Model '''
-
-    class Meta:
-        '''Setting up the Input Formfields for the Website Application'''
-        model = Picture
-        fields = ('image',)
-
-        widgets = {
-            'image': SummernoteWidget(attrs={'class': 'form-control'}),
         }
