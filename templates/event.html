@@ -112,7 +112,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col card mb-4  my-3 left  top">
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2 col-md-5 col-sm-4">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="col-xl-9 col-lg-8 col-sm-6">
                     </div>
-                    <div class="col-1">
+                    <div class="col-1 my-2">
                     {% if user.is_authenticated and not joined and event.status != 0 %}
                         <strong>
                             <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
@@ -160,9 +160,10 @@
                 </div>
                 <div class="row">
                     <div class="col collapse" id="collapseJoin">
-                        {% for character in user.character_post.all %}
+                        <br>
                         <div class="row">
-                            <div class="col-md-3">
+                            {% for character in user.character_post.all %}
+                            <div class="col-md-2 col-sm-4">
                                 <div class="card">
                                     {% if "placeholder" in character.image.url %}
                                     <img class="card-img-top"
@@ -181,12 +182,8 @@
                                     </div>
                                 </div>
                             </div>
-                            {% if forloop.counter|divisibleby:4 %}
+                            {% endfor %}
                         </div>
-                        <div class="row">
-                            {% endif %}
-                        </div>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
