@@ -47,21 +47,39 @@ Updateing an Event
                         {% else %}
                         <img src=" {{ event.image.url }}" width="100%" alt="Event Picture">
                         {% endif %}
-                        <div class="col-3"></div>
-                        <div class="image-flash-2 main-bg">
-                            <div class="col">
-                                Image: 
-                            </div>
-                            <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col">
-                                    {{ form.image }}
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 dark-bg masthead-text py-3">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-1 ms-3">
+                            Image: 
+                        </div>
+                        <div class="col-md-5 col-sm-10 me-5">
+                            {{ form.image }}
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 ms-3 mt-3">
+                            <small>
+                                Preferably use pictures with 450 (width) x 250 (height) pixels.
+                                Great Tools to change the size of pictures are:<br>
+                                <a class="masthead-text text-decoration-none" href="https://www9.lunapic.com/editor/" target="_blank" aria-label="Extern Link to Image Tool">LunaPic</a>
+                                - 
+                                <a class="masthead-text text-decoration-none" href="https://tinypng.com/" target="_blank" aria-label="Extern Link to Image Tool">Tinypng</a>
+                                - 
+                                <a class="masthead-text text-decoration-none" href="https://www.onlineconverter.com/webp" target="_blank" aria-label="Extern Link to Image Tool">Online Converter</a>
+                            </small>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row g-0">
             <div class="col mt-3">
                 <h4 class="text-secondary">Story</h4>
                 <p class="card-text text-muted">
@@ -144,7 +162,7 @@ Updateing an Event
                     </div>
                     <div class="col-2 ms-5">
                         <strong>
-                            <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;" aria-label="Return to the previous page">Cancel</a>
+                            <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
                         </strong>
                     </div>
                     <div class="col-3"></div>

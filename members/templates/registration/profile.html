@@ -187,71 +187,73 @@ Profile
                             {% if event.status == 0 %}
                             <div class="card-body event-private-bg">
                             {% elif event.status == 2 %}
-                            <div class="card-body event-expired-bg">
-                            {% else %}
-                            <div class="card-body">
-                            {% endif %}
-                                <div class="image-container">
-                                    {% if "placeholder" in event.image.url %}
-                                    <img class="card-img-top"
-                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
-                                    {% else %}
-                                    <img class="card-img-top" src="{{ event.image.url }}" alt="Event Picture">
+                                <div class="card-body event-expired-bg">
+                                {% else %}
+                                    <div class="card-body">
                                     {% endif %}
-                                    {% if event.status == 0 %}
-                                    <div class="image-flash-top dark-blue-bg">
-                                        <strong>
-                                            <p class="author">Private</p>
-                                        </strong>
+                                        <div class="image-container">
+                                            {% if "placeholder" in event.image.url %}
+                                            <img class="card-img-top"
+                                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
+                                            {% else %}
+                                            <img class="card-img-top" src="{{ event.image.url }}" alt="Event Picture">
+                                            {% endif %}
+                                            {% if event.status == 0 %}
+                                            <div class="image-flash-top dark-blue-bg">
+                                                <strong class="author">
+                                                    Private
+                                                </strong>
+                                            </div>
+                                            {% endif %}
+                                            <div class="image-flash dark-bg">
+                                                <p class="author">By: {{ event.owner }}</p>
+                                            </div>
+                                            {% if user.is_staff%}
+                                            <div class="image-flash-bottom-2 dark-red-bg">
+                                                <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
+                                            </div>
+                                            {% endif %}
+                                            {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                            <div class="image-flash-bottom-1 dark-orange-bg">
+                                                <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <a class="post-link" href="{% url 'event_detail' event.pk %}" aria-label="Show me the deatils of the event {{ event.title }}">
+                                            <h2 class="card-title">{{ event.title }}</h2>
+                                            <p class="card-text">{{ event.snippet }}</p>
+                                        </a>
+                                        {% if event.status == 2 %}
+                                        <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
+                                        {% endif %}
+                                        <hr/>
+                                        <div class="row">
+                                            {% if event.status == 2 %}
+                                            <p class="col card-text text-muted h6"> 
+                                                Started on: {{ event.start_date}}
+                                            </p>
+                                            {% else %}
+                                            <p class="col card-text text-muted h6"> 
+                                                Start: {{ event.start_date}}
+                                            </p>
+                                            {% endif %}
+                                            <p class="col-1">
+                                                <i class="far fa-heart"></i>
+                                            </p>
+                                            <p class="col-1">
+                                                {{ event.number_of_likes }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    {% endif %}
-                                    <div class="image-flash dark-bg">
-                                        <p class="author">By: {{ event.owner }}</p>
-                                    </div>
-                                    {% if user.is_staff%}
-                                    <div class="image-flash-bottom-2 dark-red-bg">
-                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
-                                    </div>
-                                    {% endif %}
-                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                                    <div class="image-flash-bottom-1 dark-orange-bg">
-                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <a class="post-link" href="{% url 'event_detail' event.pk %}" aria-label="Show me the deatils of the event {{ event.title }}">
-                                    <h2 class="card-title">{{ event.title }}</h2>
-                                    <p class="card-text">{{ event.snippet }}</p>
-                                </a>
-                                {% if event.status == 2 %}
-                                <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
-                                {% endif %}
-                                <hr />
-                                <div class="row">
-                                    {% if event.status == 2 %}
-                                    <p class="col card-text text-muted h6"> 
-                                        Started on: {{ event.start_date}}
-                                    </p>
-                                    {% else %}
-                                    <p class="col card-text text-muted h6"> 
-                                        Start: {{ event.start_date}}
-                                    </p>
-                                    {% endif %}
-                                    <p class="col-1">
-                                        <i class="far fa-heart"></i>
-                                    </p>
-                                    <p class="col-1">
-                                        {{ event.number_of_likes }}
-                                    </p>
                                 </div>
                             </div>
+                            {% if forloop.counter|divisibleby:3 %}
+                        </div>
+                        <div class="row">
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
-                    {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -283,71 +285,73 @@ Profile
                             {% if event.status == 0 %}
                             <div class="card-body event-private-bg">
                             {% elif event.status == 2 %}
-                            <div class="card-body event-expired-bg">
-                            {% else %}
-                            <div class="card-body">
-                            {% endif %}
-                                <div class="image-container">
-                                    {% if "placeholder" in event.image.url %}
-                                    <img class="card-img-top"
-                                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
-                                    {% else %}
-                                    <img class="card-img-top" src=" {{ event.image.url }}" alt="Event Picture">
+                                <div class="card-body event-expired-bg">
+                                {% else %}
+                                    <div class="card-body">
                                     {% endif %}
-                                    {% if event.status == 0 %}
-                                    <div class="image-flash-top dark-blue-bg">
-                                        <strong>
-                                            <p class="author">Private</p>
-                                        </strong>
+                                        <div class="image-container">
+                                            {% if "placeholder" in event.image.url %}
+                                            <img class="card-img-top"
+                                            src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
+                                            {% else %}
+                                            <img class="card-img-top" src=" {{ event.image.url }}" alt="Event Picture">
+                                            {% endif %}
+                                            {% if event.status == 0 %}
+                                            <div class="image-flash-top dark-blue-bg">
+                                                <strong class="author">
+                                                    Private
+                                                </strong>
+                                            </div>
+                                            {% endif %}
+                                            <div class="image-flash dark-bg">
+                                                <p class="author">By: {{ event.owner }}</p>
+                                            </div>
+                                            {% if user.is_staff%}
+                                            <div class="image-flash-bottom-2 dark-red-bg">
+                                                <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
+                                            </div>
+                                            {% endif %}
+                                            {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                            <div class="image-flash-bottom-1 dark-orange-bg">
+                                                <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the deatils of the event {{ event.title }}">
+                                            <h2 class="card-title">{{ event.title }}</h2>
+                                            <p class="card-text">{{ event.snippet }}</p>
+                                        </a>
+                                        {% if event.status == 2 %}
+                                        <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
+                                        {% endif %}
+                                        <hr />
+                                        <div class="row">
+                                            {% if event.status == 2 %}
+                                            <p class="col card-text text-muted h6"> 
+                                                Started on: {{ event.start_date}}
+                                            </p>
+                                            {% else %}
+                                            <p class="col card-text text-muted h6"> 
+                                                Start: {{ event.start_date}}
+                                            </p>
+                                            {% endif %}
+                                            <p class="col-1">
+                                                <i class="far fa-heart"></i>
+                                            </p>
+                                            <p class="col-1">
+                                                {{ event.number_of_likes }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    {% endif %}
-                                    <div class="image-flash dark-bg">
-                                        <p class="author">By: {{ event.owner }}</p>
-                                    </div>
-                                    {% if user.is_staff%}
-                                    <div class="image-flash-bottom-2 dark-red-bg">
-                                        <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
-                                    </div>
-                                    {% endif %}
-                                    {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
-                                    <div class="image-flash-bottom-1 dark-orange-bg">
-                                        <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the deatils of the event {{ event.title }}">
-                                    <h2 class="card-title">{{ event.title }}</h2>
-                                    <p class="card-text">{{ event.snippet }}</p>
-                                </a>
-                                {% if event.status == 2 %}
-                                <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
-                                {% endif %}
-                                <hr />
-                                <div class="row">
-                                    {% if event.status == 2 %}
-                                    <p class="col card-text text-muted h6"> 
-                                        Started on: {{ event.start_date}}
-                                    </p>
-                                    {% else %}
-                                    <p class="col card-text text-muted h6"> 
-                                        Start: {{ event.start_date}}
-                                    </p>
-                                    {% endif %}
-                                    <p class="col-1">
-                                        <i class="far fa-heart"></i>
-                                    </p>
-                                    <p class="col-1">
-                                        {{ event.number_of_likes }}
-                                    </p>
                                 </div>
                             </div>
+                            {% if forloop.counter|divisibleby:3 %}
+                        </div>
+                        <div class="row">
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
-                    {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -410,14 +414,13 @@ Profile
 </div>
 <div class="container">
     <div class="row"></div>
-        <div class="col-md-4">
-            {% if user.id == profile.user.id %}
-            <a class="card-text text-decoration-none" type="button" href="{% url 'character_create' %}"  aria-label="Create a new Character">
-                <h3 class="text-secondary">Create A New Character</h3>
-                <p class="text-secondary"><small>Click to create a new Characters</small></p>
-            </a>
-            {% endif %}
-        </div>
+    <div class="col-md-4">
+        {% if user.id == profile.user.id %}
+        <a class="card-text text-decoration-none" type="button" href="{% url 'character_create' %}"  aria-label="Create a new Character">
+            <h3 class="text-secondary">Create A New Character</h3>
+            <p class="text-secondary"><small>Click to create a new Characters</small></p>
+        </a>
+        {% endif %}
     </div>
     <br>
 </div>
