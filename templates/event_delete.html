@@ -33,7 +33,7 @@ Remove an Event
                         <h5>
                             <strong> 
                                 This will completely remove the event and the connected comments.
-                                The characters will not be effected.
+                                The characters will not be affected.
                             </strong>
                         </h5>
                     </div>
@@ -43,16 +43,16 @@ Remove an Event
                             <strong> Please note that an Event can always be edited.</strong>
                         </h5>
                         <h5>
-                            If necessary an admin can even change the owner of an event and hand it to someone else in the admin site.
+                            If necessary an admin can even change the owner of an event and hand it to someone else on the admin site.
                         </h5>
                         <br>
                     </div>
                 </div>
                 <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
                     {% if "placeholder" in event.image.url %}
-                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" width="100%">
+                    <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" width="100%" alt="Default Event Picture">
                     {% else %}
-                    <img src=" {{ event.image.url }}" width="100%">
+                    <img src=" {{ event.image.url }}" width="100%" alt="Event Picture">
                     {% endif %}
                 </div>
             </div>
@@ -66,7 +66,7 @@ Remove an Event
                         </div>
                         <div class="col-2 ms-5">
                             <strong>
-                                <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;">Cancel</a>
+                                <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;" aria-label="Return to the previous page">Cancel</a>
                             </strong>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ Remove an Event
 </form>
 {% else %}
 
-Only administrator can delete an event.
+Only the administrator can delete an event.
 
 Please contact an administrator, if this event needs to be deleted.
 

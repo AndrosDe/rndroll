@@ -6,10 +6,10 @@
         <div class="col-xxl-9 col-lg-8 col-md-6"></div>
         <div class="col-xxl-3 col-lg-4 col-md-6">
             <form class="d-flex" role="search" action="{% url 'search_results' %}" method="get">
-                <input class="form-control me-2" name="q" type="search" placeholder="Search for Title or Owner" aria-label="Search">
+                <input class="form-control me-2" name="q" type="search" placeholder="Search for Title or Owner" aria-label="Search for Title or Owner">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <small class="text-muted ms-3">Search funktion is case sensetive</small>
+            <small class="text-muted ms-3">Search function is case sensetive</small>
         </div> 
     </div>
 </div>
@@ -31,9 +31,9 @@
                             <div class="image-container">
                                 {% if "placeholder" in event.image.url %}
                                 <img class="card-img-top"
-                                src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg">
+                                src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ event.image.url }}">
+                                <img class="card-img-top" src=" {{ event.image.url }}" alt="Event Picture">
                                 {% endif %}
                                 {% if event.status == 0 %}
                                 <div class="image-flash-top dark-blue-bg">
@@ -47,16 +47,16 @@
                                 </div>
                                 {% if user.is_staff%}
                                 <div class="image-flash-bottom-2 dark-red-bg">
-                                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                 </div>
                                 {% endif %}
                                 {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
                                 <div class="image-flash-bottom-1 dark-orange-bg">
-                                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                 </div>
                                 {% endif %}
                             </div>
-                            <a href="{% url 'event_detail' event.pk %}" class="post-link">
+                            <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the details of the event {{ event.title }}">
                                 <h2 class="card-title">{{ event.title }}</h2>
                                 <p class="card-text">{{ event.snippet }}</p>
                             </a>
@@ -96,11 +96,10 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous Page"><strong>&laquo; PREV </strong></a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-label="Next Page"><strong> NEXT &raquo;</strong></a></li>
             {% endif %}
         </ul>
     </nav>

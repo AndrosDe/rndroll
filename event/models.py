@@ -45,12 +45,13 @@ class Profile(models.Model):
     instagram_url = models.CharField(max_length=300, null=True, blank=True)
     youtube_url = models.CharField(max_length=300, null=True, blank=True)
     pinterest_url = models.CharField(max_length=300, null=True, blank=True)
+    discord_url = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return f"{self.user}"
 
     def get_absolute_url(self):
-        ''' in order to create an event on the Website '''
+        ''' to create an event on the Website '''
         return reverse('home')
 
 
@@ -65,7 +66,7 @@ class Event(models.Model):
         related_name='event_tag',
         blank=True)
     image = CloudinaryField('image', default='placeholder', blank=True)
-    # connecting to Player that will Game Master the Session
+    # connecting to the Player that will Game Master the Session
     game_master = models.ForeignKey(
         Profile,
         on_delete=models.SET_DEFAULT,
@@ -104,14 +105,14 @@ class Event(models.Model):
         blank=True)
 
     class Meta:
-        ''' ordering the events after start date '''
+        ''' ordering the events after the start date '''
         ordering = ['start_date']
 
     def __str__(self):
         return f"{self.title}"
 
     def get_absolute_url(self):
-        ''' in order to create an event on the Website '''
+        ''' to create an event on the Website '''
         return reverse('home')
 
     def number_of_likes(self):
@@ -130,7 +131,7 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ''' ordering the comments after start date '''
+        ''' ordering the comments after the creation date '''
         ordering = ["-created_on"]
 
     def __str__(self):
@@ -150,7 +151,7 @@ class GMPromotion(models.Model):
     requested = models.BooleanField(default=False)
 
     class Meta:
-        ''' ordering the requests after start date '''
+        ''' ordering the requests after the creation date '''
         ordering = ["-created_on"]
 
     def __str__(self):
@@ -168,7 +169,7 @@ class Messages(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ''' ordering the comments after start date '''
+        ''' ordering the comments after the creation date '''
         ordering = ["-created_on"]
 
     def __str__(self):

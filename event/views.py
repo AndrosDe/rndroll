@@ -29,6 +29,7 @@ class SearchResultsView(ListView):
     ''' Search Results '''
     model = Event
     template_name = "search_results.html"
+    paginate_by = 6
 
     def get_context_data(self, *args, **kwargs):
         context = super(SearchResultsView, self).get_context_data(*args, **kwargs)
@@ -141,7 +142,7 @@ def TagsView(request, tags):
 
     return render(
         request, "tagged_events.html", {
-            "tags": tags.replace('-', ' '), "tagged_events": tagged_events, "time":time,
+            "tags": tags.replace('-', ' '), "tagged_events": tagged_events, "time": time
             })
 
 

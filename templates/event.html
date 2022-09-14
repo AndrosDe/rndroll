@@ -16,8 +16,8 @@
                         <h6 class="post-subtitle ms-3">
                             <ul>
                             {% for tag in event.tag.all %}
-                                <li class="list-unstyled tag-list">
-                                    <a class="nav-link" href="{% url 'event_tag' tag %}" target="_blank">
+                                <li class="list-unstyled tag-list text-light">
+                                    <a class="nav-link" href="{% url 'event_tag' tag %}" target="_blank" aria-label="Search for Events with this Tag">
                                     {{ tag }}
                                     </a>
                                 </li>
@@ -29,18 +29,18 @@
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
                 {% if "placeholder" in event.image.url %}
-                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" width="100%">
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" width="100%" alt="Default Event Picture">
                 {% else %}
-                <img src=" {{ event.image.url }}" width="100%">
+                <img src=" {{ event.image.url }}" width="100%" alt="Event Picture">
                 {% endif %}
                 {% if user.id == event.owner.id or user.is_staff %}
                 <div class="image-flash-bottom-2 dark-red-bg">
-                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}">Delete</a>
+                    <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete The Event">Delete</a>
                 </div>
                 {% endif %}
                 {% if user.id == event.owner.id or user.profile.gm or user.is_staff %}
                 <div class="image-flash-bottom-1 dark-orange-bg">
-                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}">Update Event</a>
+                    <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update The Event">Update Event</a>
                 </div>
                 {% endif %}
             </div>
@@ -53,7 +53,7 @@
             {% if event.main_link %}
             <h5>
                 <strong>
-                    <a class="btn btn-dark nav-link text-white" href="{{ event.main_link }}" target="_blank"> Watch Us Here</a>
+                    <a class="btn btn-dark nav-link text-white" href="{{ event.main_link }}" target="_blank" aria-label="Link To The Event"> Watch Us Here</a>
                 </strong>
             </h5>
             {% endif %}
@@ -68,7 +68,7 @@
                 <div class="col-md-6 card mb-4  mt-3 left  top">
                     {% if event.links %}
                     <h5><strong class="text-secondary">Links:</strong></h5>
-                    <p class="card-text text-muted"> {{ event.links | safe }} </p>
+                    <p class="card-text text-muted" aria-label="Extra Links From The Event"> {{ event.links | safe }} </p>
                     {% endif %}
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <div class="col-lg-3 col-md-6 card">
                         <h5><strong class="text-secondary">By:</strong></h5>
                         {% if user.is_authenticated and event.owner.profile.id  %}
-                        <strong class="text-secondary"><a class="nav-link" href="{% url 'show_profile' event.owner.profile.id %}">{{ event.owner }}</a></strong>
+                        <strong class="text-secondary"><a class="nav-link" href="{% url 'show_profile' event.owner.profile.id %}" aria-label="Visit the Event Owners Profile">{{ event.owner }}</a></strong>
                         {% else %}
                         <strong class="text-secondary">{{ event.owner }}</strong>
                         {% endif %}
@@ -153,7 +153,7 @@
                         </strong>
                     {% else %}
                         <strong>
-                            <button type="button" class="btn btn-secondary position-relative" href="#" disabled>Join</button>
+                            <button type="button" class="btn btn-secondary position-relative" disabled>Join</button>
                         </strong>
                     {% endif %}
                     </div>
@@ -221,7 +221,7 @@
                 </div>
                 <div class="col-md-7 col-sm-6 col-8">
                     <div class="card-body">
-                        <a href="{% url 'show_character' character.pk %}" class="post-link">
+                        <a href="{% url 'show_character' character.pk %}" class="post-link" aria-label="Show the Character Details">
                             <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
                         </a>
                         {% if character.background_snippet %}

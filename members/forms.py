@@ -10,16 +10,12 @@ from event.models import Profile, GMPromotion, Messages
 class SignUpForm(UserCreationForm):
     ''' The Form for the Register Site '''
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border border-2 p-2 mb-2', 'placeholder': 'email@emailprovider.com'}))
-    first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control border border-2 p-2 mb-2', 'placeholder': 'First Name'}))
-    last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control border border-2 p-2 mb-2', 'placeholder': 'Last Name'}))
 
     class Meta:
         '''Setting up the Input Formfields'''
         model = User
         fields = (
             'username',
-            'first_name',
-            'last_name',
             'email',
             'password1',
             'password2'
@@ -36,14 +32,12 @@ class SignUpForm(UserCreationForm):
 class EditUserSettingsForm(UserChangeForm):
     ''' The Form for the Settings Update Site '''
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control border border-2 p-2 mb-2'}))
-    first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control border border-2 p-2 mb-2'}))
-    last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control border border-2 p-2 mb-2'}))
     username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control border border-2 p-2 mb-2'}))
 
     class Meta:
         '''Setting up the Input Formfields'''
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('username', 'email')
 
 
 class PasswordsChangeForm(PasswordChangeForm):
@@ -73,19 +67,21 @@ class ProfileForm(forms.ModelForm):
             'twitch_url',
             'instagram_url',
             'youtube_url',
-            'pinterest_url'
+            'pinterest_url',
+            'discord_url'
             )
 
         widgets = {
             'bio': SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 280px', 'title': 'Discripe yourself'}),
             'profile_pic': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'default': 'placeholder'}),
-            'website_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'facebook_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'twitter_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'twitch_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'instagram_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'youtube_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
-            'pinterest_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url'}),
+            'website_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.website.com'}),
+            'facebook_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.facebook-link.com'}),
+            'twitter_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.twitter-link.com'}),
+            'twitch_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.twitch-channel.com'}),
+            'instagram_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.instagram-link.com'}),
+            'youtube_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.youtube-channel.com'}),
+            'pinterest_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.pinterest-link.com'}),
+            'discord_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.your.discord-invite.com'}),
         }
 
 

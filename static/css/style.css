@@ -13,12 +13,9 @@ body {
     color: #E84610;
 }
 
-.light-bg {
-    background-color: #fff;
-}
-
 .dark-bg {
     background-color: #445261;
+    background-image: url(https://res.cloudinary.com/dbscsb8w1/image/upload/v1663142570/media/images/egg_bg_lewasz.png);
 }
 
 .dark-yellow-bg {
@@ -38,7 +35,8 @@ body {
 }
 
 .main-bg {
-    background-color: rgba(254, 245, 236, 0.701);
+    background-image: url("https://res.cloudinary.com/dbscsb8w1/image/upload/v1663140850/media/images/woodbg_small3_r1lccx.png");
+    background-color: rgba(255, 254, 252, 0.7);
 }
 
 .card {
@@ -64,33 +62,11 @@ body {
     left: -2px;
 }
 
-.image-flash3 {
-    position: absolute;
-    bottom: 15%;
-    min-width: 15%;
-    left: -2px;
-}
-
 .image-flash-top {
     position: absolute;
     top: 2%;
     min-width: 15%;
     left: 38%;
-}
-
-.image-flash-side1 {
-    position: absolute;
-    bottom: 15%;
-    min-width: 100%;
-    right: 0%;
-    text-align: center;
-}
-
-.image-flash-side2  {
-    position: absolute;
-    background-color: rgba(163, 82, 67, 0.701);
-    top: 10%;
-    right: -40%;
 }
 
 .image-flash-bottom-1 {
@@ -104,25 +80,6 @@ body {
     position: absolute;
     bottom: 25%;
     min-width: 30%;
-    right: -2px;
-}
-
-.image-flash-up-1 {
-    position: absolute;
-    top: 55%;
-    min-width: 35%;
-    right: -2px;
-}
-.image-flash-up-2 {
-    position: absolute;
-    top: 70%;
-    min-width: 35%;
-    right: -2px;
-}
-.image-flash-up-3 {
-    position: absolute;
-    top: 85%;
-    min-width: 35%;
     right: -2px;
 }
 
@@ -157,6 +114,7 @@ body {
     height: 100%;
     width: 150%;
     background: #445261;
+    background-image: url(https://res.cloudinary.com/dbscsb8w1/image/upload/v1663142570/media/images/egg_bg_lewasz.png);
     -webkit-transform: skew(15deg);
     -moz-transform: skew(15deg);
     transform: skew(15deg);
@@ -183,11 +141,6 @@ body {
     margin-left: 5%;
 }
 
-.post-title3 {
-    margin-top: 2%;
-    margin-left: 5%;
-}
-
 .post-subtitle {
     margin-left: 5%;
     color: lightgray;
@@ -196,33 +149,6 @@ body {
 .post-subtitle2 {
     margin-top: 1%;
     margin-left: 5%;
-}
-
-.post-subtitle3 {
-    margin-top: 2%;
-    margin-left: 15%;
-}
-
-.btn-signup {
-    background-color: #23BBBB;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-    color: #445261;
-    text-decoration: underline;
 }
 
 .btn-like {
@@ -254,8 +180,8 @@ body {
 }
 
 .special-bg{
-    background: rgb(171,142,111);
-    background: linear-gradient(180deg, rgba(171,142,111,1) 0%, rgba(246,226,202,1) 26%, rgba(246,226,202,0.7010154403558299) 100%);
+    background: rgb(224,190,148);
+    background: linear-gradient(180deg, rgba(224,190,148,0.7951330190279237) 2%, rgba(252,249,243,1) 100%);
 }
 
 .special-bg2{
@@ -273,7 +199,6 @@ body {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #445261;
     height: 100%;
 }
 
@@ -282,7 +207,6 @@ body {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #445261;
     height: 100%;
 }
 
@@ -291,13 +215,13 @@ body {
 }
 
 .event-expired-bg {
-    background-color: #e4e4e4;
-    box-shadow: 0 0 40px 40px rgba(254, 245, 236, 0.701) inset;
+    background-color: #fbe5b992;
+    box-shadow: 0 0 40px 40px rgba(255, 254, 252, 0.7) inset;
 }
 
 .event-private-bg {
     background-color: #e2fbf8;
-    box-shadow: 0 0 40px 40px rgba(254, 245, 236, 0.701) inset;
+    box-shadow: 0 0 40px 40px rgba(255, 254, 252, 0.7) inset;
 }
 
 .navbar-brand{
@@ -312,6 +236,10 @@ body {
     margin-left: 2%;
 }
 
-#wpcf7-not-valid-tip {
-    color: #e95b0f;
+.helptext {
+    color: #e9b60f;
+}
+
+.errorlist{
+    color: #f55151;
 }

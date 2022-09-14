@@ -36,7 +36,7 @@ class EventForm(forms.ModelForm):
             'tag': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'image': forms.FileInput(attrs={'class': 'form-control', 'id': 'file', 'type': 'file', 'accept': 'image/*', 'default': 'placeholder'}),
             'game_master': forms.Select(attrs={'class': 'form-select'}),
-            'main_link': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'www.the-link-where-one-can-whatch-this.com'}),
+            'main_link': forms.URLInput(attrs={'class': 'form-control', 'id': 'url', 'type': 'url', 'placeholder': 'https:\\\www.the-link-where-one-can-whatch-this.com', 'aria-label': 'Link To The Event'}),
             'links': SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 280px'}),
             'rule_set': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'For example: DnD 5th Edition'}),
             'shoutouts': SummernoteWidget(attrs={'class': 'form-control', 'style': 'height: 280px'}),
