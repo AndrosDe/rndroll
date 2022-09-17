@@ -135,6 +135,12 @@ class ConductView(TemplateView):
     template_name = "conduct.html"
 
 
+class HelpView(TemplateView):
+    ''' View for the Event Details '''
+    model = Event
+    template_name = "help.html"
+
+
 def TagsView(request, tags):
     ''' View for the filtered Tags '''
     tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' ')).order_by("start_date")

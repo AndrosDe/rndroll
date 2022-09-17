@@ -1,0 +1,450 @@
+{% extends "base.html" %}
+
+{% block title %}
+Need Help?
+{% endblock %}
+
+{% block content %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text dark-bg">
+                <h1 class="post-title2">Hello - Need Help?</h1>
+                <h4 class="post-title2">Click on the topics below if you need help with any of these topics.</h4>
+            </div>
+            <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
+                <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEvent" aria-expanded="false" aria-controls="collapseEvent">
+                        <h4 class="text-secondary" id="event">All About Events</h4>
+                        <small class="text-secondary">Click to see more</small>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col collapse" id="collapseEvent">
+                    <div class="card card-body">
+                        <div class="row">
+                            <br>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
+                                            <h5 class="text-secondary">Join, Like And Comment</h5>
+                                            <small class="text-secondary">Click to see more</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col collapse" id="collapseJoin">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <h6 class="text-secondary"><strong>Join:</strong></h6>
+                                                <p class="text-secondary">You browsed through the events clicked a few to see their content and are now wondering how to join them as the join button is deactivated.</p>
+                                                <p class="text-secondary">To join an event the following points have to be considered:
+                                                    <ul>
+                                                        <li class="text-secondary">
+                                                            You need to be logged in to join an event.
+                                                        </li>
+                                                        <li class="text-secondary">
+                                                            You can only join an event with one character.
+                                                        </li>
+                                                        <li class="text-secondary">
+                                                            Are you the game master of this event? Because you can either be a player or the game master.
+                                                        </li>
+                                                        <li class="text-secondary">
+                                                            The current amount of players does not exceed the maximum amount of player slots for the event.
+                                                            Look at "Max. Player" on the event to see how many players are allowed to play the game.
+                                                        </li>
+                                                        <li class="text-secondary">
+                                                            Is the event expired? If it is then that's why you can't join.
+                                                        </li>
+                                                    </ul>
+                                                </p>
+                                                <p class="text-secondary">If all of that is fine the join button will be active. :-)</p>
+                                                <p class="text-secondary">Pressing the button will show you a list of your character, from which you can pick one to join the game.</p>
+                                                <p class="text-secondary">Don't worry if you made a mistake, you can remove your character from the event in the section below and add the correct character.</p>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Like:</strong></h6>
+                                                <p class="text-secondary">If you think this event deserves positive feedback, consider liking the event.</p>
+                                                <p class="text-secondary">For that you will find in the event details the option to "Like" right above the character section.</p>
+                                                <p class="text-secondary">Click on the heart symbol to give the event a like or to remove your previously given like.</p>
+                                                <p class="text-secondary">All events can be "liked" but an event can only be liked once, unless you "unliked" it(then you can "relike").</p>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Comment:</strong></h6>
+                                                <p class="text-secondary">If you are logged in, you can leave comments on every event you like.</p>
+                                                <p class="text-secondary">The general rules here are to refrain from spamming, be respectful, and keep on topic.</p>
+                                                <p class="text-secondary">Please always make sure that your comment is related to the event and TTRPGs, D&D, etc. in general.</p>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCEvent" aria-expanded="false" aria-controls="collapseCEvent">
+                                            <h5 class="text-secondary">Create An Event</h5>
+                                            <small class="text-secondary">Click to see more</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col collapse" id="collapseCEvent">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <h6 class="text-secondary"><strong>Minimal Requirements to create an Event:</strong></h6>
+                                                <p class="text-secondary">You would like to have your event displayed on our blog? Well, Thank you that is awesome! :-)</p>
+                                                <p class="text-secondary">Once you created an account and logged in the option to create an event will be on the navigation bar.</p>
+                                                <p class="text-secondary"> To make it easy, most fields in the event creation form are optional and can be updated later.</p>
+                                                <p class="text-secondary">In fact you only need to fill in:
+                                                    <br>
+                                                    <strong class="text-secondary">Title</strong>
+                                                    <br>
+                                                    <strong class="text-secondary">Start Date</strong>
+                                                    <br>
+                                                    <br>
+                                                    All other fields are optional or have a default value.
+                                                </p>
+                                                <p class="text-secondary">However the default value of <strong>"Status"</strong> is <strong>"Private"</strong></p>
+                                                <p class="text-secondary">That means you would create a <strong>privat event</strong></p>
+                                                <br>
+                                                <br>
+                                                <h6><strong class="text-secondary">Status:</strong></h6>
+                                                <strong class="text-secondary">"Private"</strong>
+                                                <p class="text-secondary">Private events are not shown on the main page nor displayed in the search results.</p>
+                                                <p class="text-secondary">You can only find them in your profile under <strong>"Owned Events"</strong>.</p>
+                                                <strong class="text-secondary">"Public"</strong>
+                                                <p class="text-secondary">Public events are on the main page and displayed in the search results.</p>
+                                                <p class="text-secondary">You can also find them in your profile.</p>
+                                                <strong class="text-secondary">"Expired"</strong>
+                                                <p class="text-secondary">Expired events are not shown on the main page, but displayed in the search results.</p>
+                                                <p class="text-secondary">You can also find them in your profile.</p>
+                                                <strong class="text-secondary">Exceptions</strong>
+                                                <p class="text-secondary">There might be some expired events on the main page. These are events where the start date is smaller than the current date.</p>
+                                                <p class="text-secondary">
+                                                    That caused them to get displayed as "expired", internally their "Status" is still "Public".<br>
+                                                    This is a bit of a grace period for events. Once the status has been updated, the event will no longer be on the main page.
+                                                </p>
+                                                <br>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Background Snippet:</strong></h6>
+                                                <p class="text-secondary">
+                                                    The background snippet is what you see on the main page by the event.<br>
+                                                    A small little excerpt or summary of the event, to give people some idea, of what to expect.
+                                                </p>
+                                                <p class="text-secondary">The standard value is: "Chick the event title above for more..."</p>
+                                                <p class="text-secondary">So you might want to replace that with your event background snippet.</p>
+                                                <br>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Max. Player:</strong></h6>
+                                                <p class="text-secondary">Max. Player id is the maximum number of players that can join the event.</p>
+                                                <p class="text-secondary">The standard value is "4".</p>
+                                                <p class="text-secondary">The minimal value is "2".</p>
+                                                <p class="text-secondary">The maximal value is "6".</p>
+                                                <p class="text-secondary">
+                                                    A Game Master could add more than 6 to an event, by updating the event and adding the character there.<br>
+                                                    However, this is usually ill-advised.
+                                                </p>
+                                                <br>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Optional fields:</strong></h6>
+                                                <strong class="text-secondary">"Background"</strong>
+                                                <p class="text-secondary">
+                                                    While optional, it is advised to write a short or long summary of your event or episode of your event.<br>
+                                                    You can upload pictures and videos as well in this field.
+                                                </p>
+                                                <strong class="text-secondary">"Image"</strong>
+                                                <p class="text-secondary">
+                                                    Your event should have an image that you selected, as it will otherwise just get a boring default image until you update it.<br>
+                                                    Please only use images that are appropriate and related to the event and TTRPGs, D&D, etc. in general.<br>
+                                                    Preferably use pictures with 450 (width) x 250 (height) pixels.<br>
+                                                </p>
+                                                <strong class="text-secondary">"Tags"</strong>
+                                                <p class="text-secondary">
+                                                    Tags will help people find your event by categorizing it with appropriate tags.<br>
+                                                    It also gives the visitor an idea of what kind of event to expect.
+                                                </p>
+                                                <strong class="text-secondary">"Main Link"</strong>
+                                                <p class="text-secondary">
+                                                    This will later be a big button on the event page that directs visitors to your webpage/channel to what the event is.<br>
+                                                    So if you already have a link for that, you should put it in this field.<br>
+                                                    It is an URL-Form-Field, so you need to use something like "https://www.twitch.tv/".
+                                                    Starting just with "www" will throw an error.
+                                                </p>
+                                                <strong class="text-secondary">"Shoutouts"</strong>
+                                                <p class="text-secondary">
+                                                    If you want to make special announcements, shoutouts to artists, music composers, and so on, you can do that there.
+                                                </p>
+                                                <strong class="text-secondary">"Other Links"</strong>
+                                                <p class="text-secondary">
+                                                    If your players have their webpages, etc. you can show the links here.
+                                                </p>
+                                                <strong class="text-secondary">"Game Master"</strong>
+                                                <p class="text-secondary">
+                                                    If you already have a game master for your event, you can add the username here.<br>
+                                                    Please note that being a game master for your event does not require you to be a game master on RND|Roll.
+                                                </p>
+                                                <strong class="text-secondary">"Ruleset"</strong>
+                                                <p class="text-secondary">
+                                                    Add the rule set for your event here.<br>
+                                                    D&D 5e, Pathfinder 2e, Homebrew, How to be a Hero, and so on.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDEvent" aria-expanded="false" aria-controls="collapseDEvent">
+                                            <h5 class="text-secondary">Delete An Event</h5>
+                                            <small class="text-secondary">Click to see more</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col collapse" id="collapseDEvent">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <p class="text-secondary">Now you have your event and even see the update feature, to make changes to it.</p>
+                                                <p class="text-secondary">
+                                                    However, there does not seem to be an option to delete your event.<br>
+                                                    This is working as intended, as creating an event is somewhat of a commitment.<br>
+                                                    Hence deleting an event is possible as a last resort.<br><br>
+                                                    And only shown to you in the Event Details page.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGM" aria-expanded="false" aria-controls="collapseGM">
+                        <h4 class="text-secondary" id="gm">Game Master and Administrators</h4>
+                        <small class="text-secondary">Click to see more</small>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col collapse" id="collapseGM">
+                    <div class="card card-body">
+                        <div class="row">
+                            <h5 class="text-secondary">The Administrators Role</h5>
+                            <p class="text-secondary">If major problems arise the Site Administrators can help out by editing or removing nearly any content on RND|Roll.</p>
+                            <p class="text-secondary">However this should only be done in exceptions.</p>
+                            <p class="text-secondary">To contact an Administrator please use the "Message"-Function next to "Logout" on the navigation-bar.</p>
+                            <br><br>
+                            <h5 class="text-secondary">What Is A Game Master</h5>
+                            <p class="text-secondary">Generally speaking the RND|Roll Staff likes to be more hands-off and let most stuff be sorted out by the user.</p>
+                            <p class="text-secondary">Therefore user can be promoted to "Game Master".</p>
+                            <p class="text-secondary">Game Masters can update any event and remove players from it.</p>
+                            <p class="text-secondary">If the event owner is currently unavailable and updates to an event have to be done, Game Master can therefore be contacted to take care of this.</p>
+                            <p class="text-secondary">To contact a Game Master please use the "Message"-Function next to "Logout" on the navigation-bar.</p>
+                            <br><br>
+                            <h5 class="text-secondary">Can I Be Promoted To Game Master</h5>
+                            <p class="text-secondary">Every player can request the promotion to Game Master in their profile.</p>
+                            <p class="text-secondary">Now just because it was requested, does not mean that promotion will happen, because there is a bit of reviewing going on.</p>
+                            <p class="text-secondary">If there are already enough game masters around, any future promotion may be set on hold.</p>
+                            <p class="text-secondary">Please keep in mind that being a game master is a great responsibility and appropriate conduct is expected.</p>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseprofile" aria-expanded="false" aria-controls="collapseprofile">
+                        <h4 class="text-secondary" id="profile">Profile, How To Make And What Is It Good For</h4>
+                        <small class="text-secondary">Click to see more</small>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col collapse" id="collapseprofile">
+                    <div class="card card-body">
+                        <div class="row">
+                            <h5 class="text-secondary">How To Create A Profile</h5>
+                            <h6 class="text-secondary"><strong>Minimal Requirements to create a Profile:</strong></h6>
+                            <br>
+                            <p class="text-secondary">If you created your account and logged in, you will see the option to create a Profile on the navigation bar.</p>
+                            <p class="text-secondary">The minimal requirements to create a profile are:</p>
+                            <br>
+                            <p class="text-secondary">
+                                1. Login in with your account
+                                <br>
+                                2. clicking on create a profile
+                                <br>
+                                3. click on "Create Profile"
+                            </p>
+                            <p class="text-secondary">Done! You have a Profile.</p>
+                            <br><br>
+                            <p class="text-secondary">If you want to update your Profile, you will find the option for that in your Profile.</p>
+                            <br><br>
+                            <h6 class="text-secondary"><strong>Optional Fields for the Profile:</strong></h6>
+                            <strong class="text-secondary">"Image"</strong>
+                            <p class="text-secondary">Since some users may visit your profile to see what events or characters your made and participated in, you might want to give a good or at least memorable impression. :-)</p>
+                            <p class="text-secondary"> Therefore it is a good idea to add an image to your profile, something that goes well along with your username is often a good idea.</p>
+                            <strong class="text-secondary">"Bio"</strong>
+                            <p class="text-secondary">Tell people a bit about yourself or your channel/ website.</p>
+                            <strong class="text-secondary">"Links"</strong>
+                            <p class="text-secondary">If you have Websites, Facebook, Twitter, discord, and so on, put the links there and they will be on your profile.</p>
+                            <br><br>
+                            <h5 class="text-secondary">What Are They Good For?</h5>
+                            <p class="text-secondary">
+                                Well, beside being the only place to find <strong>"Private Events"</strong> and <strong>"Create Characters"</strong><br>
+                                Profiles are a good place to have an overview of your created events, participated events, and characters.
+                                Any authenticated user can visit your profile and view your events and characters.
+                            </p>
+                            <p class="text-secondary">
+                                You can edit your profile, and your user settings and change your password on the profile page.
+                                You can also request a promotion to Game Master here.
+                            </p>
+                            <p class="text-secondary">
+                                If you are a Game Master or Administrator, you can read the messages from the users here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-4">
+                    <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCharacter" aria-expanded="false" aria-controls="collapseCharacter">
+                        <h4 class="text-secondary" id="character">Character</h4>
+                        <small class="text-secondary">Click to see more</small>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col collapse" id="collapseCharacter">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCCharacter" aria-expanded="false" aria-controls="collapseCCharacter">
+                                            <h5 class="text-secondary">Create A Character</h5>
+                                            <small class="text-secondary">Click to see more</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col collapse" id="collapseCCharacter">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <h6 class="text-secondary"><strong>Minimal Requirements to create a Character:</strong></h6>
+                                                <p class="text-secondary">The minimal requirements to create a character are:</p>
+                                                <p class="text-secondary">
+                                                    <strong>Name</strong>
+                                                    <br>
+                                                    <strong>Class</strong>
+                                                </p>
+                                                <br>
+                                                <p class="text-secondary">That is all you need to create a character.</p>
+                                                <br>
+                                                <br>
+                                                <h6 class="text-secondary"><strong>Optional Fields for the Character:</strong></h6>
+                                                <strong class="text-secondary">"Image"</strong>
+                                                <p class="text-secondary">Here you can upload a nice picture for your character.</p>
+                                                <p class="text-secondary">Preferably use pictures with 150 (width) x 200 (height) pixels.</p>
+                                                <strong class="text-secondary">"Excerpt"</strong>
+                                                <p class="text-secondary">Put a nice quick summary or an excerpt of the character backstory, to tell everyone what your character is about.</p>
+                                                <strong class="text-secondary">"Background"</strong>
+                                                <p class="text-secondary">Feel free to put in a whole lot of background if you want to.</p>
+                                                <strong class="text-secondary">"Items"</strong>
+                                                <p class="text-secondary">If you already know what he is going to have in his bag, then you can add some items here.</p>
+                                                <p class="text-secondary">
+                                                    However, anything that he has already equipt, has to be put in the equipment.<br>
+                                                    This can be edited on the character detail page later.
+                                                </p>
+                                                <br>
+                                                <p class="text-secondary">You can update your character on the character detail site.</p>
+                                                <p class="text-secondary">You can access this site by clicking on the character picture of the character in your profile.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePCharacter" aria-expanded="false" aria-controls="collapsePCharacter">
+                                            <h5 class="text-secondary">Character Page</h5>
+                                            <small class="text-secondary">Click to see more</small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col collapse" id="collapsePCharacter">
+                                        <div class="card card-body">
+                                            <div class="row">
+                                                <p class="text-secondary">On the top of the character page you have the option to edit your character or delete it.</p>
+                                                <strong class="text-secondary">"Equipment"</strong>
+                                                <p class="text-secondary">
+                                                    A bit below you have a dropdown for the equipment.<br>
+                                                    There is also an option to edit your equipment.
+                                                </p>
+                                                <strong class="text-secondary">"Items"</strong>
+                                                <p class="text-secondary"> Below the Equipment you can update the item your character has in his bag.</p>
+                                                <strong class="text-secondary">"Notes"</strong>
+                                                <p class="text-secondary"> 
+                                                    The character page has also a section to add notes to your character.<br>
+                                                    So if you want to remember some important stuff you can put it there.
+                                                </p>
+                                                <strong class="text-secondary">"Joined Events"</strong>
+                                                <p class="text-secondary">
+                                                    Since visitors can access character detail pages and view the content,<br>
+                                                    a list of all events this character participated in can be found as well.<br>
+                                                    This way interested visitors can see which events they want to check out as well as if they like your character.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

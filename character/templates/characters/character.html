@@ -16,9 +16,11 @@
                         <h4>Background:</h4>
                         <h6>{{ character.background | safe }}</h6>
                     </blockquote>
+                    {% if not user.id == character.created_by.id %}
                     <figcaption class="blockquote-footer text-white">
                         created by: {{ character.created_by }}
                     </figcaption>
+                    {% endif %}
                 </figure>
             </div>
             <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
@@ -82,7 +84,7 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-9 masthead-text text-center">
-                                {% if user.id == character.created_by.id or user.is_staff %}
+                                {% if user.id == character.created_by.id %}
                                 <a class="text-decoration-none text-center btn btn-success" href="{% url 'equipment_edit' character.pk %}" aria-label="Update Your Equipment Here">
                                     Update Equipment
                                 </a>
@@ -147,7 +149,7 @@
                 <p class="text-secondary"><small>Click To See The Items</small></p>
             </a>
         </div>
-        {% if user.id == character.created_by.id or user.is_staff %}
+        {% if user.id == character.created_by.id %}
         <div class="col-md-4 col-sm-6">
             <a class="card-text text-decoration-none" type="button" href="{% url 'item_edit' character.pk %}" aria-label="Update Your Items Here">
                 <h4 class="text-secondary">Update Items</h4>
@@ -208,7 +210,7 @@
                     {% endif %}
                     {% endfor %}
                     </div>
-                    {% if user.id == character.created_by.id or user.is_staff %}
+                    {% if user.id == character.created_by.id %}
                     <div class="col-md-4 col-sm-6">
                         <h6 class="mt-5">New Note:</h6>
                         <form method="post">

@@ -22,7 +22,6 @@ Profile
                 {% endif %}
                 <div class="row g-0">
                     <div class="col-4 post-subtitle2">
-                        
                         {% if user.id == profile.user.id or profile.gm == True %}
                         {% if profile.gm == True %}
                         <button class="btn btn-light" disabled><strong>Game Master</strong></button>
@@ -51,12 +50,12 @@ Profile
                 </div>
                 {% endif %}
             </div>
-            <div class="d-none d-md-block col-md-4 masthead-image">
+            <div class="d-none d-md-block col-md-4 masthead-image dark-bg">
                 {% if "placeholder" in profile.profile_pic.url %}
                 <img class="card-img-top"
-                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/media/images/profile_default_fhyukf.jpg" alt="Default Profile Picture">
+                    src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473625/media/images/profile_default_fhyukf.jpg" alt="Default Profile Picture" width="100">
                 {% else %}
-                <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="Profile Picture">
+                <img class="card-img-top" src="{{ profile.profile_pic.url }}" alt="Profile Picture" width="100">
                 {% endif %}
             </div>
         </div>
@@ -372,6 +371,14 @@ Profile
                 <p class="text-secondary"><small>Click to see the Characters</small></p>
             </a>
         </div>
+        <div class="col-md-4">
+            {% if user.id == profile.user.id %}
+            <a class="card-text text-decoration-none" type="button" href="{% url 'character_create' %}"  aria-label="Create a new Character">
+                <h3 class="text-secondary">Create A New Character</h3>
+                <p class="text-secondary"><small>Click to create a new Characters</small></p>
+            </a>
+            {% endif %}
+        </div>
     </div>
     <div class="row">
         <div class="col collapse" id="collapseCharacter">
@@ -404,24 +411,5 @@ Profile
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <hr>
-    </div>
-    <div class="col-1"></div>
-</div>
-<div class="container">
-    <div class="row"></div>
-    <div class="col-md-4">
-        {% if user.id == profile.user.id %}
-        <a class="card-text text-decoration-none" type="button" href="{% url 'character_create' %}"  aria-label="Create a new Character">
-            <h3 class="text-secondary">Create A New Character</h3>
-            <p class="text-secondary"><small>Click to create a new Characters</small></p>
-        </a>
-        {% endif %}
-    </div>
-    <br>
 </div>
 {%endblock%}

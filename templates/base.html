@@ -72,18 +72,6 @@
                     <li class="nav-item">
                         <strong><a class="nav-link" aria-current="page" href="{% url 'event_create' %}" aria-label="Click here to create a new Event">Create Event</a></strong>
                     </li>
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'character_create'  %}" aria-label="Click here to create a new Character">Create Character</a></strong>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to create a new Event">Create Event</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to create a new Character">Create Character</a>
-                    </li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
                     {% if user.profile.id  %}
                     <li class="nav-item">
                         <strong><a class="nav-link" aria-current="page" href="{% url 'show_profile' user.profile.id %}" aria-label="Click here to visit your Profile">Profile & Repository</a></strong>
@@ -93,11 +81,21 @@
                         <strong><a class="nav-link" aria-current="page" href="{% url 'create_profile' %}" aria-label="Click here to create your Profile">Create Profile</a></strong>
                     </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
+                    </li>
                     {% else %}
+                    <li class="nav-item">
+                        <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to create a new Event">Create Event</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to open the profile page">Profile & Repository</a>
                     </li>
                     {% endif %}
+
                 </ul>
             </div>
         </div>
