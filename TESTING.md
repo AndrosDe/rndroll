@@ -55,7 +55,7 @@ Created:
         | 15 | message | fail | fail |
         | 16 | administrator dashboard | fail | fail |
 
-        Conclusion:
+        Conclusion:<br>
         As expected the visitor is prohibited from using any other feature on RND|Roll, even if one would try to bypass the normal webpage.
         The error that was found and fixed was by events of deleted users, which have not been assigned to a new user.
         These were able to be deleted by a visitor if he had the link from the deletion of that event.
@@ -67,7 +67,7 @@ Created:
         <br><br>
 2. Test runs - User access:
     Setup:
-    Created User: rndroll
+    Created User: RNDROLL
 
     * a) Reviewing User journey through RND|Roll.
         | # | Site | Expected Outcome | Result |
@@ -76,31 +76,33 @@ Created:
         | 2 | conduct | pass | pass |
         | 3 | help | pass | pass |
         | 4 | tag - index | pass | pass |
-        | 5 | tagged events | pass | :--- |
+        | 5 | tagged events | pass | pass |
         | 6 | search results | pass | pass |
         | 7 | event details | pass | pass |
         | 8 | character details | pass | pass |
-        | 9 | create event | pass | :--- |
-        | 10 | edit own event | pass | :--- |
-        | 11 | remove own event | pass | :--- |
+        | 9 | create event | pass | pass |
+        | 10 | edit own event | pass | pass |
+        | 11 | remove own event | pass | pass |
         | 12 | profile| pass | pass |
         | 13 | update own profile | pass | pass |
         | 14 | update own settings | pass | pass |
         | 15 | change own password | pass | pass |
-        | 16 | edit own characters | pass | :--- |
-        | 17 | delete own characters | pass | :--- |
-        | 18 | edit own items | pass | :--- |
-        | 19 | edit own equipment | pass | :--- |
-        | 20 | delete own note | pass | :--- |
+        | 16 | edit own characters | pass | pass |
+        | 17 | delete own characters | pass | pass |
+        | 18 | edit own items | pass | pass |
+        | 19 | edit own equipment | pass | pass |
+        | 20 | delete own note | pass | pass |
         | 21 | message | pass | pass |
 
-        Conclusion:
-
-
+        Conclusion:<br>
+        The websites were all accessable and the CRUD features are avilble for everything created by the user.
+        The only bug noticed was the missing default picture on item_edit.html and equipment_edit.html.
+        Here an old link was used, the bug was resolved by adding the correct link to the HTML code.
+        <br>
         * Created Profile for Test User:
-        * Created Event:
-        * Created Character:
-        * Created Note:
+        * Created Event: TestEvent (deleted), Star Trek TNG - Nightshift - Part 1,2,3,4
+        * Created Character: TestForm (deleted), Acting Captain Roberts
+        * Created Note: high resistance to poison
         * Created Categories: Science Fiction, Space
 
         <br>
@@ -134,10 +136,11 @@ Created:
         | 1 | User request promotion in profile | pass | pass |
         | 2 | User repeat request promotion in profile  | fail | fail |
         | 3 | Promotion request is in the messages section (only visible to Admin)| pass | pass after correction |
-        | 4 | Admin can set a user to game master in Administrator Dashboard | pass | :--- |
-        | 5 | User sees GM badge on the navigation bar and in profile | pass | :--- |
+        | 4 | Admin can set a user to gm in "Profiles" in the Administrator Dashboard | pass | pass |
+        | 5 | User sees GM badge on the navigation bar and in profile | pass | pass |
 
-        Conclusion: In the first test with the messages section, because the IF-Statement was set to "if user.profile.gm", however, the admin had not gm-flag enabled, and therefore was unable to see the message section.
+        Conclusion:<br>
+        In the first test with the messages section, because the IF-Statement was set to "if user.profile.gm", however, the admin had not gm-flag enabled, and therefore was unable to see the message section.
         This was fixed by changing the IF-Statement to "if user.profile.gm or user.is_staff".
 
         <br>
@@ -158,7 +161,7 @@ Created:
         | 12 | administrator dashbord | fail | :--- |
 
         Conclusion:
-        * Updated Event:
+        * Updated Event:<br>
 
         <br><br>
 4. Test runs - Administrator access:
@@ -178,7 +181,7 @@ Created:
         | 11 | delete tag | pass | pass |
         | 12 | administrator dashboard | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
         
         <br><br>
 5. Feature Test:<br>*Some of these features have already been confirmed working in the previous test runs*<br><br>
@@ -202,7 +205,7 @@ Created:
         | 11 | add tag | pass | pass |
         | 12 | delete tag | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
 
         <br>
     * b) Event Feature "Join":
@@ -212,33 +215,35 @@ Created:
         | 2 | Join button active for private events | fail | :--- |
         | 3 | Join button active for players that already joined | fail | :--- |
         | 4 | Join button active for events that reached the maximal amount of players | fail | :--- |
-        | 5 | Join button opens a drop-down to display only user-created characters | pass | :--- |
-        | 6 | Add will add character to the events character section | pass | :--- |
+        | 5 | Join button opens a drop-down to display only user-created characters | pass | pass |
+        | 6 | Add will add character to the events character section | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
 
         <br>
     * c) Event Feature "Character Remove":
         | # | Action | Expected Outome | Result |
         | :--- | :--- | :--- | :--- |
         | 1 | Visitor can remove a character from the event | fail | fail |
-        | 2 | Random User can remove a character from the event | fail | :--- |
-        | 3 | Character Creator can remove his/her character from the event | pass | :--- |
+        | 2 | Random User can remove a character from the event | fail | fail |
+        | 3 | Character Creator can remove his/her character from the event | pass | pass |
         | 4 | Event owner can remove any character from the event | pass | :--- |
-        | 5 | Game Master can remove any character from the event | pass | :--- |
+        | 5 | Game Master can remove any character from the event | pass | pass |
         | 6 | Administrator can remove any character from the event | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
 
         <br>
     * d) Event Edit:
         | # | Action | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | User can add characters to the event | fail | :--- |
-        | 2 | Game Master add characters to the event  | pass | :--- |
+        | 1 | User can add characters to the event | fail | fail |
+        | 2 | Game Master add characters to the event  | pass | pass |
         | 3 | Administrator add characters to the event  | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
+        The event update feature works as expected, Game Masters and Andministrators can add character to the event.
+        However only the Game Master can do that on the website. The Administrator has to do that over the administrator dashboard. 
 
         <br>
     * e) Set automatically by creation:
@@ -251,7 +256,7 @@ Created:
         | 5 | Comment creator is set automatically | pass | pass |
         | 6 | GM request user is set automatically | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
         The feature works as intended and will add the user as the creator and adds the note to the appropriate character.
         
         <br><br>
