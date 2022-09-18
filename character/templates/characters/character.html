@@ -193,22 +193,22 @@
             <div class="card card-body">
                 <div class="row">
                     <div class="col-md-8 col-sm-6">
-                        {% for note in character.character_note.all %}
-                        <div class="card-text text-muted">
-                            <div class="comments">
-                                <strong>
-                                    {{ note.note | safe }}
-                                </strong>
-                            </div>
+                    {% for note in character.character_note.all %}
+                    <div class="card-text text-muted">
+                        <div class="comments">
+                            <strong>
+                                {{ note.note | safe }}
+                            </strong>
                         </div>
-                        {% if user.id == character.created_by.id or user.is_staff %}
-                        <div class="col-3">
-                            <small>
-                                <a class="text-muted nav-link" href="{% url 'note_delete' note.pk %}" aria-label="Remove The Note">Delete</a>
-                            </small>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
+                    </div>
+                    {% if user.id == character.created_by.id or user.is_staff %}
+                    <div class="col-3">
+                        <small>
+                            <a class="text-muted nav-link" href="{% url 'note_delete' note.pk %}" aria-label="Remove The Note">Delete</a>
+                        </small>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                     </div>
                     {% if user.id == character.created_by.id %}
                     <div class="col-md-4 col-sm-6">
@@ -312,15 +312,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </div>
+                            </div>
                         {% if forloop.counter|divisibleby:3 %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}
-                </div> 
             </div>
         </div>
     </div>
