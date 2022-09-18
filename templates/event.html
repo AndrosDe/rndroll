@@ -227,7 +227,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-secondary">{{ character.name }}<br>{{ character.character_class }}</h5>
                         {% if character.background_snippet %}
-                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background_snippet }}</p>
+                        <p class="card-text text-secondary"><strong>Description:</strong><br>{{ character.background_snippet | safe }}</p>
                         {% endif %}
                         <p class="card-text text-secondary"><small class="text-muted">Created by: {{ character.created_by }}</small></p>
                     </div>

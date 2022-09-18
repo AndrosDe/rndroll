@@ -29,7 +29,7 @@ Tags
                     <div class="card mb-3">
                         {% if event.status == 2 or time > event.start_date %}
                         <div class="card-body event-expired-bg">
-                            {% else %}
+                        {% else %}
                             <div class="card-body">
                             {% endif %}
                                 <div class="image-container">
@@ -81,15 +81,16 @@ Tags
                                     </p>
                                 </div>
                             </div>
+                        
                         </div>
                     </div>
+                    {% if forloop.counter|divisibleby:3 %}
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
+                <div class="row">
                 {% endif %}
                 {% endif %}
                 {% endfor %}
+                </div>
             </div>
         </div>
     </div>

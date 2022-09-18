@@ -58,7 +58,7 @@
                                     </div>
                                     <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the details of the event {{ event.title }}">
                                         <h2 class="card-title">{{ event.title }}</h2>
-                                        <p class="card-text">{{ event.snippet }}</p>
+                                        <p class="card-text">{{ event.snippet | safe }}</p>
                                     </a>
                                     {% if event.status == 2 or time > event.start_date %}
                                     <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
