@@ -38,10 +38,12 @@
                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete The Event">Delete</a>
                 </div>
                 {% endif %}
+                {% if event.owner %}
                 {% if user.id == event.owner.id or user.profile.gm or user.is_staff %}
                 <div class="image-flash-bottom-1 dark-orange-bg">
                     <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update The Event">Update Event</a>
                 </div>
+                {% endif %}
                 {% endif %}
             </div>
         </div>

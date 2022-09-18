@@ -69,8 +69,7 @@ class Event(models.Model):
     # connecting to the Player that will Game Master the Session
     game_master = models.ForeignKey(
         Profile,
-        on_delete=models.SET_DEFAULT,
-        default='No Game Master',
+        on_delete=models.SET_NULL,
         related_name='event_gm',
         null=True,
         blank=True)

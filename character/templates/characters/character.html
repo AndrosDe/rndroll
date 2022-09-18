@@ -34,7 +34,7 @@
                     <a class="author nav-link" href="{% url 'character_delete' character.pk %}" aria-label="Delete This Character">Delete</a>
                 </div>
                 {% endif %}
-                {% if user.id == character.created_by.id or user.profile.gm or user.is_staff %}
+                {% if user.id == character.created_by.id or user.is_staff %}
                 <div class="image-flash-bottom-1 dark-orange-bg">
                     <a class="author nav-link" href="{% url 'character_edit' character.pk %}" aria-label="Update Your Character Details">Update</a>
                 </div>
@@ -277,10 +277,12 @@
                                             <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                         </div>
                                         {% endif %}
+                                        {% if event.owner %}
                                         {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
                                         <div class="image-flash-bottom-1 dark-orange-bg">
                                             <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                         </div>
+                                        {% endif %}
                                         {% endif %}
                                     </div>
                                     <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the deatils of the event {{ event.title }}">

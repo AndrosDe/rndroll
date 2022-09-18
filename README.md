@@ -18,7 +18,7 @@
   <br><br>
   The "RND|Roll"-Team wishes all of you the best and hopes that you will have fun on our blog /  "TTRPG -TV Guide".
 <h4>
-
+<br><br>
 <h2 align="center"><img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1663424555/media/images/README%20IMAGES/readme-title-pic_a4yhkr.webp" height="500" width="900"></h2>
 
 [View the live project here](https://rndroll.herokuapp.com/)
@@ -29,7 +29,7 @@
 
 <h2> Table of content </h2>
 
-- ### [Strategy)](#strategy-1)
+- ### [Strategy](#strategy-1)
   - [Project Goals](#project-goals)
   - [User Demographic](#user-demographic)
 - ### [User Stories](#user-stories-1)
@@ -111,32 +111,26 @@
   - ### Registered User Goals - As a user who has an account, I want to be able to:
     * Learn more about what I can do on RND|Roll 
     * Create, Update and Review my own shows/events
+    * The Deletion of shows (but be only possible in emergencies)
     * Categorise my shows
-    * Upload Images for my shows
-    * Create a new Category
     * Have players able to join my show
     * Have like and comment on my shows/events
-    * Have access to tools I may need to add, update or delete shows/events
+    * Upload Images for my shows
     * Be able to add additional information about my show
-    * Remove any player joined in my event
     * Create, Update, Review and Delete my characters
-    * The Deletion of shows (but be only possible in emergencies)
+    * Remove any player joined in my event
+    * Create a new Category
     * Be forewarned of the consequences of what I am about to do on the App when appropriate and final, such as deleting characters
     * Have my user profile to update my settings and profile information and have all my shows and characters displayed
     * Request a promotion to Game Master
     * Send a message to Game Masters and staff, if extraordinary actions have to be taken
     <br><br>
   - ### Registered User Goals - As a user who has an upgraded account (Game Master), I want to be able to:
-    * Add, edit and delete my own shows/events
-    * Create, Update, Review and Delete my characters
     * Update all shows/events, in case some quick updates are needed and the owner is not available
-    * Change the Owner of shows/events, in case the owner is no longer able to do the shows/events <br>As an alternative to deleting shows/events
     * remove any player joined in any event
     <br><br>
   - ### Site Admin Goals - As a staff member/administrator, I want to be able to:
     * Have the ability to maintain RND|Roll, in particular the shows/events, categories, character
-    * Add, edit and delete my own shows/events
-    * Create, Update, Review and Delete my characters
     * Create, Update, Review and Delete any user-created content on RND|Roll
     * Promote Users to Game Master
     * Promote Users to a staff member
@@ -1359,6 +1353,8 @@ The CRUD is depicted in the feature with the following color code:
   <br>
 
   ## Future Implementation
+  * Automatic status set to "expired" once the start date has passed
+  * Not being rerouted to "home" after most creation, updates and deletion
   * Reset Password Function
   * Group Chat on Events for Event owners and joined players
   * Item Model with pictures, etc. and changing equipment fields on the character to ForeignKeys

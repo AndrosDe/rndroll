@@ -4,11 +4,32 @@ from .views import CharacterDetail, CreateCharacter, EditCharacter, DeleteCharac
 
 
 urlpatterns = [
-    path('<int:pk>/character', CharacterDetail.as_view(), name='show_character'),
-    path('create_character/', CreateCharacter.as_view(), name='character_create'),
-    path('character/edit/<int:pk>', EditCharacter.as_view(), name='character_edit'),
-    path('character/<int:pk>/remove', DeleteCharacter.as_view(), name='character_delete'),
-    path('equipment/edit/<int:pk>', EditEquipment.as_view(), name='equipment_edit'),
-    path('item/edit/<int:pk>', EditItem.as_view(), name='item_edit'),
-    path('note/<int:pk>/remove', DeleteNote.as_view(), name='note_delete'),
+    path(
+        '<int:pk>/character',
+        CharacterDetail.as_view(),
+        name='show_character'),
+    path(
+        'create_character/',
+        CreateCharacter.as_view(),
+        name='character_create'),
+    path(
+        'character/edit/<int:pk>',
+        EditCharacter.as_view(),
+        name='character_edit'),
+    path(
+        'character/<int:pk>/remove',
+        DeleteCharacter.as_view(),
+        name='character_delete'),
+    path(
+        'equipment/edit/<int:pk>',
+        EditEquipment.as_view(),
+        name='equipment_edit'),
+    path(
+        'item/edit/<int:pk>',
+        EditItem.as_view(),
+        name='item_edit'),
+    path(
+        'note/<int:pk>/remove',
+        DeleteNote.as_view(),
+        name='note_delete'),
 ]
