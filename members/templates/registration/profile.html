@@ -109,7 +109,7 @@ Profile
 </div>
 <br>
 <br>
-{% if user.profile.gm %}
+{% if user.profile.gm or user.is_staff %}
 <div class="container">
     <div class="row">
         <a class="text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMessages" aria-expanded="false" aria-controls="collapseMessages">

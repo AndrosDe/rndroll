@@ -8,10 +8,10 @@ Preliminary Setup:
 Created: 
 * User: Superuser - admin
 * User Profile for admin
-* Test Event:
-* Test Character:
-* Test Note:
-* Test categories: 
+* Test Event: Admin D&D Adventure
+* Test Character: The Admin Warrior
+* Test Note: *can't read*
+* Test categories: Adventure, Fantasy, Horror, Me
     <br>This will serve as test content for the page, to be used in the following tests.
 
 1. Test runs - Visitor access:
@@ -30,9 +30,9 @@ Created:
         | 10 | Login | pass | pass |
 
         Conclusion:<br>
-        The visitor has view only access to the on RND|Roll as intended.<br>
-        Enough to browse through events and event look a character details.<br>
-        Depending on the dilligence of the creator, event can hereby caugth the attention of visitors.<br>
+        The visitor has view-only access to the RND|Roll as intended.<br>
+        Enough to browse through events and event look at character details.<br>
+        Depending on the diligence of the creator, the event can hereby catch the attention of visitors.<br>
 
         <br>
     * b) Reviewing visitor access by manually posting the URLs in the address bar:
@@ -53,16 +53,16 @@ Created:
         | 13 | delete note | fail | fail |
         | 14 | delete tag | fail | fail |
         | 15 | message | fail | fail |
-        | 16 | administrator dashbord | fail | fail |
+        | 16 | administrator dashboard | fail | fail |
 
         Conclusion:
-        As expected the visitor is prohibited from using any other feature on RND|Roll, even if one would try to bypass the normall webpage.
-        The error that was found ans fixed was by events of deleted users, which have not been assigned to a new user.
-        These were able to be deleted by a visitor, if he had the link form the deletion of that event.
+        As expected the visitor is prohibited from using any other feature on RND|Roll, even if one would try to bypass the normal webpage.
+        The error that was found and fixed was by events of deleted users, which have not been assigned to a new user.
+        These were able to be deleted by a visitor if he had the link from the deletion of that event.
         This was possible as the IF-Statement on the site checked "if user.id == event.owner.id".
-        Since a user deletion would set the event onwer to nothing and a visitor is also nothing, the visitor was allowed to do that on these singular events.
+        Since a user deletion would set the event owner to nothing and a visitor is also nothing, the visitor was allowed to do that on these singular events.
         A correction was made to extent the Statement "if event.owner and user.id == event.owner.id".
-        Now it looks if an event owner exsits and if he has the same id, causing an visitor to get the correct error message.
+        Now it looks if an event owner exists and if he has the same id, causing a visitor to get the correct error message.
 
         <br><br>
 2. Test runs - User access:
@@ -72,27 +72,27 @@ Created:
     * a) Reviewing User journey through RND|Roll.
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | home | pass | :--- |
-        | 2 | conduct | pass | :--- |
-        | 3 | help | pass | :--- |
-        | 4 | tag - index | pass | :--- |
+        | 1 | home | pass | pass |
+        | 2 | conduct | pass | pass |
+        | 3 | help | pass | pass |
+        | 4 | tag - index | pass | pass |
         | 5 | tagged events | pass | :--- |
-        | 6 | search results | pass | :--- |
-        | 7 | event details | pass | :--- |
-        | 8 | character details | pass | :--- |
+        | 6 | search results | pass | pass |
+        | 7 | event details | pass | pass |
+        | 8 | character details | pass | pass |
         | 9 | create event | pass | :--- |
         | 10 | edit own event | pass | :--- |
         | 11 | remove own event | pass | :--- |
-        | 12 | profile| pass | :--- |
-        | 13 | update own profile | pass | :--- |
-        | 14 | update own settings | pass | :--- |
-        | 15 | change own password | pass | :--- |
+        | 12 | profile| pass | pass |
+        | 13 | update own profile | pass | pass |
+        | 14 | update own settings | pass | pass |
+        | 15 | change own password | pass | pass |
         | 16 | edit own characters | pass | :--- |
         | 17 | delete own characters | pass | :--- |
         | 18 | edit own items | pass | :--- |
         | 19 | edit own equipment | pass | :--- |
         | 20 | delete own note | pass | :--- |
-        | 21 | message | pass | :--- |
+        | 21 | message | pass | pass |
 
         Conclusion:
 
@@ -101,7 +101,7 @@ Created:
         * Created Event:
         * Created Character:
         * Created Note:
-        * Created Categories:
+        * Created Categories: Science Fiction, Space
 
         <br>
     * b) Reviewing user access by manually posting the URLs in the address bar:
@@ -125,19 +125,20 @@ Created:
         <br><br>
 3. Test runs - Game Master access:
     * Setup:
-    * Created User: Game Master
+    * Created User: Game_Master
     * Created Profile for Game Master
 
-    * a) Testing the promotion to Game Master feature:
+    * a) Testing the promotion to the Game Master feature:
         | # | Action | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | User request promotion in profile | pass | :--- |
-        | 2 | User repeat request promotion in profile  | fail | :--- |
-        | 3 | Promotion request is in the messages section (only visible to Admin)| pass | :--- |
+        | 1 | User request promotion in profile | pass | pass |
+        | 2 | User repeat request promotion in profile  | fail | fail |
+        | 3 | Promotion request is in the messages section (only visible to Admin)| pass | pass after correction |
         | 4 | Admin can set a user to game master in Administrator Dashboard | pass | :--- |
         | 5 | User sees GM badge on the navigation bar and in profile | pass | :--- |
 
-        Conclusion:
+        Conclusion: In the first test with the messages section, because the IF-Statement was set to "if user.profile.gm", however, the admin had not gm-flag enabled, and therefore was unable to see the message section.
+        This was fixed by changing the IF-Statement to "if user.profile.gm or user.is_staff".
 
         <br>
     * b) Test GM access:
@@ -164,18 +165,18 @@ Created:
     * a) Test Administrator access:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | edit forigin event | pass | pass |
-        | 2 | remove forigin event | pass | pass |
-        | 3 | update forigin profile | fail | :--- |
-        | 4 | update forigin settings | fail | :--- |
-        | 5 | change forigin password | fail | :--- |
-        | 6 | edit forigin characters | pass | :--- |
-        | 7 | delete forigin characters | pass | :--- |
-        | 8 | edit forigin items | pass | :--- |
-        | 9 | edit forigin equipment | pass | :--- |
-        | 10 | delete forigin note | pass | :--- |
+        | 1 | edit foreign event | pass | pass |
+        | 2 | remove foreign event | pass | pass |
+        | 3 | update foreign profile | fail | :--- |
+        | 4 | update foreign settings | fail | :--- |
+        | 5 | change foreign password | fail | :--- |
+        | 6 | edit foreign characters | pass | :--- |
+        | 7 | delete foreign characters | pass | :--- |
+        | 8 | edit foreign items | pass | :--- |
+        | 9 | edit foreign equipment | pass | :--- |
+        | 10 | delete foreign note | pass | :--- |
         | 11 | delete tag | pass | pass |
-        | 12 | administrator dashbord | pass | pass |
+        | 12 | administrator dashboard | pass | pass |
 
         Conclusion:
         
@@ -184,20 +185,20 @@ Created:
     * a) Normal Features:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | create event | pass | :--- |
-        | 2 | edit event | pass | :--- |
+        | 1 | create event | pass | pass |
+        | 2 | edit event | pass | pass |
         | 3 | remove event | pass | pass |
-        | 3 | create profile | pass | :--- |
-        | 3 | update profile | pass | :--- |
+        | 3 | create profile | pass | pass |
+        | 3 | update profile | pass | pass |
         | 4 | update settings | pass | :--- |
         | 5 | change password | pass | :--- |
-        | 6 | create characters | pass | :--- |
-        | 6 | edit characters | pass | :--- |
+        | 6 | create characters | pass | pass |
+        | 6 | edit characters | pass | pass |
         | 7 | delete characters | pass | :--- |
-        | 8 | edit items | pass | :--- |
-        | 9 | edit  equipment | pass | :--- |
-        | 9 | add note | pass | :--- |
-        | 10 | delete note | pass | :--- |
+        | 8 | edit items | pass | pass |
+        | 9 | edit equipment | pass | pass |
+        | 9 | add note | pass | pass |
+        | 10 | delete note | pass | pass |
         | 11 | add tag | pass | pass |
         | 12 | delete tag | pass | pass |
 
@@ -231,7 +232,7 @@ Created:
 
         <br>
     * d) Event Edit:
-        | # | Action | Expected Outome | Result |
+        | # | Action | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
         | 1 | User can add characters to the event | fail | :--- |
         | 2 | Game Master add characters to the event  | pass | :--- |
@@ -272,21 +273,21 @@ Created:
 
 ## Validation Results
 - ### HTML: W3C Markup Validator Test Results
-    * [/home](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2F)<br>The show error are from the text-input of the character form, and cannot be fixed.
+    * [/home](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2F)<br>The shown error is from the text input of the character form, and cannot be fixed.
     * [/conduct](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fconduct%2F)
     * [/tag/index](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2Findex%2F)
     * [/tag/add](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2Fadd%2F)
-    * [/tag/Adventure](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2FAdventure)<br>The show error are from the text-input of the character form, and cannot be fixed.
+    * [/tag/Adventure](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2FAdventure)<br>The shown error is from the text input of the character form, and cannot be fixed.
     * [/create_event](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcreate_event%2F)
     * [/event/edit](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fevent%2Fedit%2F2)
     * [/event/remove](https://rndroll.herokuapp.com/event/2/remove)
-    * [/event](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fevent%2F2)<br>The show error are from the text-input of the character form, and cannot be fixed.
+    * [/event](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fevent%2F2)<br>The shown error is from the text-input of the character form, and cannot be fixed.
     * [/members/profile](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2F1%2Fprofile)
     * [/members/update_profile_page](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2F1%2Fupdate_profile_page)
     * [/members/edit_profile](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fedit_profile%2F)
     * [/members/password](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fpassword%2F)
     * [/character/create_character](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcreate_character%2F)
-    * [/character/character](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2F1%2Fcharacter)<br>The show error are from the text-input of the character form, and cannot be fixed.
+    * [/character/character](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2F1%2Fcharacter)<br>The shown error is from the text-input of the character form, and cannot be fixed.
     * [/character/character/remove](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcharacter%2F3%2Fremove)
     * [/character/character/edit](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcharacter%2Fedit%2F3)
     * [/character/item/edit](https://rndroll.herokuapp.com/character/item/edit/3)
@@ -294,7 +295,7 @@ Created:
     * [/character/note/remove](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fnote%2F9%2Fremove)
     * [/help](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fhelp%2F)
     * [/members/message/](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fmessage%2F)
-    * [/search/](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fsearch%2F%3Fq%3DTrek)<br>The show error are from the text-input of the character form, and cannot be fixed.
+    * [/search/](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fsearch%2F%3Fq%3DTrek)<br>The shown error is from the text-input of the character form, and cannot be fixed.
     <br><br>
 
 - ### CSS: W3C CSS Validator Test Results
