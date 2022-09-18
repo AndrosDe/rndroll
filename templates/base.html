@@ -26,119 +26,118 @@
 </head>
 
     <!-- Navigation -->
-<header>
-    <div class="bg-header">
-        <!-- Saying "Hello" to the user, if logged in -->
-        <nav class="navbar navbar-expand-md navbar-light">
-            {% if user.is_authenticated %}
-            <div class="col-9"></div>
-            <div class="col-3 text-center special-bg2">
-                <strong>Hello, {{ user.username }}!</strong>
-            </div>
-            {% endif %}
-        </nav>
-        <nav class="navbar navbar-expand-md navbar-light">
-            <!-- Logo Picture -->
-            <div class="container-fluid">
-                <div class="navbar-image">
-                    <a class="navbar-brand sticky-top special-bg3" href="{% url 'home' %}" aria-label="Back to the Homepage"><span class="brand">R
-                        <span class="red-o">N</span>
-                        D
-                        <span>|ROLL</span>
-                    </span></a>
-                </div>
-            </div>
-            <!-- Slogan -->
-            <div class="container-fluid text-center h5 special-bg3">
-                <strong>Check out, join in, create, narrate and have fun.</strong>
-            </div>
-        </nav>
-    </div>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-md navbar-light navbar-2 special-bg">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse " id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'home' %}" aria-label="Back to the Homepage">Home</a></strong>
-                    </li>
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'conduct' %}" aria-label="Visit the page for our Code od Conduct">Conduct</a></strong>
-                    </li>
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'index_tag' %}" aria-label="Search for events by Tag">Tags</a></strong>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'event_create' %}" aria-label="Click here to create a new Event">Create Event</a></strong>
-                    </li>
-                    {% if user.profile.id  %}
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'show_profile' user.profile.id %}" aria-label="Click here to visit your Profile">Profile & Repository</a></strong>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'create_profile' %}" aria-label="Click here to create your Profile">Create Profile</a></strong>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to create a new Event">Create Event</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to open the profile page">Profile & Repository</a>
-                    </li>
-                    {% endif %}
 
-                </ul>
+<div class="bg-header">
+    <!-- Saying "Hello" to the user, if logged in -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        {% if user.is_authenticated %}
+        <div class="col-9"></div>
+        <div class="col-3 text-center special-bg2">
+            <strong>Hello, {{ user.username }}!</strong>
+        </div>
+        {% endif %}
+    </nav>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <!-- Logo Picture -->
+        <div class="container-fluid">
+            <div class="navbar-image">
+                <a class="navbar-brand sticky-top special-bg3" href="{% url 'home' %}" aria-label="Back to the Homepage"><span class="brand">R
+                    <span class="red-o">N</span>
+                    D
+                    <span>|ROLL</span>
+                </span></a>
             </div>
         </div>
-        <!-- Collapse Button for small screens -->
-        <div class="nav-button-margin">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Slogan -->
+        <div class="container-fluid text-center h5 special-bg3">
+            <strong>Check out, join in, create, narrate and have fun.</strong>
         </div>
-        <!-- Login Section -->
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-3 mb-2 mb-lg-0 nav-login">
+    </nav>
+</div>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-md navbar-light navbar-2 special-bg">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse " id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'home' %}" aria-label="Back to the Homepage">Home</a></strong>
+                </li>
+                <li class="nav-item">
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'conduct' %}" aria-label="Visit the page for our Code od Conduct">Conduct</a></strong>
+                </li>
+                <li class="nav-item">
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'index_tag' %}" aria-label="Search for events by Tag">Tags</a></strong>
+                </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'create_message' %}" title="Send A Message" aria-label="Send a Message"><i class="fa-solid fa-message"></i></a></strong>
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'event_create' %}" aria-label="Click here to create a new Event">Create Event</a></strong>
                 </li>
-                {% if user.is_staff %}
+                {% if user.profile.id  %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'admin:index' %}" target="_blank" title="You are a Site-Admin" aria-label="Visit the Administrator Page"><i class="fa-solid fa-dice-d20"></i></a></strong>
-                </li>
-                {% endif %} 
-                {% if user.profile.gm %}
-                <li class="nav-item">
-                    <strong><a class="nav-link" title="You are a Game Master"><i class="fa-solid fa-dragon"></i></a></strong>
-                </li>
-                {% endif %}
-                <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'logout' %}" aria-label="Logout">Logout</a></strong>
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'show_profile' user.profile.id %}" aria-label="Click here to visit your Profile">Profile & Repository</a></strong>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'register' %}" aria-label="Register a new Account">Register</a></strong>
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'create_profile' %}" aria-label="Click here to create your Profile">Create Profile</a></strong>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <strong><a class="nav-link" aria-current="page" href="{% url 'help' %}" aria-label="Click here for help">Help</a></strong>
                 </li>
                 <li class="nav-item">
-                    <strong><a class="nav-link" href="{% url 'login' %}" aria-label="Login to your Account">Login</a></strong>
+                    <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to create a new Event">Create Event</a>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-current="page" href="#" aria-label="You need to be logged in to open the profile page">Profile & Repository</a>
+                </li>
                 {% endif %}
+
+            </ul>
         </div>
-    </nav>
-</header>
-    
+    </div>
+    <!-- Collapse Button for small screens -->
+    <div class="nav-button-margin">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <!-- Login Section -->
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-3 mb-2 mb-lg-0 nav-login">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <strong><a class="nav-link" href="{% url 'create_message' %}" title="Send A Message" aria-label="Send a Message"><i class="fa-solid fa-message"></i></a></strong>
+            </li>
+            {% if user.is_staff %}
+            <li class="nav-item">
+                <strong><a class="nav-link" href="{% url 'admin:index' %}" target="_blank" title="You are a Site-Admin" aria-label="Visit the Administrator Page"><i class="fa-solid fa-dice-d20"></i></a></strong>
+            </li>
+            {% endif %} 
+            {% if user.profile.gm %}
+            <li class="nav-item">
+                <strong><a class="nav-link" title="You are a Game Master"><i class="fa-solid fa-dragon"></i></a></strong>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <strong><a class="nav-link" href="{% url 'logout' %}" aria-label="Logout">Logout</a></strong>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <strong><a class="nav-link" href="{% url 'register' %}" aria-label="Register a new Account">Register</a></strong>
+            </li>
+            <li class="nav-item">
+                <strong><a class="nav-link" href="{% url 'login' %}" aria-label="Login to your Account">Login</a></strong>
+            </li>
+        </ul>
+            {% endif %}
+    </div>
+</nav>
+
 <body class="d-flex flex-column h-100 main-bg">
 
     <main class="flex-shrink-0">

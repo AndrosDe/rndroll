@@ -324,35 +324,35 @@ Created:
 ## Responsive Design Testing
 As no online tool was able to connect to Heroku to perform a test, all tests were done manually with the "Brave-Browser Development Tools":
 
-- ### iPhone SE: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-se_v93ibo.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-se2_sx2gnk.webp)
+- iPhone SE: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-se_v93ibo.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-se2_sx2gnk.webp)
 
-- ### iPhone XR: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-xr_su3x2k.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-iphone-xr2_klwkzd.webp)
+- iPhone XR: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone-xr_su3x2k.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-iphone-xr2_klwkzd.webp)
 
-- ### iPhone12 Pro: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone12pro_ahc45e.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-iphone12pro2_ju5nee.webp)
+- iPhone12 Pro: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-iphone12pro_ahc45e.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-iphone12pro2_ju5nee.webp)
 
-- ### IPad Mini: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini_ggqxz7.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini-2_zav89o.webp)
+- IPad Mini: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini_ggqxz7.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini-2_zav89o.webp)
 
-- ### IPad Air: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-air_lvfqac.webp), [Image2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini-2_zav89o.webp)
+- IPad Air: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-air_lvfqac.webp), [Image2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-ipad-mini-2_zav89o.webp)
 
-- ### Surface Pro 7: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-surface-pro-7_tgghgq.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-surface-pro-7-2_xgmzz8.webp)
+- Surface Pro 7: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-surface-pro-7_tgghgq.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-surface-pro-7-2_xgmzz8.webp)
 
-- ### Surface Duo: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-surface-duo_wafonf.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-surface-duo-2_ffjjbs.webp)
+- Surface Duo: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-surface-duo_wafonf.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-surface-duo-2_ffjjbs.webp)
 
-- ### Samsung Galaxy S8: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-samsung-galaxy-s8_rtud1j.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s8-2_hjqdey.webp)
+- Samsung Galaxy S8: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-samsung-galaxy-s8_rtud1j.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s8-2_hjqdey.webp)
 
-- ### Samsung Galaxy A51/71: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-a51-71_ewyew9.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-a51-71-2_tpaigk.webp)
+- Samsung Galaxy A51/71: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-a51-71_ewyew9.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-a51-71-2_tpaigk.webp)
 
-- ### Samsung Galaxy S20: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s20-ul_rsvavy.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s20-ul_2_iotbah.webp)
+- Samsung Galaxy S20: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s20-ul_rsvavy.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435933/media/images/README%20IMAGES/responsive-samsung-galaxy-s20-ul_2_iotbah.webp)
 
-- ### Galaxy Fold: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold_kkrhpr.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold-2_qonpih.webp), [Image 3](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-fold-3_pesuss.webp), [Image 4](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold-4_cnyyea.webp)
+- Galaxy Fold: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold_kkrhpr.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold-2_qonpih.webp), [Image 3](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-galaxy-fold-3_pesuss.webp), [Image 4](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435934/media/images/README%20IMAGES/responsive-galaxy-fold-4_cnyyea.webp)
 
-- ### Pixel 5: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-pixel5_su3mgk.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-pixel5-2_pbcyak.webp)
+- Pixel 5: [Image 1](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-pixel5_su3mgk.webp), [Image 2](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435936/media/images/README%20IMAGES/responsive-pixel5-2_pbcyak.webp)
 
-- ### Nest Hub: [Image](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-nest-hub_y5cqak.webp)
+- Nest Hub: [Image](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-nest-hub_y5cqak.webp)
 
-- ### Nest Hub Max: [Image](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-nest-hub-max_kofpzr.webp)
+- Nest Hub Max: [Image](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-nest-hub-max_kofpzr.webp)
 
-
+<br><br>
 ## Testing User Stories
 - ### Visitor Goals - As a user who has not created an account, I want to be able to:
     * <strong>Quickly understand the main purpose and use of the application, RND|Roll, and how to use it</strong><br>
