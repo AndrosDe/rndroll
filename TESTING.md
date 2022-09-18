@@ -18,41 +18,51 @@ Created:
     * a) Reviewing visitor journey through RND|Roll.<br>Visitor can access and read:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | home | pass | :--- |
-        | 2 | conduct | pass | :--- |
-        | 3 | help | pass | :--- |
-        | 4 | tag - index | pass | :--- |
-        | 5 | tagged events | pass | :--- |
-        | 6 | search results | pass | :--- |
-        | 7 | event details | pass | :--- |
-        | 8 | character details | pass | :--- |
-        | 9 | Registration | pass | :--- |
-        | 10 | Login | pass | :--- |
+        | 1 | home | pass | pass |
+        | 2 | conduct | pass | pass |
+        | 3 | help | pass | pass |
+        | 4 | tag - index | pass | pass |
+        | 5 | tagged events | pass | pass |
+        | 6 | search results | pass | pass |
+        | 7 | event details | pass | pass |
+        | 8 | character details | pass | pass |
+        | 9 | Registration | pass | pass |
+        | 10 | Login | pass | pass |
 
-        Conclusion:
+        Conclusion:<br>
+        The visitor has view only access to the on RND|Roll as intended.<br>
+        Enough to browse through events and event look a character details.<br>
+        Depending on the dilligence of the creator, event can hereby caugth the attention of visitors.<br>
 
         <br>
     * b) Reviewing visitor access by manually posting the URLs in the address bar:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | create event | fail | :--- |
-        | 2 | event edit | fail | :--- |
-        | 3 | event remove | fail | :--- |
-        | 4 | profile| fail | :--- |
-        | 5 | update profile | fail | :--- |
-        | 6 | update settings | fail | :--- |
-        | 7 | change password | fail | :--- |
-        | 8 | create characters | fail | :--- |
-        | 9 | edit characters | fail | :--- |
-        | 10 | delete characters | fail | :--- |
-        | 11 | edit items | fail | :--- |
-        | 12 | edit equipment | fail | :--- |
-        | 13 | delete note | fail | :--- |
-        | 14 | delete tag | fail | :--- |
-        | 15 | message | fail | :--- |
-        | 16 | administrator dashbord | fail | :--- |
+        | 1 | create event | fail | fail |
+        | 2 | event edit | fail | fail |
+        | 3 | event remove | fail | fail |
+        | 4 | profile| fail | fail |
+        | 5 | update profile | fail | fail |
+        | 6 | update settings | fail | fail - Server Error (500) |
+        | 7 | change password | fail | fail - Page Not found 404 |
+        | 8 | create characters | fail | fail |
+        | 9 | edit characters | fail | fail |
+        | 10 | delete characters | fail | fail |
+        | 11 | edit items | fail | fail |
+        | 12 | edit equipment | fail | fail |
+        | 13 | delete note | fail | fail |
+        | 14 | delete tag | fail | fail |
+        | 15 | message | fail | fail |
+        | 16 | administrator dashbord | fail | fail |
 
         Conclusion:
+        As expected the visitor is prohibited from using any other feature on RND|Roll, even if one would try to bypass the normall webpage.
+        The error that was found ans fixed was by events of deleted users, which have not been assigned to a new user.
+        These were able to be deleted by a visitor, if he had the link form the deletion of that event.
+        This was possible as the IF-Statement on the site checked "if user.id == event.owner.id".
+        Since a user deletion would set the event onwer to nothing and a visitor is also nothing, the visitor was allowed to do that on these singular events.
+        A correction was made to extent the Statement "if event.owner and user.id == event.owner.id".
+        Now it looks if an event owner exsits and if he has the same id, causing an visitor to get the correct error message.
 
         <br><br>
 2. Test runs - User access:
@@ -197,7 +207,7 @@ Created:
     * b) Event Feature "Join":
         | # | Action | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | Visitor can press join | fail | :--- |
+        | 1 | Visitor can press join | fail | fail |
         | 2 | Join button active for private events | fail | :--- |
         | 3 | Join button active for players that already joined | fail | :--- |
         | 4 | Join button active for events that reached the maximal amount of players | fail | :--- |
@@ -210,7 +220,7 @@ Created:
     * c) Event Feature "Character Remove":
         | # | Action | Expected Outome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | Visitor can remove a character from the event | fail | :--- |
+        | 1 | Visitor can remove a character from the event | fail | fail |
         | 2 | Random User can remove a character from the event | fail | :--- |
         | 3 | Character Creator can remove his/her character from the event | pass | :--- |
         | 4 | Event owner can remove any character from the event | pass | :--- |
@@ -262,21 +272,21 @@ Created:
 
 ## Validation Results
 - ### HTML: W3C Markup Validator Test Results
-    * [/home](#)
+    * [/home](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2F)<br>The show error are from the text-input of the character form, and cannot be fixed.
     * [/conduct](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fconduct%2F)
     * [/tag/index](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2Findex%2F)
     * [/tag/add](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2Fadd%2F)
-    * [/tag/Adventure](#)
+    * [/tag/Adventure](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Ftag%2FAdventure)<br>The show error are from the text-input of the character form, and cannot be fixed.
     * [/create_event](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcreate_event%2F)
     * [/event/edit](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fevent%2Fedit%2F2)
     * [/event/remove](https://rndroll.herokuapp.com/event/2/remove)
-    * [/event](#)
+    * [/event](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fevent%2F2)<br>The show error are from the text-input of the character form, and cannot be fixed.
     * [/members/profile](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2F1%2Fprofile)
     * [/members/update_profile_page](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2F1%2Fupdate_profile_page)
     * [/members/edit_profile](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fedit_profile%2F)
     * [/members/password](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fpassword%2F)
     * [/character/create_character](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcreate_character%2F)
-    * [/character/character](#)
+    * [/character/character](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2F1%2Fcharacter)<br>The show error are from the text-input of the character form, and cannot be fixed.
     * [/character/character/remove](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcharacter%2F3%2Fremove)
     * [/character/character/edit](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fcharacter%2Fedit%2F3)
     * [/character/item/edit](https://rndroll.herokuapp.com/character/item/edit/3)
@@ -284,6 +294,7 @@ Created:
     * [/character/note/remove](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fcharacter%2Fnote%2F9%2Fremove)
     * [/help](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fhelp%2F)
     * [/members/message/](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fmembers%2Fmessage%2F)
+    * [/search/](https://validator.w3.org/nu/?doc=https%3A%2F%2Frndroll.herokuapp.com%2Fsearch%2F%3Fq%3DTrek)<br>The show error are from the text-input of the character form, and cannot be fixed.
     <br><br>
 
 - ### CSS: W3C CSS Validator Test Results

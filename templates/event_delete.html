@@ -5,7 +5,8 @@ Remove an Event
 {% endblock %}
 
 {% block content %}
-{% if user.id == event.owner.id or user.is_staff %}
+
+{% if event.owner and user.id == event.owner.id or user.is_staff %}
 <div class="container text-secondary">
     <br>
     <h1>Delete Event</h1>
