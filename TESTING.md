@@ -2,6 +2,19 @@
 
 <h2 align="center"><img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1663424555/media/images/README%20IMAGES/readme-title-pic_a4yhkr.webp" height="500" width="900"></h2>
 
+<hr>
+<br>
+
+<h2> Table of content </h2>
+
+- ### [MANUAL TESTING](#manual-testing-1)
+- ### [Validation Results](#validation-results-1)
+- ### [Responsive Design Testing](#responsive-design-testing-1)
+- ### [Testing User Stories](#testing-user-stories-1)
+
+<br>
+<hr>
+<br>
 
 ## MANUAL TESTING
 Preliminary Setup:
@@ -58,10 +71,10 @@ Created:
         Conclusion:<br>
         As expected the visitor is prohibited from using any other feature on RND|Roll, even if one would try to bypass the normal webpage.
         The error that was found and fixed was by events of deleted users, which have not been assigned to a new user.
-        These were able to be deleted by a visitor if he had the link from the deletion of that event.
-        This was possible as the IF-Statement on the site checked "if user.id == event.owner.id".
-        Since a user deletion would set the event owner to nothing and a visitor is also nothing, the visitor was allowed to do that on these singular events.
-        A correction was made to extent the Statement "if event.owner and user.id == event.owner.id".
+        These were able to be deleted by a visitor if he had the link from the deletion of that event.<br><br>
+        This was possible as the IF-Statement on the site checked "if user.id == event.owner.id".<br>
+        Since a user deletion would set the event owner to nothing and a visitor is also nothing, the visitor was allowed to do that on these singular events.<br><br>
+        A correction was made to extent the Statement "if event.owner and user.id == event.owner.id".<br>
         Now it looks if an event owner exists and if he has the same id, causing a visitor to get the correct error message.
 
         <br><br>
@@ -93,11 +106,12 @@ Created:
         | 19 | edit own equipment | pass | pass |
         | 20 | delete own note | pass | pass |
         | 21 | message | pass | pass |
+        | 22 | foreign profile| pass | pass |
 
         Conclusion:<br>
-        The websites were all accessable and the CRUD features are avilble for everything created by the user.
+        The websites were all accessible and the CRUD features are available for everything created by the user.
         The only bug noticed was the missing default picture on item_edit.html and equipment_edit.html.
-        Here an old link was used, the bug was resolved by adding the correct link to the HTML code.
+        Here an old link was used, and the bug was resolved by adding the correct link to the HTML code.
         <br>
         * Created Profile for Test User:
         * Created Event: TestEvent (deleted), Star Trek TNG - Nightshift - Part 1,2,3,4
@@ -109,20 +123,22 @@ Created:
     * b) Reviewing user access by manually posting the URLs in the address bar:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | edit foreign event | fail | :--- |
-        | 2 | remove foreign event | fail | :--- |
-        | 3 | update foreign profile | fail | :--- |
-        | 4 | update foreign settings | fail | :--- |
-        | 5 | change foreign password | fail | :--- |
-        | 6 | edit foreign characters | fail | :--- |
-        | 7 | delete foreign characters | fail | :--- |
-        | 8 | edit foreign items | fail | :--- |
-        | 9 | edit foreign equipment | fail | :--- |
-        | 10 | delete foreign note | fail | :--- |
-        | 11 | delete tag | fail | :--- |
-        | 12 | administrator dashboard | fail | fail |
+        | 1 | edit foreign event | fail | fail |
+        | 2 | see the email in foreign profile | fail | fail |
+        | 3 | remove foreign event | fail | fail |
+        | 4 | update foreign profile | fail | fail |
+        | 5 | update foreign settings | fail | fail - will revert to change setting for current user |
+        | 6 | change foreign password | fail | fail - will revert to password change for current user |
+        | 7 | edit foreign characters | fail | fail |
+        | 8 | delete foreign characters | fail | fail |
+        | 9 | edit foreign items | fail | fail |
+        | 10 | edit foreign equipment | fail | fail |
+        | 11 | delete foreign note | fail | fail |
+        | 12 | delete tag | fail | fail |
+        | 13 | administrator dashboard | fail | fail |
 
-        Conclusion:
+        Conclusion:<br>
+        All custom error notes are displayed and the user is prohibted from making changes or deletions.
 
         <br><br>
 3. Test runs - Game Master access:
@@ -147,21 +163,24 @@ Created:
     * b) Test GM access:
         | # | Site | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
-        | 1 | edit forigin event | pass | :--- |
-        | 2 | remove forigin event | fail | :--- |
-        | 3 | update forigin profile | fail | :--- |
-        | 4 | update forigin settings | fail | :--- |
-        | 5 | change forigin password | fail | :--- |
-        | 6 | edit forigin characters | fail | :--- |
-        | 7 | delete forigin characters | fail | :--- |
-        | 8 | edit forigin items | fail | :--- |
-        | 9 | edit forigin equipment | fail | :--- |
-        | 10 | delete forigin note | fail | :--- |
-        | 11 | delete tag | fail | :--- |
-        | 12 | administrator dashbord | fail | :--- |
+        | 1 | edit foreign event | pass | pass |
+        | 2 | see the email in foreign profile | fail | fail |
+        | 3 | remove foreign event | fail | fail |
+        | 4 | update foreign profile | fail | fail |
+        | 5 | update foreign settings | fail | fail - will revert to change setting for current user |
+        | 6 | change foreign password | fail | fail - will revert to change the setting for current user |
+        | 7 | edit foreign characters | fail | fail |
+        | 8 | delete foreign characters | fail | fail |
+        | 9 | edit foreign items | fail | fail |
+        | 10 | edit foreign equipment | fail | fail |
+        | 11 | delete foreign note | fail | fail |
+        | 12 | delete tag | fail | fail |
+        | 13 | administrator dashboard | fail | fail |
 
-        Conclusion:
-        * Updated Event:<br>
+        Conclusion:<br>
+        As intended has the Game Master option to edit all events and can remove players from an event and not much more. The main idea is to have an extra helper that could fix some problems if the event owner is not around.
+        Like fixing a link or some typos and so on.
+        * Updated Event: Admin D&D Adventure
 
         <br><br>
 4. Test runs - Administrator access:
@@ -170,18 +189,22 @@ Created:
         | :--- | :--- | :--- | :--- |
         | 1 | edit foreign event | pass | pass |
         | 2 | remove foreign event | pass | pass |
-        | 3 | update foreign profile | fail | :--- |
-        | 4 | update foreign settings | fail | :--- |
-        | 5 | change foreign password | fail | :--- |
-        | 6 | edit foreign characters | pass | :--- |
-        | 7 | delete foreign characters | pass | :--- |
-        | 8 | edit foreign items | pass | :--- |
-        | 9 | edit foreign equipment | pass | :--- |
-        | 10 | delete foreign note | pass | :--- |
-        | 11 | delete tag | pass | pass |
-        | 12 | administrator dashboard | pass | pass |
+        | 3 | see the email in foreign profile | pass | pass |
+        | 4 | update foreign profile | fail | fail |
+        | 5 | update foreign settings | fail | fail - will revert to change setting for current user |
+        | 6 | change foreign password | fail | fail - will revert to change the setting for current user |
+        | 7 | edit foreign characters | pass | pass |
+        | 8 | delete foreign characters | pass | pass |
+        | 9 | edit foreign items | pass | pass |
+        | 10 | edit foreign equipment | pass | pass |
+        | 11 | delete foreign note | pass | pass |
+        | 12 | delete tag | pass | pass |
+        | 13 | administrator dashboard | pass | pass |
 
         Conclusion:<br>
+        The admin is indeed allowed to see the email in other users' profiles. All features worked as intended.
+        The only time I got a 403 forbidden error was when I got to refresh the website and the website cache still had a normal user loaded.
+        
         
         <br><br>
 5. Feature Test:<br>*Some of these features have already been confirmed working in the previous test runs*<br><br>
@@ -193,11 +216,11 @@ Created:
         | 3 | remove event | pass | pass |
         | 3 | create profile | pass | pass |
         | 3 | update profile | pass | pass |
-        | 4 | update settings | pass | :--- |
-        | 5 | change password | pass | :--- |
+        | 4 | update settings | pass | pass |
+        | 5 | change password | pass | pass |
         | 6 | create characters | pass | pass |
         | 6 | edit characters | pass | pass |
-        | 7 | delete characters | pass | :--- |
+        | 7 | delete characters | pass | pass |
         | 8 | edit items | pass | pass |
         | 9 | edit equipment | pass | pass |
         | 9 | add note | pass | pass |
@@ -206,19 +229,22 @@ Created:
         | 12 | delete tag | pass | pass |
 
         Conclusion:<br>
+        All features were tested and are working as expected. No errors happen during the testing. all create functions are working as long as the minimum requirements are entered. These have all a yellow border and are explained on the "help" page.
 
         <br>
     * b) Event Feature "Join":
         | # | Action | Expected Outcome | Result |
         | :--- | :--- | :--- | :--- |
         | 1 | Visitor can press join | fail | fail |
-        | 2 | Join button active for private events | fail | :--- |
-        | 3 | Join button active for players that already joined | fail | :--- |
-        | 4 | Join button active for events that reached the maximal amount of players | fail | :--- |
+        | 2 | Join button active for private events | fail | fail |
+        | 3 | Join button active for players that already joined | fail | fail |
+        | 4 | Join button active for events that reached the maximal amount of players | fail | fail |
         | 5 | Join button opens a drop-down to display only user-created characters | pass | pass |
         | 6 | Add will add character to the events character section | pass | pass |
 
         Conclusion:<br>
+        The join button works fine, one can only add themselves once with normal means to an event and has to be added by a game master on private events.<br>
+        Now a game master or admin can add more than one character from a user to an event, however, that is something for special cases.
 
         <br>
     * c) Event Feature "Character Remove":
@@ -227,11 +253,12 @@ Created:
         | 1 | Visitor can remove a character from the event | fail | fail |
         | 2 | Random User can remove a character from the event | fail | fail |
         | 3 | Character Creator can remove his/her character from the event | pass | pass |
-        | 4 | Event owner can remove any character from the event | pass | :--- |
+        | 4 | Event owner can remove any character from the event | pass | pass |
         | 5 | Game Master can remove any character from the event | pass | pass |
         | 6 | Administrator can remove any character from the event | pass | pass |
 
         Conclusion:<br>
+        The feature to remove characters from an event works as intended.
 
         <br>
     * d) Event Edit:
@@ -242,8 +269,8 @@ Created:
         | 3 | Administrator add characters to the event  | pass | pass |
 
         Conclusion:<br>
-        The event update feature works as expected, Game Masters and Andministrators can add character to the event.
-        However only the Game Master can do that on the website. The Administrator has to do that over the administrator dashboard. 
+        The event update feature works as expected, Game Masters and Administrators can add characters to the event.
+        However, only the Game Master can do that on the website. The Administrator has to do that over the administrator dashboard. 
 
         <br>
     * e) Set automatically by creation:
@@ -270,11 +297,13 @@ Created:
     | 5 | Delete Profile | no cascade, events, and character should still be there | Deleting the profile will delete any request for Game Master promotion |
     | 6 | Delete User | mix: the profile, characters should be deleted / the event loses the owner | Profile, Characters, notes, and requests are deleted.<br> Events and comments are still there, event update on the site requires, a new one has to be set in over the administrator dashboard |
 
-    Conclusion:
+    Conclusion:<br>
     The delete of objects is behaving as expected. It is intended to have an event remain after, the user who owned it is deleted, as it might be handed to another user.
     Otherwise, the event can always be deleted separately
     
-    <br><br>
+<br>
+<hr>
+<br>
 
 ## Validation Results
 - ### HTML: W3C Markup Validator Test Results
@@ -336,7 +365,10 @@ Created:
         ![desktop](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663432099/media/images/README%20IMAGES/lighthouse_rndroll_desktop_gual6r.png)
     * Mobile:
         ![mobile](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663432099/media/images/README%20IMAGES/lighthouse_rndroll_mobile_kp5bqq.png)
-    <br><br>
+
+<br>
+<hr>
+<br>
 
 ## Responsive Design Testing
 As no online tool was able to connect to Heroku to perform a test, all tests were done manually with the "Brave-Browser Development Tools":
@@ -369,7 +401,10 @@ As no online tool was able to connect to Heroku to perform a test, all tests wer
 
 - Nest Hub Max: [Image](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663435935/media/images/README%20IMAGES/responsive-nest-hub-max_kofpzr.webp)
 
-<br><br>
+<br>
+<hr>
+<br>
+
 ## Testing User Stories
 - ### Visitor Goals - As a user who has not created an account, I want to be able to:
     * <strong>Quickly understand the main purpose and use of the application, RND|Roll, and how to use it</strong><br>
@@ -408,7 +443,7 @@ As no online tool was able to connect to Heroku to perform a test, all tests wer
             ![User](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663495472/media/images/README%20IMAGES/join_c4yv5a.png)<br><br>
     * <strong>Remove any player joined in my event</strong><br>
         * <strong>while normal players can only remove their character, event owners and game masters can remove all.</strong><br>
-            ![User]()<br><br>
+            ![User](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663537186/media/images/README%20IMAGES/event-characters_xxgwac.webp)<br><br>
     * <strong>Upload Images for my shows</strong><br>
     * <strong>Be able to add additional information about my show</strong><br>
         * <strong>Options to upload images are in the creation and update forms</strong><br>
@@ -445,7 +480,7 @@ As no online tool was able to connect to Heroku to perform a test, all tests wer
             ![GM](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663339733/media/images/README%20IMAGES/index_gm_akj8gn.png)<br><br>
     * <strong>remove any player joined in any event</strong><br>
         * <strong>A Game Master can remove all players from an event</strong><br>
-            ![GM](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663442006/media/images/README%20IMAGES/event_characters_yry1oo.png)<br><br>
+            ![GM](https://res.cloudinary.com/dbscsb8w1/image/upload/v1663537186/media/images/README%20IMAGES/event-characters_xxgwac.webp)<br><br>
     <br><br>
 - ### Site Admin Goals - As a staff member/administrator, I want to be able to:
     * <strong>Create, Update, Review and Delete any user-created content on RND|Roll</strong><br>

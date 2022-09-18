@@ -1354,7 +1354,7 @@ The CRUD is depicted in the feature with the following color code:
 
   ## Future Implementation
   * Automatic status set to "expired" once the start date has passed
-  * Not being rerouted to "home" after most creation, updates and deletion
+  * Not being rerouted to "home" after most creation, updates, and deletion
   * Reset Password Function
   * Group Chat on Events for Event owners and joined players
   * Item Model with pictures, etc. and changing equipment fields on the character to ForeignKeys
