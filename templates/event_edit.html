@@ -146,6 +146,7 @@ Updateing an Event
                             <strong class="text-secondary"> {{ form.rule_set }} </strong>
                         </div>
                         <div class="col-lg-5 col-sm-6">
+                            <!-- characters can only be added to the event over the form by the game master -->
                             {% if user.profile.gm %}
                             <h5><strong class="text-secondary">Characters:</strong></h5>
                             <strong class="text-secondary" > {{ form.characters }} </strong>
@@ -172,7 +173,7 @@ Updateing an Event
     </div>
 </form>
 {% else %}
-
+<!-- Error Message -->
 <h5 class="ms-5"> You need to be the Event Owner or Game Master to edit an event post.</h5>
 
 <h6 class="ms-5"> Note that there is an option only for Game Masters: </h6>

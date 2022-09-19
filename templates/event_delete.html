@@ -12,7 +12,7 @@ Remove an Event
     <h1>Delete Event</h1>
 </div>
 <br>
-
+<!-- Event deletion -->
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="masthead">
@@ -80,7 +80,7 @@ Remove an Event
     </div>
 </form>
 {% else %}
-
+<!-- Error Message -->
 <h5 class="ms-5"> Only the administrator can delete an event.</h5>
 
 <h6 class="ms-5"> Please contact an administrator, if this event needs to be deleted.</h6>

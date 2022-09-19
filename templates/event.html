@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-
+<!-- Event information -->
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
@@ -33,6 +33,7 @@
                 {% else %}
                 <img src=" {{ event.image.url }}" width="100%" alt="Event Picture">
                 {% endif %}
+                <!-- Event Update / Delete Features -->
                 {% if user.id == event.owner.id or user.is_staff %}
                 <div class="image-flash-bottom-2 dark-red-bg">
                     <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete The Event">Delete</a>
@@ -99,6 +100,7 @@
                         <br>
                     </div>
                     <div class="col-lg-3 col-md-6 card">
+                        <!-- Link to the profile of the event owner -->
                         <h5><strong class="text-secondary">By:</strong></h5>
                         {% if user.is_authenticated and event.owner.profile.id  %}
                         <strong class="text-secondary"><a class="nav-link post-link" href="{% url 'show_profile' event.owner.profile.id %}" aria-label="Visit the Event Owners Profile">{{ event.owner }}</a></strong>
@@ -121,6 +123,7 @@
                         <div class="row">
                             <div class="col">
                                 <strong>
+                                    <!-- Like Button -->
                                     {% if user.is_authenticated %}
                                     <form class="d-inline" action="{% url 'event_like' event.pk %}" method="POST">
                                         {% csrf_token %}
@@ -133,9 +136,11 @@
                                     {% else %}
                                     <span class="text-secondary"><i class="far fa-heart"></i></span>
                                     {% endif %}
+                                    <!-- Number of Likes -->
                                     <span class="text-secondary">{{ event.number_of_likes }} </span>
                                 </strong>
                             </div>
+                            <!-- Number of Comments -->
                             <div class="col">
                                 {% with comments.count as total_comments %}
                                 <strong class="text-secondary"><i class="far fa-comments"></i>
@@ -147,7 +152,9 @@
                     <div class="col-xl-9 col-lg-8 col-sm-6">
                     </div>
                     <div class="col-1 my-2">
-                    {% if user.is_authenticated and not joined and event.status != 0 and event.character_max != event.characters.all.count %}
+                    <!-- Join Button -->
+                    <!-- Is only supposed to be enabled for logged-in users, who have not yet joined the game, if the event is not private and if the group isn't full -->
+                    {% if user.is_authenticated and not joined and event.status != 0 and event.character_max > event.characters.all.count %}
                         <strong>
                             <button class="btn btn-success position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
                                 Join
@@ -164,6 +171,7 @@
                     <div class="col collapse" id="collapseJoin">
                         <br>
                         <div class="row">
+                            <!-- Lists all the characters created by the current user -->
                             {% for character in user.character_post.all %}
                             <div class="col-md-2 col-sm-4">
                                 <div class="card">
@@ -174,6 +182,7 @@
                                     <img class="card-img-top" src="{{ character.image.url }}" alt="Character Picture">
                                     {% endif %}
                                     <div class="image-flash2">
+                                        <!-- Adds the character to the event -->
                                         <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
                                             {% csrf_token %}
                                             <button type="submit" name="character_id" value="{{ character.id }}" class="btn btn-success">Add</button>
@@ -202,10 +211,12 @@
 <div class="container">
     <div class="row">
         <h3 class="text-secondary">Characters:</h3>
+        <!-- Lists all the character linkt to the current event -->
         {% for character in event.characters.all %}
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="image-container col-md-4 col-sm-6">
+                    <!-- The picture is the link to the character details -->
                     <a href="{% url 'show_character' character.pk %}" class="post-link" aria-label="Show the Character Details">
                         {% if "placeholder" in character.image.url %}
                         <img class="card-img-top"
@@ -215,6 +226,8 @@
                         {% endif %}
                     </a>
                     <div class="image-flash text-white">
+                        <!-- Removes the character from the event -->
+                        <!-- Can only be done by character creator, event owner, a game master, or an administrator -->
                         {% if character.created_by == user or user.id == event.owner.id or user.profile.gm or user.is_staff %}
                         <form class="d-inline" action="{% url 'event_join' event.pk %}" method="POST">
                             {% csrf_token %}
@@ -264,6 +277,7 @@
                     <div class="col collapse" id="collapseComment">
                         <div class="card card-body">
                             <p>Posting as: {{ user.username }}</p>
+                            <!-- Form to write comments -->
                             <form method="post" enctype="multipart/form-data" style="margin-top: 1.3em;">
                                 {% csrf_token %}
                                 {{ comment_form }}
@@ -276,6 +290,7 @@
                 {% endif %}
                 <br>
                 <br>
+                <!-- Shows all comments of this event -->
                 {% for comment in event.comments.all %}
                 <div class="comments">
                     <strong>

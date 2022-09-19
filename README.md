@@ -1362,6 +1362,9 @@ The CRUD is depicted in the feature with the following color code:
   * Delete own user account
   * Login with social media
   * bad name list
+  * Add pictures to the help page
+  * make dropdown features for the conduct page
+  * have events without owner being displayed with a differen background and a "On Hold" sign
 
 <hr>
 

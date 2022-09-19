@@ -16,16 +16,20 @@ Search Results
         <!-- Event Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
+                <!-- Lists all events that fit the search criteria...-->
                 {% for event in event_list %}
+                <!-- ... unless they are private events -->
                 {% if event.status != 0 %}
                 <div class="col-lg-4 col-md-6">
                     <div class="card mb-3">
+                        <!-- Extra background for expired events -->
                         {% if event.status == 2 or time > event.start_date %}
                         <div class="card-body event-expired-bg">
                         {% else %}
                             <div class="card-body">
                             {% endif %}
                                 <div class="image-container">
+                                    <!-- If the event does not have an image, a default image will be displayed -->
                                     {% if "placeholder" in event.image.url %}
                                     <img class="card-img-top"
                                     src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
@@ -35,13 +39,17 @@ Search Results
                                     <div class="image-flash dark-bg">
                                         <p class="author">By: {{ event.owner }}</p>
                                     </div>
+                                    <!-- Delete Button for Administrator -->
                                     {% if user.is_staff%}
                                     <div class="image-flash-bottom-2 dark-red-bg">
                                         <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                     </div>
                                     {% endif %}
+                                    <!-- If the event has an owner... -->
                                     {% if event.owner %}
+                                    <!-- ... and the current user is that owner or game master or administrator... -->
                                     {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                    <!-- ... then you get this button -->
                                     <div class="image-flash-bottom-1 dark-orange-bg">
                                         <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                     </div>
@@ -76,6 +84,7 @@ Search Results
                             </div>
                         </div>
                     </div>
+                    <!-- Every third loop we make a new line -->
                 {% if forloop.counter|divisibleby:3 %}
                 </div>
                 <div class="row">
@@ -85,6 +94,7 @@ Search Results
                 </div>
             </div>
         </div>
+        <!-- Pagination is set on 6 in the view, so only 6 events on a page, then we get a new page -->
         {% if is_paginated %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

@@ -31,14 +31,17 @@ class ShowProfilePageView(DetailView):
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
 
+        # get all gm_requests from all users
         gm_request_form = GM_PromotionForm()
         gm_request = GMPromotion.objects.all
         gm_requests = gm_request
 
+        # get all messages from all users
         message = Messages.objects.all
         messages = message
 
         kwargs = super(ShowProfilePageView, self).get_context_data()
+        # get all events the profile user was game master of
         gm_events = Event.objects.filter(game_master=kwargs['profile'])
 
         context['messages'] = messages

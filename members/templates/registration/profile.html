@@ -86,13 +86,13 @@ Profile
                             <a class="text-decoration-none text-white m-2" href="{{ profile.twitch_url }}" aria-label="Visit {{ profile.user.username }} on twitch"><i class="fab fa-brands fa-twitch text-white"></i></a>
                             {% endif %}
                             {% if profile.instagram_url %}
-                            <a class="text-decoration-none text-white m-2" href="{{ profile.instagram_url }}" aria-label="Visit {{ profile.user.username }} on instagram"><i class="fab fa-instagram-square text-white"></i></a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.instagram_url }}" aria-label="Visit {{ profile.user.username }} on Instagram"><i class="fab fa-instagram-square text-white"></i></a>
                             {% endif %}
                             {% if profile.youtube_url %}
                             <a class="text-decoration-none text-white m-2" href="{{ profile.youtube_url }}" aria-label="Visit {{ profile.user.username }} on youtube"><i class="fab fa-youtube-square text-white"></i></a>
                             {% endif %}
                             {% if profile.pinterest_url %}
-                            <a class="text-decoration-none text-white m-2" href="{{ profile.pinterest_url }}" aria-label="Visit {{ profile.user.username }} on pinterest"><i class="fa-brands fa-pinterest text-white"></i></a>
+                            <a class="text-decoration-none text-white m-2" href="{{ profile.pinterest_url }}" aria-label="Visit {{ profile.user.username }} on Pinterest"><i class="fa-brands fa-pinterest text-white"></i></a>
                             {% endif %}
                             {% if profile.discord_url %}
                             <a class="text-decoration-none text-white m-2" href="{{ profile.discord_url }}" aria-label="Visit {{ profile.user.username }} on discord"><i class="fa-brands fa-discord text-white"></i></a>
@@ -109,6 +109,8 @@ Profile
 </div>
 <br>
 <br>
+<!-- The Message Section -->
+<!-- Only for game masters and administrators -->
 {% if user.profile.gm or user.is_staff %}
 <div class="container">
     <div class="row">
@@ -137,6 +139,7 @@ Profile
                         </div>
                         {% endfor %}
                     </div>
+                    <!-- Only for administrators -->
                     {% if user.is_staff %}
                     <div class="col-sm-6 my-2">
                         <h4> Game Master Promotion requests</h4>
@@ -181,23 +184,28 @@ Profile
         <div class="col collapse" id="collapseOwnedEvents">
             <div class="card card-body">
                 <div class="row">
+                    <!-- Lists all events the profile user has made -->
                     {% for event in profile.user.event_creator.all %}
                     <div class="col-xxl-3 col-lg-4 col-md-6">
                         <div class="card mb-3">
+                            <!-- Status "private" get an extra background -->
                             {% if event.status == 0 %}
                             <div class="card-body event-private-bg">
+                            <!-- As does "expired" or the start date is in the past -->
                             {% elif event.status == 2 %}
                                 <div class="card-body event-expired-bg">
                                 {% else %}
                                     <div class="card-body">
                                     {% endif %}
                                         <div class="image-container">
+                                            <!-- If the event does not have an image, a default image will be displayed -->
                                             {% if "placeholder" in event.image.url %}
                                             <img class="card-img-top"
                                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
                                             {% else %}
                                             <img class="card-img-top" src="{{ event.image.url }}" alt="Event Picture">
                                             {% endif %}
+                                            <!-- Status "private" gets a sign saying that it's private -->
                                             {% if event.status == 0 %}
                                             <div class="image-flash-top dark-blue-bg">
                                                 <strong class="author">
@@ -208,23 +216,28 @@ Profile
                                             <div class="image-flash dark-bg">
                                                 <p class="author">By: {{ event.owner }}</p>
                                             </div>
+                                            <!-- Delete Button for Administrator -->
                                             {% if user.is_staff%}
                                             <div class="image-flash-bottom-2 dark-red-bg">
                                                 <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                             </div>
                                             {% endif %}
+                                            <!-- If the event has an owner... -->
                                             {% if event.owner %}
+                                            <!-- ... and the current user is that owner or game master or administrator... -->
                                             {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                            <!-- ... then you get this button -->
                                             <div class="image-flash-bottom-1 dark-orange-bg">
                                                 <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                             </div>
                                             {% endif %}
                                             {% endif %}
                                         </div>
-                                        <a class="post-link" href="{% url 'event_detail' event.pk %}" aria-label="Show me the deatils of the event {{ event.title }}">
+                                        <a class="post-link" href="{% url 'event_detail' event.pk %}" aria-label="Show me the details of the event {{ event.title }}">
                                             <h2 class="card-title">{{ event.title }}</h2>
                                             <p class="card-text">{{ event.snippet }}</p>
                                         </a>
+                                        <!-- Privat events have their sign at the top, expired events get it under the picture -->
                                         {% if event.status == 2 %}
                                         <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
                                         {% endif %}
@@ -249,6 +262,7 @@ Profile
                                     </div>
                                 </div>
                             </div>
+                            <!-- Every third loop we make a new line -->
                             {% if forloop.counter|divisibleby:3 %}
                         </div>
                         <div class="row">
@@ -281,23 +295,28 @@ Profile
         <div class="col collapse" id="collapseNarratedEvents">
             <div class="card card-body">
                 <div class="row">
+                    <!-- Lists all events the profile user was game master of -->
                     {% for event in gm_events %}
                     <div class="col-xxl-3 col-lg-4 col-md-6">
                         <div class="card mb-3">
+                            <!-- Status "private" get an extra background -->
                             {% if event.status == 0 %}
                             <div class="card-body event-private-bg">
+                            <!-- As does "expired" or the start date is in the past -->
                             {% elif event.status == 2 %}
                                 <div class="card-body event-expired-bg">
                                 {% else %}
                                     <div class="card-body">
                                     {% endif %}
                                         <div class="image-container">
+                                            <!-- If the event does not have an image, a default image will be displayed -->
                                             {% if "placeholder" in event.image.url %}
                                             <img class="card-img-top"
                                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
                                             {% else %}
                                             <img class="card-img-top" src=" {{ event.image.url }}" alt="Event Picture">
                                             {% endif %}
+                                            <!-- Status "private" gets a sign saying that it's private -->
                                             {% if event.status == 0 %}
                                             <div class="image-flash-top dark-blue-bg">
                                                 <strong class="author">
@@ -308,23 +327,28 @@ Profile
                                             <div class="image-flash dark-bg">
                                                 <p class="author">By: {{ event.owner }}</p>
                                             </div>
+                                            <!-- Delete Button for Administrator -->
                                             {% if user.is_staff%}
                                             <div class="image-flash-bottom-2 dark-red-bg">
                                                 <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                             </div>
                                             {% endif %}
+                                            <!-- If the event has an owner... -->
                                             {% if event.owner %}
+                                            <!-- ... and the current user is that owner or game master or administrator... -->
                                             {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                            <!-- ... then you get this button -->
                                             <div class="image-flash-bottom-1 dark-orange-bg">
                                                 <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                             </div>
                                             {% endif %}
                                             {% endif %}
                                         </div>
-                                        <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the deatils of the event {{ event.title }}">
+                                        <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the details of the event {{ event.title }}">
                                             <h2 class="card-title">{{ event.title }}</h2>
                                             <p class="card-text">{{ event.snippet }}</p>
                                         </a>
+                                        <!-- Privat events have their sign at the top, expired events get it under the picture -->
                                         {% if event.status == 2 %}
                                         <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
                                         {% endif %}
@@ -349,6 +373,7 @@ Profile
                                     </div>
                                 </div>
                             </div>
+                            <!-- Every third loop we make a new line -->
                             {% if forloop.counter|divisibleby:3 %}
                         </div>
                         <div class="row">
@@ -389,11 +414,13 @@ Profile
         <div class="col collapse" id="collapseCharacter">
             <div class="card card-body">
                 <div class="row">
+                    <!-- Lists all characters of the profile user -->
                     {% for character in profile.user.character_post.all %}
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="image-container col-md-4 col-sm-6 col-8">
-                                <a href="{% url 'show_character' character.pk %}" class="post-link" aria-label="Show me the deatils of the {{ character.character_class }} {{ character.name }}">
+                                <!-- The picture is the link to the character details -->
+                                <a href="{% url 'show_character' character.pk %}" class="post-link" aria-label="Show me the details of the {{ character.character_class }} {{ character.name }}">
                                 {% if "placeholder" in character.image.url %}
                                     <img class="card-img-top"
                                         src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473620/media/images/character_default_lgald4.jpg" alt="Default Character Picture">
@@ -418,7 +445,7 @@ Profile
     </div>
 </div>
 {% else %}
-
+<!-- Error Message -->
 <h5 class="ms-5">You need to be logged in to look at someones profile.</h5>
 
 {% endif %}

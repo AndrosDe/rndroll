@@ -41,6 +41,7 @@
                 {% endif %}
             </div>
         </div>
+        <!-- Equipment toggle button -->
         <div class="row g-0">
             <div class="col dark-bg">
                 <div class="card card-body">
@@ -56,7 +57,8 @@
                     <div class="col-1"></div>
                 </div>
             </div>
-        </div>   
+        </div>
+        <!-- Equipment --> 
         <div class="row g-0">
             <div class="col collapse dark-bg" id="collapseEquipment">
                 <div class="card card-body">
@@ -64,6 +66,7 @@
                     <div class="col-10 equipment-bg">
                         <div class="row my-4">
                             <div class="col-sm-4 col-xs-9 my-4 masthead-text">
+                                <!-- All these IF-Statements make sure that no empty field is displayed --> 
                                 {% if character.equipt_shoulder_left %}
                                 <h6 class="text-center dark-equipment-bg my-3">{{ character.equipt_shoulder_left}}</h6>
                                 {% endif %}
@@ -84,6 +87,7 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-9 masthead-text text-center">
+                                <!-- Equipment Update button -->
                                 {% if user.id == character.created_by.id %}
                                 <a class="text-decoration-none text-center btn btn-success" href="{% url 'equipment_edit' character.pk %}" aria-label="Update Your Equipment Here">
                                     Update Equipment
@@ -141,6 +145,7 @@
 </div>
 <br>
 <br>
+<!-- Items --> 
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-4">
@@ -179,6 +184,7 @@
     </div>
     <div class="col-1"></div>
 </div>
+<!-- Notes --> 
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-4">
@@ -232,6 +238,7 @@
     </div>
     <div class="col-1"></div>
 </div>
+<!-- Events --> 
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-4">
@@ -245,23 +252,28 @@
         <div class="col collapse" id="collapseJoinedEvents">
             <div class="card card-body">
                 <div class="row">
+                    <!-- Lists all events the character has joined -->
                     {% for event in joined_events.all %}
                     <div class="col-xxl-3 col-lg-4 col-md-6">
                         <div class="card mb-3">
+                            <!-- Status "private" get an extra background -->
                             {% if event.status == 0 %}
                             <div class="card-body event-private-bg">
+                                <!-- As does "expired" or the start date is in the past -->
                                 {% elif event.status == 2 %}
                                 <div class="card-body event-expired-bg">
                                 {% else %}
                                     <div class="card-body">
                                     {% endif %}
                                         <div class="image-container">
+                                            <!-- If the event does not have an image, a default image will be displayed -->
                                             {% if "placeholder" in event.image.url %}
                                             <img class="card-img-top"
                                             src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" alt="Default Event Picture">
                                             {% else %}
                                             <img class="card-img-top" src=" {{ event.image.url }}" alt="Event Picture">
                                             {% endif %}
+                                            <!-- Status "private" gets a sign saying that it's private -->
                                             {% if event.status == 0 %}
                                             <div class="image-flash-top dark-blue-bg">
                                                 <strong class="author">
@@ -272,23 +284,28 @@
                                             <div class="image-flash dark-bg">
                                                 <p class="author">By: {{ event.owner }}</p>
                                             </div>
+                                            <!-- Delete Button for Administrator -->
                                             {% if user.is_staff%}
                                             <div class="image-flash-bottom-2 dark-red-bg">
                                                 <a class="author nav-link" href="{% url 'event_delete' event.pk %}" aria-label="Delete the Event">Delete</a>
                                             </div>
                                             {% endif %}
+                                            <!-- If the event has an owner... -->
                                             {% if event.owner %}
+                                            <!-- ... and the current user is that owner or game master or administrator... -->
                                             {% if user.id == event.owner.id or user.profile.gm  or user.is_staff %}
+                                            <!-- ... then you get this button -->
                                             <div class="image-flash-bottom-1 dark-orange-bg">
                                                 <a class="author nav-link" href="{% url 'event_edit' event.pk %}" aria-label="Update the Event">Update Event</a>
                                             </div>
                                             {% endif %}
                                             {% endif %}
                                         </div>
-                                        <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the deatils of the event {{ event.title }}">
+                                        <a href="{% url 'event_detail' event.pk %}" class="post-link" aria-label="Show me the details of the event {{ event.title }}">
                                             <h2 class="card-title">{{ event.title }}</h2>
                                             <p class="card-text">{{ event.snippet }}</p>
                                         </a>
+                                        <!-- Privat events have their sign at the top, expired events get it under the picture -->
                                         {% if event.status == 2 %}
                                         <p class="card-text text-center mt-1"><strong><i class="fa-solid fa-hourglass-end"></i> Expired <i class="fa-solid fa-hourglass-end"></i></strong></p>
                                         {% endif %}
@@ -340,7 +357,7 @@
         </strong>
         {% else %}
         <strong>
-            <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;" aria-label="Retrun to the previous page">Back</a>
+            <a class="btn btn-secondary" type="button" value="Cancel" href="#" onclick="javascript:window.history.back(-1);return false;" aria-label="Return to the previous page">Back</a>
         </strong>
         {% endif %}
     </div>

@@ -6,17 +6,20 @@ from cloudinary.models import CloudinaryField
 
 class Character(models.Model):
     ''' The Character Database '''
+    # main content
     name = models.CharField(max_length=200)
     character_class = models.CharField(max_length=200)
     background = models.TextField(null=True, blank=True)
     background_snippet = models.CharField(
         max_length=300, null=True, blank=True)
     image = CloudinaryField('image', default='placeholder')
+    # User
     created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="character_post"
     )
+    # Equipment & Items
     items = models.TextField(null=True, blank=True)
     equipt_head = models.CharField(
         max_length=300, null=True, blank=True)

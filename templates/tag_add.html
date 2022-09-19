@@ -7,6 +7,7 @@ Add a new Tag
 {% block content %}
 
 {% if user.is_authenticated %}
+<!-- Only logged-in users can see this -->
 <form action="" method="POST" enctype="multipart/form-data">
     <div class="masthead">
         <div class="container">
@@ -19,8 +20,8 @@ Add a new Tag
                     <div class="row">
                         <div class="col-1"> </div>
                         <div class="col">
-                                {% csrf_token %}
-                                {{ form.as_p }}
+                            {% csrf_token %}
+                            {{ form.as_p }}
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ Tag Index
                     <h1 class="post-title2">Tag Index</h1>
                 </div>
                 <br>
+                <!-- Only for logged in users -->
                 {% if user.is_authenticated %}
                 <div class="row">
                     <div class="col-1"> </div>
@@ -21,10 +22,12 @@ Tag Index
                         <a class="btn btn-success px-5" href="{% url 'add_tag' %}">Add Tag</a>
                     </div>
                 </div>
+                <!-- Can only be seen by the administrator -->
                 {% if user.is_staff %}
                 <br>
                 <div class="row">
                     <div class="col-1"> </div>
+                    <!-- Delete button - redirects to the administrator dashboard  -->
                     <div class="col">
                         <input class="btn btn-danger" title="This will send you to the Admin Site" value="Delete Tag" onclick = "getConfirmation();" >
                     </div>
@@ -33,18 +36,19 @@ Tag Index
                 {% endif %}
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image dark-bg">
-                
                 <img src="https://res.cloudinary.com/dbscsb8w1/image/upload/v1662473651/media/images/event_default_xev64c.jpg" width="100%" alt="Default Event Picture">
             </div>
         </div>
         <div class="row g-0">
             <div class="col-md-12 dark-bg">
                 <div class="row">
+                    <!-- Lists all tags -->
                     {% for tag in tag_list %}
                     <div class="col-md-4">
                         <div class="card mb-4">
                             <div class="card-body post-subtitle">
                                 <strong>
+                                    <!-- Opens a new page with all events that have this tag -->
                                     <a class="nav-link text-light" href="{% url 'event_tag' tag %}" target="_blank" aria-label="Find Events with This Tag">
                                         {{ tag }}
                                     </a>
@@ -52,6 +56,7 @@ Tag Index
                             </div>
                         </div>
                     </div>
+                    <!-- Every third loop we make a new line -->
                     {% if forloop.counter|divisibleby:3 %}
                 </div>
                 <div class="row">
@@ -63,6 +68,7 @@ Tag Index
         <br>
     </div>
 </div>
+<!-- script for the confirmation button -->
 <script type = "text/javascript">
     function getConfirmation() {
        var retVal = confirm("This will send you to the Admin Site.\nDo you want to continue ?");

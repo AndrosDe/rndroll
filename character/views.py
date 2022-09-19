@@ -17,9 +17,11 @@ class CharacterDetail(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(CharacterDetail, self).get_context_data(*args, **kwargs)
         page_character = get_object_or_404(Character, id=self.kwargs['pk'])
+        # adding the note form and notes to the page
         note_list = Note.objects.all
         note_form = NoteForm()
 
+        # getting all the events that this character joined
         joined_events = Event.objects.filter(characters=page_character)
 
         context["note_form"] = note_form

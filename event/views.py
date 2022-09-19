@@ -13,11 +13,13 @@ from .forms import EventForm, CommentForm
 class EventList(ListView):
     ''' Homepage View '''
     model = Event
+    # getting all events that are "public" for the index page
     queryset = Event.objects.filter(status=1).order_by("start_date")
     template_name = "index.html"
     paginate_by = 6
 
     def get_context_data(self, *args, **kwargs):
+        # add the current time to the index page
         context = super(EventList, self).get_context_data(*args, **kwargs)
         time = timezone.now()
 
@@ -32,6 +34,7 @@ class SearchResultsView(ListView):
     paginate_by = 6
 
     def get_context_data(self, *args, **kwargs):
+        # add the current time to the search_results page
         context = super(SearchResultsView, self).get_context_data(*args, **kwargs)
         time = timezone.now()
 
@@ -39,6 +42,7 @@ class SearchResultsView(ListView):
         return context
 
     def get_queryset(self):
+        # get the search request from the index page
         query = self.request.GET.get("q")
         object_list = Event.objects.filter(
             Q(title__icontains=query) | Q(owner__username__icontains=query)
@@ -54,13 +58,15 @@ class EventDetail(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(EventDetail, self).get_context_data(*args, **kwargs)
+        # add comments to the event page
         comment_form = CommentForm()
         event = get_object_or_404(Event, id=self.kwargs['pk'])
         comments = event.comments.all
+        # determine if the user already liked the event
         liked = False
         if event.likes.filter(id=self.request.user.id).exists():
             liked = True
-
+        # determine if the user already joined the event
         joined = False
         if event.characters.filter(created_by=self.request.user.id).exists():
             joined = True
@@ -72,6 +78,7 @@ class EventDetail(DetailView):
         return context
 
     def post(self, request, pk, *args, **kwargs):
+        # get the data from the comment form on the event page
         event = get_object_or_404(Event, id=self.kwargs['pk'])
         comment_form = CommentForm(data=request.POST)
 
@@ -89,6 +96,7 @@ class EventDetail(DetailView):
 def LikeView(request, pk):
     ''' The Like function on Event Details '''
     event = get_object_or_404(Event, id=request.POST.get("event_id"))
+    # if the user already liked the event, the like gets removed otherwise it is added
     if event.likes.filter(id=request.user.id).exists():
         event.likes.remove(request.user)
     else:
@@ -100,6 +108,7 @@ def LikeView(request, pk):
 def JoinView(request, pk, *args, **kwargs):
     ''' The function on Event Details to join an Event'''
     select_event = get_object_or_404(Event, pk=pk)
+    # This is the function between the add and remove button by the characters on the event page
     if select_event.characters.filter(id=request.POST.get("character_id")).exists():
         select_event.characters.remove(request.POST.get("character_id"))
     else:
@@ -143,6 +152,7 @@ class HelpView(TemplateView):
 
 def TagsView(request, tags):
     ''' View for the filtered Tags '''
+    # getting all the events that have a specific tag
     tagged_events = Event.objects.filter(tag__tag=tags.replace('-', ' ')).order_by("start_date")
     time = timezone.now()
 
