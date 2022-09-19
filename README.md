@@ -135,6 +135,9 @@
     * Promote Users to Game Master
     * Promote Users to a staff member
     <br><br>
+  - ### Mapped User Stories to the project on GitHub:<br>
+    [View the project here on GitHub](https://github.com/users/AndrosDe/projects/3)
+    <br><br>
 <hr>
 
 ## Scope
